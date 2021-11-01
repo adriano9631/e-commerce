@@ -1,10 +1,23 @@
-import styled, { css } from "styled-components/macro";
+import styled, { css, keyframes } from "styled-components/macro";
 import Image from "next/image";
+
+
+type ImageProps = {
+  xaxis: number;
+  yaxis: number;
+  src: StaticImageData;
+  layout: string;
+  objectFit: string;
+  alt: string;
+  $isImageLeftLoaded: boolean;
+  $isImageRightLoaded: boolean;
+};
 
 export const HeaderContainer = styled.header`
   display: flex;
   margin-top: 20px;
   position: relative;
+  overflow: hidden;
 `;
 
 export const HeroLeft = styled.div`
@@ -14,20 +27,16 @@ export const HeroLeft = styled.div`
   z-index: 1;
 `;
 
-type ImageProps = {
-  xAxis: number;
-  yAxis: number;
-  src: string;
-  layout: string;
-  objectFit: string;
-  alt: string;
-};
+
 
 export const ImageLeft = styled(Image)<ImageProps>`
   object-position: ${(props) =>
-    props.xAxis && props.yAxis
-      ? `calc(50% + ${props.xAxis}px) calc(50% - ${props.yAxis}px)`
+    props.xaxis && props.yaxis
+      ? `calc(50% + ${props.xaxis}px) calc(50% - ${props.yaxis}px)`
       : "50%"};
+
+  display: ${({ $isImageLeftLoaded, $isImageRightLoaded }) =>
+    !$isImageLeftLoaded && !$isImageRightLoaded && "none"};
 `;
 
 export const Discount = styled.div`
@@ -48,12 +57,13 @@ export const HeroRight = styled.div`
   position: relative;
   z-index: 1;
   left: 1vw;
+  
 `;
 
 export const ImageRight = styled(Image)<ImageProps>`
   object-position: ${(props) =>
-    props.xAxis && props.yAxis
-      ? `calc(50% - ${props.xAxis}px) calc(50% - ${props.yAxis}px)`
+    props.xaxis && props.yaxis
+      ? `calc(50% - ${props.xaxis}px) calc(50% - ${props.yaxis}px)`
       : "50%"};
 `;
 
@@ -90,14 +100,29 @@ export const ImageWrapper = styled.div``;
 
 export const HeadingsWrapper = styled.div``;
 
-export const Heading = styled.h1`
+const headingAnimation = keyframes`
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+`;
+
+export const Heading = styled.h1<{ inview: boolean; ref: Function }>`
   font-family: "Oswald", sans-serif;
   font-size: 52px;
   text-align: center;
+  animation-name: ${(props) => props.inview && headingAnimation};
+  animation-duration: 2s;
+  /* animation-iteration-count: infinite; */
   @media only screen and (max-width: 1320px) {
     max-width: 450px;
   }
 `;
+
 export const Subheading = styled.h2`
   font-family: "Oswald", sans-serif;
   font-size: 23px;
