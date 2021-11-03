@@ -45,7 +45,7 @@ export const BestSellerWrapper = styled.div`
 `;
 
 type ImageProps = {
-  src: string;
+  src: StaticImageData;
   width: number;
   height: number;
 };

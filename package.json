@@ -16,6 +16,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-intersection-observer": "^8.32.2",
+    "react-parallax": "^3.3.0",
     "react-svg-text": "^0.1.2",
     "styled": "^1.0.0",
     "styled-components": "^5.3.1",

@@ -2,14 +2,17 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 
-html,
+html {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
 body {
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
   position: relative;
   font-size: 14px;
-  height: 2500px;
 }
 
 h1,

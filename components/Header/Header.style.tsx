@@ -1,16 +1,12 @@
 import styled, { css, keyframes } from "styled-components/macro";
 import Image from "next/image";
 
-
 type ImageProps = {
-  xaxis: number;
-  yaxis: number;
   src: StaticImageData;
   layout: string;
   objectFit: string;
   alt: string;
-  $isImageLeftLoaded: boolean;
-  $isImageRightLoaded: boolean;
+ 
 };
 
 export const HeaderContainer = styled.header`
@@ -27,16 +23,8 @@ export const HeroLeft = styled.div`
   z-index: 1;
 `;
 
-
-
 export const ImageLeft = styled(Image)<ImageProps>`
-  object-position: ${(props) =>
-    props.xaxis && props.yaxis
-      ? `calc(50% + ${props.xaxis}px) calc(50% - ${props.yaxis}px)`
-      : "50%"};
-
-  display: ${({ $isImageLeftLoaded, $isImageRightLoaded }) =>
-    !$isImageLeftLoaded && !$isImageRightLoaded && "none"};
+ 
 `;
 
 export const Discount = styled.div`
@@ -57,14 +45,11 @@ export const HeroRight = styled.div`
   position: relative;
   z-index: 1;
   left: 1vw;
-  
 `;
 
 export const ImageRight = styled(Image)<ImageProps>`
-  object-position: ${(props) =>
-    props.xaxis && props.yaxis
-      ? `calc(50% - ${props.xaxis}px) calc(50% - ${props.yaxis}px)`
-      : "50%"};
+  /* display: ${({ $isImageLeftLoaded, $isImageRightLoaded }) =>
+    !$isImageLeftLoaded && !$isImageRightLoaded && "none"}; */
 `;
 
 export const CollectionSelectionWrapper = styled.div`

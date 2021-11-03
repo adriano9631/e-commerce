@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as s from "./MainSection.style";
+import ShopAllBtn from "components/ShopAllButton";
 import carouselImg1 from "public/images/carousel-img-1.jpg";
 import carouselImg2 from "public/images/carousel-img-2.jpg";
 import carouselImg3 from "public/images/carousel-img-3.jpg";
@@ -95,7 +96,7 @@ const MainSection = () => {
             I’m a great place for you to tell a story and let your users know a
             little more about you.
           </s.Description>
-          <s.ShopAllBtn>Shop All Denim</s.ShopAllBtn>
+          <ShopAllBtn />
         </s.Wrapper>
         <s.ModelsImg src={models} height={950} width={763} />
       </s.FlexWrapper>
@@ -123,11 +124,7 @@ const MainSection = () => {
                   transition: { duration: 1.5 },
                 }}
               >
-                <s.CarouselImg
-                  height={512}
-                  width={363}
-                  src={carouselImg1}
-                />
+                <s.CarouselImg height={512} width={363} src={carouselImg1} />
                 <s.FirstImgWrapper>
                   <s.FirstImgDiscountPartOne />
                   <s.FirstImgDiscountPartTwo />
@@ -152,11 +149,7 @@ const MainSection = () => {
                   transition: { duration: 1.5 },
                 }}
               >
-                <s.CarouselImg
-                  height={512}
-                  width={363}
-                  src={carouselImg2}
-                />
+                <s.CarouselImg height={512} width={363} src={carouselImg2} />
                 <s.SecondImgWrapper>
                   <s.SecondImgHeading>FREE SHIPPING</s.SecondImgHeading>
                   <s.SecondImgSubheading>
@@ -177,11 +170,7 @@ const MainSection = () => {
                   transition: { duration: 1.5 },
                 }}
               >
-                <s.CarouselImg
-                  height={512}
-                  width={363}
-                  src={carouselImg3}
-                />
+                <s.CarouselImg height={512} width={363} src={carouselImg3} />
                 <s.ThirdImgWrapper>
                   <s.ThirdImgWritingArea />
                   <s.ThirdImgHeading>DISCOUNT!</s.ThirdImgHeading>

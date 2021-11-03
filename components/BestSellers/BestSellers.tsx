@@ -1,6 +1,7 @@
 import React from "react";
 import * as s from "./BestSellers.style";
 import { useInView } from "react-intersection-observer";
+import jeans1 from "public/images/jeans-1.jpg";
 
 const BestSellers: React.FC = () => {
   const [ref, inview] = useInView({ triggerOnce: true });
@@ -12,42 +13,42 @@ const BestSellers: React.FC = () => {
       </s.Heading>
       <s.BestSellersList>
         <s.BestSellerWrapper>
-          <s.BestSellerImg src="/images/jeans-1.jpg" width={280} height={373} />
+          <s.BestSellerImg src={jeans1} width={280} height={373} />
           <s.BestSeller>Best Seller</s.BestSeller>
           <s.Name>Straight Leg Jean</s.Name>
           <s.Price>99,00 zł</s.Price>
         </s.BestSellerWrapper>
 
         <s.BestSellerWrapper>
-          <s.BestSellerImg src="/images/jeans-1.jpg" width={280} height={373} />
+          <s.BestSellerImg src={jeans1} width={280} height={373} />
           <s.BestSeller>Best Seller</s.BestSeller>
           <s.Name>Rose Patch</s.Name>
           <s.Price>10,00 zł</s.Price>
         </s.BestSellerWrapper>
 
         <s.BestSellerWrapper>
-          <s.BestSellerImg src="/images/jeans-1.jpg" width={280} height={373} />
+          <s.BestSellerImg src={jeans1} width={280} height={373} />
           <s.BestSeller>Best Seller</s.BestSeller>
           <s.Name>Deni Vest</s.Name>
           <s.Price>45,00 zł</s.Price>
         </s.BestSellerWrapper>
 
         <s.BestSellerWrapper>
-          <s.BestSellerImg src="/images/jeans-1.jpg" width={280} height={373} />
+          <s.BestSellerImg src={jeans1} width={280} height={373} />
           <s.BestSeller>Best Seller</s.BestSeller>
           <s.Name>Straight Cut Jean</s.Name>
           <s.Price>99,00 zł</s.Price>
         </s.BestSellerWrapper>
 
         <s.BestSellerWrapper>
-          <s.BestSellerImg src="/images/jeans-1.jpg" width={280} height={373} />
+          <s.BestSellerImg src={jeans1} width={280} height={373} />
           <s.BestSeller>Best Seller</s.BestSeller>
           <s.Name>Deni Bag</s.Name>
           <s.Price>15,00 zł</s.Price>
         </s.BestSellerWrapper>
 
         <s.BestSellerWrapper>
-          <s.BestSellerImg src="/images/jeans-1.jpg" width={280} height={373} />
+          <s.BestSellerImg src={jeans1} width={280} height={373} />
           <s.BestSeller>Best Seller</s.BestSeller>
           <s.Name>Oversized Jacket</s.Name>
           <s.Price>65,00 zł</s.Price>

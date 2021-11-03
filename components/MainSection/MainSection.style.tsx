@@ -5,7 +5,7 @@ import discountPartOne from "public/icons/discount-part-1.svg";
 import discountPartTwo from "public/icons/discount-part-2.svg";
 import writingArea from "public/icons/writing-area.svg";
 
-const btnStyles = css`
+export const btnStyles = css`
   padding: 18px;
   background-color: #b73030;
   border-radius: 5px;
@@ -74,9 +74,9 @@ export const Description = styled.p`
   ${descriptionStyles}
 `;
 
-export const ShopAllBtn = styled.button`
-  ${btnStyles}
-`;
+// export const ShopAllBtn = styled.button`
+//   ${btnStyles}
+// `;
 
 export const ModelsImg = styled(Image)<ImgProps>``;
 
