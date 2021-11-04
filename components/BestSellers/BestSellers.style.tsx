@@ -4,8 +4,8 @@ import Image from "next/image";
 export const BestSellersContainer = styled.section`
   width: 90%;
   margin: 0 auto;
+  padding-left: 40px;
   margin-top: 80px;
-  /* padding-left: 70px;  */
 `;
 
 const headingAnimation = keyframes`
@@ -25,13 +25,10 @@ export const Heading = styled.h2<{ inview: boolean; ref: Function }>`
   font-family: "Oswald", sans-serif;
   animation-name: ${(props) => props.inview && headingAnimation};
   animation-duration: 2s;
-  /* margin-left: 30px; */
 `;
 
 export const BestSellersList = styled.article`
   display: flex;
-  /* justify-content: flex-end; */
-  /* margin: 0 auto; */
   margin-top: 40px;
 `;
 

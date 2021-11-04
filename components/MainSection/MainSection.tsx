@@ -124,7 +124,12 @@ const MainSection = () => {
                   transition: { duration: 1.5 },
                 }}
               >
-                <s.CarouselImg height={512} width={363} src={carouselImg1} />
+                <s.CarouselImg
+                  lazyBoundary="500px"
+                  height={512}
+                  width={363}
+                  src={carouselImg1}
+                />
                 <s.FirstImgWrapper>
                   <s.FirstImgDiscountPartOne />
                   <s.FirstImgDiscountPartTwo />
@@ -149,7 +154,12 @@ const MainSection = () => {
                   transition: { duration: 1.5 },
                 }}
               >
-                <s.CarouselImg height={512} width={363} src={carouselImg2} />
+                <s.CarouselImg
+                  lazyBoundary="500px"
+                  height={512}
+                  width={363}
+                  src={carouselImg2}
+                />
                 <s.SecondImgWrapper>
                   <s.SecondImgHeading>FREE SHIPPING</s.SecondImgHeading>
                   <s.SecondImgSubheading>
@@ -170,7 +180,12 @@ const MainSection = () => {
                   transition: { duration: 1.5 },
                 }}
               >
-                <s.CarouselImg height={512} width={363} src={carouselImg3} />
+                <s.CarouselImg
+                  lazyBoundary="500px"
+                  height={512}
+                  width={363}
+                  src={carouselImg3}
+                />
                 <s.ThirdImgWrapper>
                   <s.ThirdImgWritingArea />
                   <s.ThirdImgHeading>DISCOUNT!</s.ThirdImgHeading>

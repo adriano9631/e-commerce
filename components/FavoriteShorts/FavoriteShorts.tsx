@@ -6,11 +6,14 @@ import * as s from "./FavoriteShorts.style";
 import ShopAllButton from "components/ShopAllButton";
 
 const FavoriteShorts = () => {
-  const loaded = useProgressiveImage("/images/blue-background.jpg");
-  console.log(loaded);
-  
+  const loadedBackgroundImage = useProgressiveImage(
+    "/images/blue-background.jpg"
+  );
+
   return (
-    <s.FavoriteShortsContainer style={{ backgroundImage: `url(${loaded})` }} >
+    <s.FavoriteShortsContainer
+      style={{ backgroundImage: `url(${loadedBackgroundImage})` }}
+    >
       <s.FlexWrapper>
         <s.IntroductionWrapper>
           <s.Subheading>We Love Denim</s.Subheading>

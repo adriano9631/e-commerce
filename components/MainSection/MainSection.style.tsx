@@ -45,7 +45,7 @@ type PictureChangeBtnProps = {
   onClick: Function;
 };
 
-export const MainSectionContainer = styled.section`
+export const MainSectionContainer = styled.main`
   margin-top: 300px;
 `;
 
