@@ -48,8 +48,6 @@ export const HeroRight = styled.div`
 `;
 
 export const ImageRight = styled(Image)<ImageProps>`
-  /* display: ${({ $isImageLeftLoaded, $isImageRightLoaded }) =>
-    !$isImageLeftLoaded && !$isImageRightLoaded && "none"}; */
 `;
 
 export const CollectionSelectionWrapper = styled.div`

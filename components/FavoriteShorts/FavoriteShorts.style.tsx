@@ -1,4 +1,20 @@
+import React from "react";
 import styled from "styled-components/macro";
+import { motion } from "framer-motion";
+
+type IntroductionWrapperProps = {
+  initial: string;
+  variants: object;
+  animate: object;
+  ref: Function;
+};
+
+type FavoriteShortsListWrapperProps = {
+  ref: (node?: Element | null | undefined) => void;
+  initial: string;
+  animate: object;
+  variants: object;
+};
 
 export const FavoriteShortsContainer = styled.section`
   background-attachment: fixed;
@@ -16,7 +32,9 @@ export const FlexWrapper = styled.div`
   margin-top: 100px;
 `;
 
-export const IntroductionWrapper = styled.div``;
+export const IntroductionWrapper = styled(
+  motion.div
+)<IntroductionWrapperProps>``;
 export const Subheading = styled.h3`
   font-size: 23px;
 `;
@@ -35,13 +53,14 @@ export const Description = styled.p`
   max-width: 602px;
 `;
 
-export const FavoriteShortsListWrapper = styled.div`
+export const FavoriteShortsListWrapper = styled(motion.ul)<FavoriteShortsListWrapperProps>`
   display: flex;
+  justify-content: space-around;
   column-gap: 10px;
   margin-top: 80px;
 `;
 
-export const FavoriteShortWrapper = styled.div`
+export const FavoriteShortWrapper = styled(motion.li)<{ variants: object }>`
   position: relative;
 `;
 
@@ -56,7 +75,6 @@ export const NewArrival = styled.p`
   font-size: 19px;
 `;
 
-// export const ImageWrapper = styled.div``;
 export const Name = styled.p`
   font-size: 18px;
   margin-top: 7px;
@@ -69,5 +87,3 @@ export const Price = styled.p`
   margin-top: 5px;
   font-weight: bold;
 `;
-
-// export const ShopAllBtn = styled.button``

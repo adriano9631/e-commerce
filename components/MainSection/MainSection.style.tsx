@@ -1,5 +1,6 @@
-import styled, { css } from "styled-components/macro";
+import styled, { css, keyframes } from "styled-components/macro";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import discountPartOne from "public/icons/discount-part-1.svg";
 import discountPartTwo from "public/icons/discount-part-2.svg";
@@ -45,6 +46,12 @@ type PictureChangeBtnProps = {
   onClick: Function;
 };
 
+type WrapperProps = {
+  initial: string;
+  animate: object;
+  variants: object;
+};
+
 export const MainSectionContainer = styled.main`
   margin-top: 300px;
 `;
@@ -54,7 +61,7 @@ export const FlexWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(motion.div)<WrapperProps>`
   margin-left: 15%;
   margin-top: 150px;
 `;
@@ -85,7 +92,21 @@ export const BenefitWrapper = styled.div`
   transform: translateY(-100px);
 `;
 
-export const BenefitImg = styled(Image)<ImgProps>``;
+const benefitImgAnimation = keyframes`
+  from {
+    transform: translateX(-100px);
+    opacity:0;
+  }
+  to {
+    transform: translateX(0);
+    opacity:1;
+  }
+`;
+
+export const BenefitImg = styled(Image)<ImgProps & { $inView: boolean }>`
+  animation-name: ${(props) => props.$inView && benefitImgAnimation};
+  animation-duration: 2s;
+`;
 
 export const BenefitHeading = styled.h2`
   ${headingStyles}
@@ -196,9 +217,10 @@ export const ThirdImgDescription = styled.p`
   font-family: "Oswald", sans-serif;
   letter-spacing: 0.5px;
 `;
-export const ThirdImgShopAllBtn = styled.button``;
 
-export const CarouselWrapper = styled.div`
+export const CarouselWrapper = styled(motion.div)<
+  WrapperProps & { ref: Function }
+>`
   position: relative;
   height: 512px;
   width: 363px;

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import * as s from "./MainSection.style";
-import ShopAllBtn from "components/ShopAllButton";
+// import ShopAllBtn from "components/ShopAllButton";
 import carouselImg1 from "public/images/carousel-img-1.jpg";
 import carouselImg2 from "public/images/carousel-img-2.jpg";
 import carouselImg3 from "public/images/carousel-img-3.jpg";
@@ -21,6 +22,26 @@ type activeButtons = {
 };
 
 const MainSection = () => {
+  const controls = useAnimation();
+  const controls3 = useAnimation();
+  const controls4 = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: true });
+  const [ref2, inView2] = useInView({ triggerOnce: true });
+  const [ref3, inView3] = useInView({ triggerOnce: true });
+  const [ref4, inView4] = useInView({ triggerOnce: true });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+    if (inView3) {
+      controls3.start("visible");
+    }
+    if (inView4) {
+      controls4.start("visible");
+    }
+  }, [controls, controls3, controls4, inView, inView3, inView4]);
+
   const [currentImageNum, setCurrentImageNum] = useState(1);
   const [disabledButtons, setDisabledButtons] = useState<disabledButtons>({
     btn1: false,
@@ -32,6 +53,7 @@ const MainSection = () => {
     btn2: false,
     btn3: false,
   });
+
   useEffect(() => {
     const timer = window.setInterval(() => {
       setCurrentImageNum((prevImageNum) =>
@@ -82,36 +104,95 @@ const MainSection = () => {
       btn3: false,
     });
   };
+
+  const outer = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const inner = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+  };
+
+  const carouselWrapperAnimation = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+  };
+
   return (
     <s.MainSectionContainer>
       <s.FlexWrapper>
-        <s.Wrapper>
-          <s.Subheading>Comfort Comes in Many Styles</s.Subheading>
-          <s.Heading>
-            OUR DENIM WILL MAKE WORKING FROM WORK FEEL JUST LIKE WORKING FROM
-            HOME.
-          </s.Heading>
-          <s.Description>
-            {`I'm`} a paragraph. Click here to add your own text and edit me.
-            I’m a great place for you to tell a story and let your users know a
-            little more about you.
-          </s.Description>
-          <ShopAllBtn />
+        <s.Wrapper
+          ref={ref}
+          variants={outer}
+          initial="hidden"
+          animate={controls}
+        >
+          <motion.div variants={inner}>
+            <s.Subheading>Comfort Comes in Many Styles</s.Subheading>
+            <s.Heading>
+              OUR DENIM WILL MAKE WORKING FROM WORK FEEL JUST LIKE WORKING FROM
+              HOME.
+            </s.Heading>
+          </motion.div>
+          <motion.div variants={inner}>
+            <s.Description>
+              {`I'm`} a paragraph. Click here to add your own text and edit me.
+              I’m a great place for you to tell a story and let your users know
+              a little more about you.
+            </s.Description>
+            {/* <ShopAllBtn /> */}
+          </motion.div>
         </s.Wrapper>
-        <s.ModelsImg src={models} height={950} width={763} />
+        <s.ModelsImg
+          lazyBoundary="500px"
+          src={models}
+          height={950}
+          width={763}
+        />
       </s.FlexWrapper>
       <s.FlexWrapper style={{ marginTop: "200px", marginRight: "200px" }}>
-        <s.BenefitWrapper>
-          <s.BenefitImg src={modelPosingInTheSand} height={793} width={528} />
-          <s.BenefitHeading>EARTH-FRIENDLY AND LASTING</s.BenefitHeading>
-          <s.BenefitDescription>
-            {`I'm`} a paragraph. Click here to add your own text and edit me.
-            I’m a great place for you to tell a story and let your users know a
-            little more about you.
-          </s.BenefitDescription>
-          <s.LearnMoreBtn> Learn More </s.LearnMoreBtn>
+        <s.BenefitWrapper ref={ref2}>
+          <s.BenefitImg
+            $inView={inView2}
+            src={modelPosingInTheSand}
+            height={793}
+            width={528}
+          />
+          <motion.div
+            initial="hidden"
+            animate={controls3}
+            variants={outer}
+            ref={ref3}
+          >
+            <motion.div variants={inner}>
+              <s.BenefitHeading>EARTH-FRIENDLY AND LASTING</s.BenefitHeading>
+            </motion.div>
+            <motion.div variants={inner}>
+              <s.BenefitDescription>
+                {`I'm`} a paragraph. Click here to add your own text and edit
+                me. I’m a great place for you to tell a story and let your users
+                know a little more about you.
+              </s.BenefitDescription>
+              <s.LearnMoreBtn> Learn More </s.LearnMoreBtn>
+            </motion.div>
+          </motion.div>
         </s.BenefitWrapper>
-        <s.CarouselWrapper>
+        <s.CarouselWrapper
+          initial="hidden"
+          animate={controls4}
+          variants={carouselWrapperAnimation}
+          ref={ref4}
+        >
           <AnimatePresence onExitComplete={resetButtons}>
             {currentImageNum === 1 && (
               <motion.div

@@ -5,6 +5,7 @@ import decorationImg2 from "public/images/decoration-2.jpg";
 
 import * as s from "./Footer.style";
 
+
 const Footer = () => {
   return (
     <s.FooterContainer>

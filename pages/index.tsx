@@ -6,7 +6,7 @@ import BestSellers from "components/BestSellers";
 import MainSection from "components/MainSection";
 import FavoriteShorts from "components/FavoriteShorts";
 
-const FourModelsPosing = styled.div<{ $loadedbBackgroundImage: string }>`
+const FourModelsPosingImg = styled.div<{ $loadedbBackgroundImage: string }>`
   background-image: ${({ $loadedbBackgroundImage }) =>
     `url(${$loadedbBackgroundImage})`};
   background-attachment: fixed;
@@ -15,6 +15,7 @@ const FourModelsPosing = styled.div<{ $loadedbBackgroundImage: string }>`
 `;
 
 const Home: NextPage = () => {
+  
   const loadedbBackgroundImage = useProgressiveImage(
     "/images/four-models-posing.jpg"
   );
@@ -25,7 +26,7 @@ const Home: NextPage = () => {
       <BestSellers />
       <MainSection />
       <FavoriteShorts />
-      <FourModelsPosing $loadedbBackgroundImage={loadedbBackgroundImage} />
+      <FourModelsPosingImg $loadedbBackgroundImage={loadedbBackgroundImage} />
     </>
   );
 };

@@ -1,5 +1,21 @@
 import styled, { keyframes } from "styled-components/macro";
+import { motion } from "framer-motion";
 import Image from "next/image";
+
+type BestSellersListProps = {
+  ref: Function;
+  initial: string;
+  animate: object;
+  variants: object;
+};
+
+type ImageProps = {
+  src: StaticImageData;
+  width: number;
+  height: number;
+};
+
+type HeadingsProps = BestSellersListProps;
 
 export const BestSellersContainer = styled.section`
   width: 90%;
@@ -8,31 +24,19 @@ export const BestSellersContainer = styled.section`
   margin-top: 80px;
 `;
 
-const headingAnimation = keyframes`
-  from {
-    transform: translateX(-30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-`;
-
-export const Heading = styled.h2<{ inview: boolean; ref: Function }>`
+export const Heading = styled(motion.h2)<HeadingsProps>`
   color: #0f2c66;
   font-size: 36px;
   font-family: "Oswald", sans-serif;
-  animation-name: ${(props) => props.inview && headingAnimation};
-  animation-duration: 2s;
+  margin-left: 40px;
 `;
 
-export const BestSellersList = styled.article`
+export const BestSellersList = styled(motion.ul)<BestSellersListProps>`
   display: flex;
   margin-top: 40px;
 `;
 
-export const BestSellerWrapper = styled.div`
+export const BestSellerWrapper = styled(motion.li)`
   position: relative;
   &:hover {
     transform: scale(1.1);
@@ -40,12 +44,6 @@ export const BestSellerWrapper = styled.div`
   }
   transition: transform 0.2s;
 `;
-
-type ImageProps = {
-  src: StaticImageData;
-  width: number;
-  height: number;
-};
 
 export const BestSellerImg = styled(Image)<ImageProps>`
   transform: translateY(10px);
