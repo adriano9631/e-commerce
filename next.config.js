@@ -9,4 +9,7 @@ module.exports = {
 
     return config;
   },
+  images: {
+    domains: ["www.datocms-assets.com"],
+  },
 };

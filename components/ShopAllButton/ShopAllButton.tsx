@@ -6,7 +6,7 @@ type ShopAllbutonProps = {
   initial: string;
   animate: object;
   variants: Variants & object;
-};
+} | {};
 export type Ref = HTMLButtonElement;
 
 const ShopAllButton = React.forwardRef<Ref, ShopAllbutonProps>(

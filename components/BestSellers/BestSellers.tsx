@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { FC, useEffect } from "react";
 import * as s from "./BestSellers.style";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
+import { BestSellingProducts } from "types";
 import jeans1 from "public/images/jeans-1.jpg";
 
-const BestSellers: React.FC = () => {
+type BestSellersProps = BestSellingProducts;
+
+const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
   const controls = useAnimation();
   const controls2 = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: true });
   const [ref2, inView2] = useInView({ triggerOnce: true });
-
   useEffect(() => {
     if (inView) {
       controls.start("visible");
@@ -51,6 +53,7 @@ const BestSellers: React.FC = () => {
       },
     },
   };
+  console.log(bestSellingProducts);
 
   return (
     <s.BestSellersContainer>
@@ -68,47 +71,21 @@ const BestSellers: React.FC = () => {
         animate={controls2}
         variants={list}
       >
-        <s.BestSellerWrapper variants={item}>
-          <s.BestSellerImg src={jeans1} width={280} height={373} />
-          <s.BestSeller>Best Seller</s.BestSeller>
-          <s.Name>Straight Leg Jean</s.Name>
-          <s.Price>99,00 zł</s.Price>
-        </s.BestSellerWrapper>
+        {bestSellingProducts.map((product) => {
+          return (
+            <s.BestSellerWrapper key={product.id} variants={item}>
+              <s.BestSellerImg
+                src={product.image.url}
+                width={280}
+                height={373}
+              />
+              <s.BestSeller>Best Seller</s.BestSeller>
+              <s.Name>{product.name}</s.Name>
+              <s.Price>{product.price}</s.Price>
+            </s.BestSellerWrapper>
+          );
+        })}
 
-        <s.BestSellerWrapper variants={item}>
-          <s.BestSellerImg src={jeans1} width={280} height={373} />
-          <s.BestSeller>Best Seller</s.BestSeller>
-          <s.Name>Rose Patch</s.Name>
-          <s.Price>10,00 zł</s.Price>
-        </s.BestSellerWrapper>
-
-        <s.BestSellerWrapper variants={item}>
-          <s.BestSellerImg src={jeans1} width={280} height={373} />
-          <s.BestSeller>Best Seller</s.BestSeller>
-          <s.Name>Deni Vest</s.Name>
-          <s.Price>45,00 zł</s.Price>
-        </s.BestSellerWrapper>
-
-        <s.BestSellerWrapper variants={item}>
-          <s.BestSellerImg src={jeans1} width={280} height={373} />
-          <s.BestSeller>Best Seller</s.BestSeller>
-          <s.Name>Straight Cut Jean</s.Name>
-          <s.Price>99,00 zł</s.Price>
-        </s.BestSellerWrapper>
-
-        <s.BestSellerWrapper variants={item}>
-          <s.BestSellerImg src={jeans1} width={280} height={373} />
-          <s.BestSeller>Best Seller</s.BestSeller>
-          <s.Name>Deni Bag</s.Name>
-          <s.Price>15,00 zł</s.Price>
-        </s.BestSellerWrapper>
-
-        <s.BestSellerWrapper variants={item}>
-          <s.BestSellerImg src={jeans1} width={280} height={373} />
-          <s.BestSeller>Best Seller</s.BestSeller>
-          <s.Name>Oversized Jacket</s.Name>
-          <s.Price>65,00 zł</s.Price>
-        </s.BestSellerWrapper>
       </s.BestSellersList>
     </s.BestSellersContainer>
   );

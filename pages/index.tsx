@@ -1,4 +1,7 @@
 import { NextPage } from "next";
+import { gql } from "graphql-request";
+import datocms from "api/datocmsClient";
+import { BestSellingProducts } from "types";
 import { useProgressiveImage } from "hooks/useProgressiveImage";
 import styled from "styled-components";
 import Header from "components/Header";
@@ -14,8 +17,9 @@ const FourModelsPosingImg = styled.div<{ $loadedbBackgroundImage: string }>`
   filter: brightness(70%);
 `;
 
-const Home: NextPage = () => {
-  
+type HomeProps = BestSellingProducts;
+
+const Home: NextPage<HomeProps> = ({ bestSellingProducts }) => {
   const loadedbBackgroundImage = useProgressiveImage(
     "/images/four-models-posing.jpg"
   );
@@ -23,12 +27,35 @@ const Home: NextPage = () => {
   return (
     <>
       <Header />
-      <BestSellers />
+      <BestSellers bestSellingProducts={bestSellingProducts} />
       <MainSection />
       <FavoriteShorts />
       <FourModelsPosingImg $loadedbBackgroundImage={loadedbBackgroundImage} />
     </>
   );
 };
+
+export async function getStaticProps() {
+  const bestSellingProductsQuery = gql`
+    {
+      allProducts(filter: { stock: { gte: "5" } }) {
+        name
+        price
+        id
+        image {
+          url
+        }
+      }
+    }
+  `;
+
+  const bestSellingProducts = await datocms.request(bestSellingProductsQuery);
+
+  return {
+    props: {
+      bestSellingProducts: bestSellingProducts.allProducts,
+    },
+  };
+}
 
 export default Home;

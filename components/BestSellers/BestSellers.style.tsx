@@ -10,7 +10,7 @@ type BestSellersListProps = {
 };
 
 type ImageProps = {
-  src: StaticImageData;
+  src: string;
   width: number;
   height: number;
 };
@@ -36,7 +36,7 @@ export const BestSellersList = styled(motion.ul)<BestSellersListProps>`
   margin-top: 40px;
 `;
 
-export const BestSellerWrapper = styled(motion.li)`
+export const BestSellerWrapper = styled(motion.li)<{ key: number }>`
   position: relative;
   &:hover {
     transform: scale(1.1);

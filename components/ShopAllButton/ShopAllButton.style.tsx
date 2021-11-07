@@ -9,7 +9,7 @@ type ShopAllBtnContainerProps = {
   initial: string;
   variants: Variants & object;
   animate: object;
-};
+} | {};
 
 export const ShopAllBtnContainer = styled(
   motion.button

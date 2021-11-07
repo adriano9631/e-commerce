@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import * as s from "./MainSection.style";
-// import ShopAllBtn from "components/ShopAllButton";
+import ShopAllBtn from "components/ShopAllButton";
 import carouselImg1 from "public/images/carousel-img-1.jpg";
 import carouselImg2 from "public/images/carousel-img-2.jpg";
 import carouselImg3 from "public/images/carousel-img-3.jpg";
@@ -150,7 +150,7 @@ const MainSection = () => {
               I’m a great place for you to tell a story and let your users know
               a little more about you.
             </s.Description>
-            {/* <ShopAllBtn /> */}
+            <ShopAllBtn />
           </motion.div>
         </s.Wrapper>
         <s.ModelsImg
