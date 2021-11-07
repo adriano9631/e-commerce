@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useInView } from "react-intersection-observer";
 import * as s from "./Header.style";
-import { throttle } from "underscore";
 import SearchBox from "components/SearchBox";
 import heroLeft from "public/images/hero-left.jpg";
 import heroRight from "public/images/hero-right.jpg";
