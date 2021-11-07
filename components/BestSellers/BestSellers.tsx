@@ -2,10 +2,18 @@ import React, { FC, useEffect } from "react";
 import * as s from "./BestSellers.style";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
-import { BestSellingProducts } from "types";
 import jeans1 from "public/images/jeans-1.jpg";
 
-type BestSellersProps = BestSellingProducts;
+type BestSellersProps = {
+  bestSellingProducts: {
+    name: string;
+    price: number;
+    id: number;
+    image: {
+      url: string;
+    };
+  }[];
+};
 
 const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
   const controls = useAnimation();
@@ -53,7 +61,6 @@ const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
       },
     },
   };
-  console.log(bestSellingProducts);
 
   return (
     <s.BestSellersContainer>
@@ -85,7 +92,6 @@ const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
             </s.BestSellerWrapper>
           );
         })}
-
       </s.BestSellersList>
     </s.BestSellersContainer>
   );

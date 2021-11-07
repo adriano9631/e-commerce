@@ -35,7 +35,7 @@ const descriptionStyles = css`
 `;
 
 type ImgProps = {
-  src: StaticImageData;
+  src: string;
   height: number;
   width: number;
 };
