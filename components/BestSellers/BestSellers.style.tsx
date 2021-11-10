@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components/macro";
+import styled from "styled-components/macro";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -18,25 +18,26 @@ type ImageProps = {
 type HeadingsProps = BestSellersListProps;
 
 export const BestSellersContainer = styled.section`
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   padding-left: 40px;
   margin-top: 80px;
 `;
 
 export const Heading = styled(motion.h2)<HeadingsProps>`
-  color: #0f2c66;
+  color: var(--secondary-color);
   font-size: 36px;
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family);
   margin-left: 40px;
 `;
 
 export const BestSellersList = styled(motion.ul)<BestSellersListProps>`
   display: flex;
   margin-top: 40px;
+  column-gap: 30px;
 `;
 
-export const BestSellerWrapper = styled(motion.li)<{ key: number }>`
+export const BestSellerWrapper = styled(motion.li)`
   position: relative;
   &:hover {
     transform: scale(1.1);
@@ -53,7 +54,7 @@ export const BestSeller = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #b73030;
+  background-color: var(--primary-color);
   padding: 8px;
   color: white;
   font-size: 15px;
@@ -66,7 +67,7 @@ export const Name = styled.p`
 
 export const Price = styled.p`
   font-size: 24px;
-  color: #0f2c66;
+  color: var(--secondary-color);
   margin-top: 5px;
   font-weight: bold;
 `;

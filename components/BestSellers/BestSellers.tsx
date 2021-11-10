@@ -1,20 +1,19 @@
 import React, { FC, useEffect } from "react";
+import Link from "next/link";
 import * as s from "./BestSellers.style";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
-import jeans1 from "public/images/jeans-1.jpg";
 
-type BestSellersProps = {
+export type BestSellersProps = {
   bestSellingProducts: {
     name: string;
     price: number;
-    id: number;
+    slug: string
     image: {
       url: string;
     };
   }[];
 };
-
 const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
   const controls = useAnimation();
   const controls2 = useAnimation();
@@ -80,16 +79,18 @@ const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
       >
         {bestSellingProducts.map((product) => {
           return (
-            <s.BestSellerWrapper key={product.id} variants={item}>
-              <s.BestSellerImg
-                src={product.image.url}
-                width={280}
-                height={373}
-              />
-              <s.BestSeller>Best Seller</s.BestSeller>
-              <s.Name>{product.name}</s.Name>
-              <s.Price>{product.price}</s.Price>
-            </s.BestSellerWrapper>
+            <Link href={`/product/${product.slug}`} key={product.slug} passHref>
+              <s.BestSellerWrapper variants={item}>
+                <s.BestSellerImg
+                  src={product.image.url}
+                  width={280}
+                  height={373}
+                />
+                <s.BestSeller>Best Seller</s.BestSeller>
+                <s.Name>{product.name}</s.Name>
+                <s.Price>{product.price}</s.Price>
+              </s.BestSellerWrapper>
+            </Link>
           );
         })}
       </s.BestSellersList>

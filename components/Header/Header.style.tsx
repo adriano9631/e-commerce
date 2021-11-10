@@ -6,7 +6,6 @@ type ImageProps = {
   layout: string;
   objectFit: string;
   alt: string;
- 
 };
 
 export const HeaderContainer = styled.header`
@@ -23,12 +22,10 @@ export const HeroLeft = styled.div`
   z-index: 1;
 `;
 
-export const ImageLeft = styled(Image)<ImageProps>`
- 
-`;
+export const ImageLeft = styled(Image)<ImageProps>``;
 
 export const Discount = styled.div`
-  background-color: #b73030;
+  background-color: var(--primary-color);
   font-size: 18px;
   position: absolute;
   top: 0;
@@ -47,8 +44,7 @@ export const HeroRight = styled.div`
   left: 1vw;
 `;
 
-export const ImageRight = styled(Image)<ImageProps>`
-`;
+export const ImageRight = styled(Image)<ImageProps>``;
 
 export const CollectionSelectionWrapper = styled.div`
   position: absolute;
@@ -66,7 +62,7 @@ export const CollectionSelectionWrapper = styled.div`
 `;
 
 const btnStyles = css`
-  background: #b73030;
+  background: var(--primary-color);
   color: white;
   font-size: 18px;
   border: none;
@@ -95,19 +91,18 @@ const headingAnimation = keyframes`
 `;
 
 export const Heading = styled.h1<{ inview: boolean; ref: Function }>`
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   font-size: 52px;
   text-align: center;
   animation-name: ${(props) => props.inview && headingAnimation};
   animation-duration: 2s;
-  /* animation-iteration-count: infinite; */
   @media only screen and (max-width: 1320px) {
     max-width: 450px;
   }
 `;
 
 export const Subheading = styled.h2`
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   font-size: 23px;
   text-align: center;
 `;
@@ -115,7 +110,5 @@ export const Subheading = styled.h2`
 export const ShopMenBtn = styled.button`
   ${btnStyles}
   margin-left: auto;
-  /* margin-right: 25px; */
-  /* padding: 20px; */
   padding: 20px 28px;
 `;

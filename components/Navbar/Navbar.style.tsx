@@ -1,6 +1,4 @@
 import styled from "styled-components";
-// import BrandLogo from 'public/images/BrandLogo.png'
-
 import avatar from "public/icons/avatar.svg";
 import location from "public/icons/location.svg";
 
@@ -46,7 +44,6 @@ export const BrandLogo = styled.img<{ src: any }>`
   position: absolute;
   left: calc(50% - 40px);
   cursor: pointer;
-  /* top: 50%; */
 `;
 
 export const NavItemsWrapper = styled.ul`

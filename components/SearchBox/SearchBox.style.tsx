@@ -30,7 +30,7 @@ export const SearchInput = styled.input`
   outline: none;
   padding-left: 15px;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   color: white;
   &::placeholder {
     color: white;
@@ -65,30 +65,28 @@ export const WishListWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100%; */
 `;
 
 export const HeartIcon = styled(heart)`
-  stroke: #b73030;
+  stroke: var(--primary-color);
   transform: scale(0.5);
   margin-top: -1px;
 `;
 
 export const Wishlist = styled.p`
-  color: #b73030;
+  color: var(--primary-color);
   margin-right: 10px;
 `;
 
 export const TrolleyWrapper = styled.button`
   display: flex;
-  background-color: #b73030;
+  background-color: var(--primary-color);
   flex: 0 1 20%;
   cursor: pointer;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100%; */
 `;
 
 export const TrolleyIcon = styled(trolley)`
@@ -102,6 +100,6 @@ export const TrolleyCurrentItems = styled.p`
   padding: 1px 6px;
   border-radius: 50%;
   background-color: white;
-  color: #b73030;
+  color: var(--primary-color);
   margin-left: 5px;
 `;

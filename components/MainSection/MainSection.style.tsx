@@ -8,7 +8,7 @@ import writingArea from "public/icons/writing-area.svg";
 
 export const btnStyles = css`
   padding: 18px;
-  background-color: #b73030;
+  background-color: var(--primary-color);
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -17,14 +17,14 @@ export const btnStyles = css`
   transition: background-color 0.4s;
   margin-top: 30px;
   &:hover {
-    background-color: #0f2c66;
+    background-color: var(--secondary-color);
   }
 `;
 
 const headingStyles = css`
-  color: #0f2c66;
+  color: var(--secondary-color);
   font-size: 40px;
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
 `;
 
 const descriptionStyles = css`
@@ -81,10 +81,6 @@ export const Description = styled.p`
   ${descriptionStyles}
 `;
 
-// export const ShopAllBtn = styled.button`
-//   ${btnStyles}
-// `;
-
 export const ModelsImg = styled(Image)<ImgProps>``;
 
 export const BenefitWrapper = styled.div`
@@ -124,7 +120,6 @@ export const FirstImgWrapper = styled.div`
   position: absolute;
   top: 15px;
   z-index: 999;
-  /* height: 100%; */
 `;
 
 export const FirstImgDiscountPartOne = styled(discountPartOne)`
@@ -136,7 +131,7 @@ export const FirstImgDiscountPartOne = styled(discountPartOne)`
 export const FirstImgDiscountPercentage = styled.p`
   color: white;
   transform: translate3d(85px, -93px, 0px);
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   font-size: 25px;
   display: inline-block;
 `;
@@ -148,7 +143,7 @@ export const FirstImgDiscountPartTwo = styled(discountPartTwo)`
 
 export const FirstImgDiscountDescription = styled.p`
   color: white;
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   font-size: 16px;
   transform: translate3d(115px, -103px, 0px);
   display: inline-block;
@@ -163,13 +158,13 @@ export const SecondImgWrapper = styled.div`
 `;
 export const SecondImgSubheading = styled.h4`
   color: white;
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   font-size: 20px;
   letter-spacing: 1px;
 `;
 export const SecondImgHeading = styled.h3`
   color: white;
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   font-size: 40px;
 `;
 export const ShopNowBtn = styled.button`
@@ -180,7 +175,7 @@ export const ShopNowBtn = styled.button`
   background-color: white;
   cursor: pointer;
   transition: all 0.4s;
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   border-radius: 5px;
   bottom: 80px;
   display: block;
@@ -188,7 +183,7 @@ export const ShopNowBtn = styled.button`
   left: 50%;
   transform: translate(-50%, 0);
   &:hover {
-    background-color: #b73030;
+    background-color: var(--primary-color);
     color: white;
     outline: 1px solid white;
   }
@@ -205,8 +200,8 @@ export const ThirdImgWritingArea = styled(writingArea)``;
 export const ThirdImgHeading = styled.h3`
   transform: translate3d(35px, -140px, 0px);
   font-size: 45px;
-  color: #0f2c66;
-  font-family: "Oswald", sans-serif;
+  color: var(--secondary-color);
+  font-family: var(--secondary-font-family), sans-serif;
   letter-spacing: 1px;
 `;
 export const ThirdImgDescription = styled.p`
@@ -214,7 +209,7 @@ export const ThirdImgDescription = styled.p`
   font-size: 16px;
   color: white;
   text-align: center;
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   letter-spacing: 0.5px;
 `;
 

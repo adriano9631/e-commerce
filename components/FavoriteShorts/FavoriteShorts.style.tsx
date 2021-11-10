@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components/macro";
 import { motion } from "framer-motion";
 
@@ -42,8 +41,8 @@ export const Subheading = styled.h3`
 export const Heading = styled.h2`
   font-size: 40px;
   margin-top: 15px;
-  color: #0f2c66;
-  font-family: "Oswald", sans-serif;
+  color: var(--secondary-color);
+  font-family: var(--secondary-font-family), sans-serif;
   max-width: 535px;
 `;
 
@@ -53,15 +52,22 @@ export const Description = styled.p`
   max-width: 602px;
 `;
 
-export const FavoriteShortsListWrapper = styled(motion.ul)<FavoriteShortsListWrapperProps>`
+export const FavoriteShortsListWrapper = styled(
+  motion.ul
+)<FavoriteShortsListWrapperProps>`
   display: flex;
   justify-content: space-around;
-  column-gap: 10px;
+  column-gap: 20px;
   margin-top: 80px;
 `;
 
 export const FavoriteShortWrapper = styled(motion.li)<{ variants: object }>`
   position: relative;
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  transition: transform 0.2s;
 `;
 
 export const NewArrival = styled.p`
@@ -69,9 +75,9 @@ export const NewArrival = styled.p`
   top: 0;
   left: 0;
   padding: 5px 15px;
-  background-color: #b73030;
+  background-color: var(--primary-color);
   color: white;
-  font-family: "Oswald", sans-serif;
+  font-family: var(--secondary-font-family), sans-serif;
   font-size: 19px;
 `;
 
@@ -83,7 +89,7 @@ export const Name = styled.p`
 
 export const Price = styled.p`
   font-size: 24px;
-  color: #0f2c66;
+  color: var(--secondary-color);
   margin-top: 5px;
   font-weight: bold;
 `;

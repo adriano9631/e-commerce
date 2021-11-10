@@ -1,13 +1,28 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useProgressiveImage } from "hooks/useProgressiveImage";
-import shortShorties from "public/images/short-shorties.jpg";
 import * as s from "./FavoriteShorts.style";
 import ShopAllButton from "components/ShopAllButton";
 
-const FavoriteShorts = (props: any) => {
+export type FavoriteShortsProps = {
+  favoriteShorts: {
+    name: string;
+    price: number;
+    id: number;
+    createdAt: Date;
+    image: {
+      url: string;
+    };
+  }[];
+  newArrivalDate: Date;
+};
+
+const FavoriteShorts: FC<FavoriteShortsProps> = ({
+  favoriteShorts,
+  newArrivalDate,
+}) => {
   const controls = useAnimation();
   const controls2 = useAnimation();
   const controls3 = useAnimation();
@@ -77,6 +92,7 @@ const FavoriteShorts = (props: any) => {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
   };
+
   return (
     <s.FavoriteShortsContainer
       style={{ backgroundImage: `url(${loadedBackgroundImage})` }}
@@ -115,69 +131,21 @@ const FavoriteShorts = (props: any) => {
         animate={controls3}
         variants={list}
       >
-        <s.FavoriteShortWrapper variants={item}>
-          <Image
-            src={shortShorties}
-            alt="Short shorties"
-            width={253}
-            height={344}
-          />
-          <s.Name>Tapered Shorts</s.Name>
-          <s.Price>45,00zł</s.Price>
-        </s.FavoriteShortWrapper>
-        <s.FavoriteShortWrapper variants={item}>
-          <Image
-            src={shortShorties}
-            alt="Short shorties"
-            width={253}
-            height={344}
-          />
-          <s.Name>Distressed Middies</s.Name>
-          <s.Price>45,00zł</s.Price>
-          <s.NewArrival>New Arrival</s.NewArrival>
-        </s.FavoriteShortWrapper>
-        <s.FavoriteShortWrapper variants={item}>
-          <Image
-            src={shortShorties}
-            alt="Short shorties"
-            width={253}
-            height={344}
-          />
-          <s.Name>Straight Leg Shorts</s.Name>
-          <s.Price>45,00zł</s.Price>
-          <s.NewArrival>New Arrival</s.NewArrival>
-        </s.FavoriteShortWrapper>
-        <s.FavoriteShortWrapper variants={item}>
-          <Image
-            src={shortShorties}
-            alt="Short shorties"
-            width={253}
-            height={344}
-          />
-          <s.Name>Tapered Shorts</s.Name>
-          <s.Price>45,00zł</s.Price>
-        </s.FavoriteShortWrapper>
-        <s.FavoriteShortWrapper variants={item}>
-          <Image
-            src={shortShorties}
-            alt="Short shorties"
-            width={253}
-            height={344}
-          />
-          <s.Name>Short Shorties</s.Name>
-          <s.Price>45,00zł</s.Price>
-          <s.NewArrival>New Arrival</s.NewArrival>
-        </s.FavoriteShortWrapper>
-        <s.FavoriteShortWrapper variants={item}>
-          <Image
-            src={shortShorties}
-            alt="Short shorties"
-            width={253}
-            height={344}
-          />
-          <s.Name>Mom Shorts</s.Name>
-          <s.Price>45,00zł</s.Price>
-        </s.FavoriteShortWrapper>
+        {favoriteShorts.map((product) => (
+          <s.FavoriteShortWrapper key={product.id} variants={item}>
+            <Image
+              src={product.image.url}
+              alt="Short shorties"
+              width={253}
+              height={344}
+            />
+            <s.Name>{product.name}</s.Name>
+            <s.Price>{product.price}</s.Price>
+            {new Date(product.createdAt) > new Date(newArrivalDate) && (
+              <s.NewArrival>New Arrival</s.NewArrival>
+            )}
+          </s.FavoriteShortWrapper>
+        ))}
       </s.FavoriteShortsListWrapper>
     </s.FavoriteShortsContainer>
   );

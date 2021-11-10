@@ -1,8 +1,6 @@
 import React from "react";
+import Link from "next/link";
 import * as s from "./Navbar.style";
-
-// import Avatar from "public/icons/avatar.svg";
-// import Location from "public/icons/location.svg";
 
 const Navbar: React.FC = () => {
   return (
@@ -15,7 +13,9 @@ const Navbar: React.FC = () => {
         <s.Location />
         <s.LocationsText>Locations</s.LocationsText>
       </s.LocationWrapper>
-      <s.BrandLogo src="images/brand-logo.png" />
+      <Link href="/" passHref>
+        <s.BrandLogo src="/images/brand-logo.png" />
+      </Link>
       <s.NavItemsWrapper>
         <s.NavItem>Women</s.NavItem>
         <s.NavItem>Men</s.NavItem>

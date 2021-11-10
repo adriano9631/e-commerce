@@ -3,17 +3,19 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import * as s from "./MainSection.style";
 import ShopAllBtn from "components/ShopAllButton";
-// import carouselImg1 from "public/images/carousel-img-1.jpg";
-// import carouselImg2 from "public/images/carousel-img-2.jpg";
-// import carouselImg3 from "public/images/carousel-img-3.jpg";
-// import modelPosingInTheSand from "public/images/model-posing-in-the-sand.jpg";
-// import models from "public/images/models.jpg";
 
-type MainSectionProps = {
-  modelsImageURL: string;
-  benefitImageURL: string;
-  carouselImagesURL: {
+export type MainSectionProps = {
+  modelsImage: {
     url: string;
+    alt: string;
+  };
+  benefitImage: {
+    url: string;
+    alt: string;
+  };
+  carouselImages: {
+    url: string;
+    alt: string;
   }[];
 };
 
@@ -30,9 +32,9 @@ type activeButtons = {
 };
 
 const MainSection: FC<MainSectionProps> = ({
-  modelsImageURL,
-  benefitImageURL,
-  carouselImagesURL,
+  modelsImage,
+  benefitImage,
+  carouselImages,
 }) => {
   const controls = useAnimation();
   const controls3 = useAnimation();
@@ -167,7 +169,8 @@ const MainSection: FC<MainSectionProps> = ({
         </s.Wrapper>
         <s.ModelsImg
           lazyBoundary="500px"
-          src={modelsImageURL}
+          alt={modelsImage.alt}
+          src={modelsImage.url}
           height={950}
           width={763}
         />
@@ -176,7 +179,8 @@ const MainSection: FC<MainSectionProps> = ({
         <s.BenefitWrapper ref={ref2}>
           <s.BenefitImg
             $inView={inView2}
-            src={benefitImageURL}
+            src={benefitImage.url}
+            alt={benefitImage.alt}
             height={793}
             width={528}
           />
@@ -221,7 +225,7 @@ const MainSection: FC<MainSectionProps> = ({
                   lazyBoundary="500px"
                   height={512}
                   width={363}
-                  src={carouselImagesURL[0].url}
+                  src={carouselImages[0].url}
                 />
                 <s.FirstImgWrapper>
                   <s.FirstImgDiscountPartOne />
@@ -251,7 +255,7 @@ const MainSection: FC<MainSectionProps> = ({
                   lazyBoundary="500px"
                   height={512}
                   width={363}
-                  src={carouselImagesURL[1].url}
+                  src={carouselImages[1].url}
                 />
                 <s.SecondImgWrapper>
                   <s.SecondImgHeading>FREE SHIPPING</s.SecondImgHeading>
@@ -277,7 +281,7 @@ const MainSection: FC<MainSectionProps> = ({
                   lazyBoundary="500px"
                   height={512}
                   width={363}
-                  src={carouselImagesURL[2].url}
+                  src={carouselImages[2].url}
                 />
                 <s.ThirdImgWrapper>
                   <s.ThirdImgWritingArea />
