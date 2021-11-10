@@ -78,6 +78,7 @@ const favoriteShortsQuery = gql`
       name
       price
       slug
+      id
       image {
         url
       }
