@@ -1,8 +1,21 @@
-import React from "react";
+import React, { FC } from "react";
 import * as queries from "lib/queries";
 import { request } from "lib/datocms";
 
-const Product = ({ product }) => {
+type ProductProps = {
+  product: {
+    name: string;
+    productType: string;
+    stock: number;
+    price: number;
+    image: {
+      url: string;
+      alt: string;
+    };
+  };
+};
+
+const Product: FC<ProductProps> = ({ product }) => {
   return <p>Product name {product.name}</p>;
 };
 
