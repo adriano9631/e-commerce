@@ -31,7 +31,13 @@ const Footer: FC<FooterProps> = ({ isHomePage }) => {
           <s.SocialMediaName>PINTEREST</s.SocialMediaName>
         </s.FooterTopSide>
       )}
-      <hr style={{ width: "87vw", color: "var(--secondary-color);" }} />
+      <hr
+        style={{
+          width: "86vw",
+          color: "var(--secondary-color)",
+          margin: "0 auto",
+        }}
+      />
       <s.FooterBottomSide>
         <s.SubpageTypeWrapper>
           <s.SubpageTypeName>HEADQUARTERS</s.SubpageTypeName>

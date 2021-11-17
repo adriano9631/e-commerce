@@ -1,7 +1,6 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import * as s from "./Header.style";
-import SearchBox from "components/SearchBox";
 import heroLeft from "public/images/hero-left.jpg";
 import heroRight from "public/images/hero-right.jpg";
 
@@ -11,7 +10,6 @@ const Header: React.FC = () => {
   return (
     <s.HeaderContainer>
       <s.HeroLeft>
-        <s.Discount>25% OFF WOMENS JEANS - USE CODE: BTTRDAYS</s.Discount>
         <s.ImageLeft
           priority
           placeholder="blur"
@@ -22,7 +20,6 @@ const Header: React.FC = () => {
         />
       </s.HeroLeft>
       <s.HeroRight>
-        <SearchBox />
         <s.ImageRight
           src={heroRight}
           placeholder="blur"

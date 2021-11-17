@@ -10,6 +10,7 @@ type ImageProps = {
 
 export const FooterContainer = styled.footer`
   margin-bottom: 50px;
+  margin: 0 auto;
 `;
 
 export const FooterTopSide = styled.div`

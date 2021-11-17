@@ -1,21 +1,20 @@
 import { gql } from "graphql-request";
 
-const allProductsSlugQuery = gql`
-  query allProductsSlug {
+const slugFromProductsListQuery = gql`
+  query slugFromAProductsQuery {
     allProducts {
       slug
     }
   }
 `;
-
-const productQuery = gql`
-  query product($slug: String!) {
-    product(filter: { slug: { eq: $slug } }) {
-      stock
-      productType
-      price
+const productsListByTypeQuery = gql`
+  query productsListByTypeQuery($productType: String!) {
+    allProducts(filter: { productType: { eq: $productType } }) {
       name
-      image {
+      id
+      quantitySold
+      price
+      images {
         url
         alt
       }
@@ -23,19 +22,38 @@ const productQuery = gql`
   }
 `;
 
-const bestSellingProductsQuery = gql`
+const productBySlugQuery = gql`
+  query productBySlugQuery($slug: String!) {
+    product(filter: { slug: { eq: $slug } }) {
+      stock
+      id
+      productType
+      price
+      name
+      description
+      details
+      images {
+        url
+        alt
+      }
+    }
+  }
+`;
+
+const productsListByHighestQuantityQuery = gql`
   {
     allProducts(first: 6, orderBy: quantitySold_DESC) {
       name
       price
       slug
-      image {
+      images {
         url
+        alt
       }
     }
   }
 `;
-const modelsImageURLquery = gql`
+const modelsImageQuery = gql`
   {
     homePage {
       modelsImage {
@@ -46,7 +64,7 @@ const modelsImageURLquery = gql`
   }
 `;
 
-const benefitImageURLquery = gql`
+const benefitImageQuery = gql`
   {
     homePage {
       benefitImage {
@@ -57,7 +75,7 @@ const benefitImageURLquery = gql`
   }
 `;
 
-const carouselImagesURLquery = gql`
+const carouselImagesListQuery = gql`
   {
     homePage {
       carouselImages {
@@ -68,7 +86,7 @@ const carouselImagesURLquery = gql`
   }
 `;
 
-const favoriteShortsQuery = gql`
+const shortsListByLeastQuantityQuery = gql`
   {
     allProducts(
       first: 6
@@ -79,8 +97,9 @@ const favoriteShortsQuery = gql`
       price
       slug
       id
-      image {
+      images {
         url
+        alt
       }
       createdAt
     }
@@ -96,12 +115,13 @@ const newArrivalDateQuery = gql`
 `;
 
 export {
-  bestSellingProductsQuery,
-  productQuery,
-  modelsImageURLquery,
-  benefitImageURLquery,
-  carouselImagesURLquery,
-  favoriteShortsQuery,
+  productsListByHighestQuantityQuery,
+  productsListByTypeQuery,
+  productBySlugQuery,
+  modelsImageQuery,
+  benefitImageQuery,
+  carouselImagesListQuery,
+  shortsListByLeastQuantityQuery,
   newArrivalDateQuery,
-  allProductsSlugQuery,
+  slugFromProductsListQuery,
 };

@@ -32,9 +32,6 @@ export const EmailInput = styled.input<EmailInputProps>`
     border: 2px solid var(--secondary-color);
   }
 
-  /* &:focus {
-    border: 2px solid var(--secondary-color);
-  } */
 `;
 
 export const SubmitEmailBtn = styled.button<SubmitEmailBtnProps>`
@@ -42,10 +39,8 @@ export const SubmitEmailBtn = styled.button<SubmitEmailBtnProps>`
   border: none;
   background-color: var(--primary-color);
   border-radius: 0 5px 5px 0;
-  cursor: pointer;
   height: 50px;
   padding: 0 10px;
-  /* height: 49.5px; */
   &:disabled {
     opacity: 0.7;
   }

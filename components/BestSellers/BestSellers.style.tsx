@@ -28,7 +28,6 @@ export const Heading = styled(motion.h2)<HeadingsProps>`
   color: var(--secondary-color);
   font-size: 36px;
   font-family: var(--secondary-font-family);
-  margin-left: 40px;
 `;
 
 export const BestSellersList = styled(motion.ul)<BestSellersListProps>`

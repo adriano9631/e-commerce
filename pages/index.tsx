@@ -11,9 +11,9 @@ import type { MainSectionProps } from "components/MainSection";
 import type { FavoriteShortsProps } from "components/FavoriteShorts";
 import Header from "components/Header";
 
-const FourModelsPosingImg = styled.div<{ $loadedbBackgroundImage: string }>`
-  background-image: ${({ $loadedbBackgroundImage }) =>
-    `url(${$loadedbBackgroundImage})`};
+const FourModelsPosingImg = styled.div<{ loadedbBackgroundImage: string }>`
+  background-image: ${({ loadedbBackgroundImage }) =>
+    `url(${loadedbBackgroundImage})`};
   background-attachment: fixed;
   height: 800px;
   filter: brightness(70%);
@@ -46,19 +46,19 @@ const Home: NextPage<HomeProps> = ({
         favoriteShorts={favoriteShorts}
         newArrivalDate={newArrivalDate}
       />
-      <FourModelsPosingImg $loadedbBackgroundImage={loadedbBackgroundImage} />
+      <FourModelsPosingImg loadedbBackgroundImage={loadedbBackgroundImage} />
     </>
   );
 };
 
 export async function getStaticProps() {
   const data1 = await request({
-    query: queries.bestSellingProductsQuery,
+    query: queries.productsListByHighestQuantityQuery
   });
-  const data2 = await request({ query: queries.modelsImageURLquery });
-  const data3 = await request({ query: queries.benefitImageURLquery });
-  const data4 = await request({ query: queries.carouselImagesURLquery });
-  const data5 = await request({ query: queries.favoriteShortsQuery });
+  const data2 = await request({ query: queries.modelsImageQuery });
+  const data3 = await request({ query: queries.benefitImageQuery });
+  const data4 = await request({ query: queries.carouselImagesListQuery });
+  const data5 = await request({ query: queries.shortsListByLeastQuantityQuery });
   const data6 = await request({ query: queries.newArrivalDateQuery });
 
   return {

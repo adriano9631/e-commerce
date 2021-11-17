@@ -13,6 +13,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html {
@@ -22,20 +24,28 @@ html {
 }
 
 body {
-  padding: 0;
-  margin: 0;
+  /* padding: 0;
+  margin: 0; */
   font-family: var(--primary-font-family), sans-serif;
   position: relative;
+  color: #393c3e;
   font-size: 14px;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h5,
 p {
   margin: 0;
+} */
+
+p {
+  line-height: 27px;
+}
+button {
+  cursor: pointer;
 }
 
 a {
@@ -44,4 +54,5 @@ a {
 }
 ul {
   list-style: none;
+  /* padding: 0; */
 }

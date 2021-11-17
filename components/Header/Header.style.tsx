@@ -10,7 +10,6 @@ type ImageProps = {
 
 export const HeaderContainer = styled.header`
   display: flex;
-  margin-top: 20px;
   position: relative;
   overflow: hidden;
 `;
@@ -24,17 +23,7 @@ export const HeroLeft = styled.div`
 
 export const ImageLeft = styled(Image)<ImageProps>``;
 
-export const Discount = styled.div`
-  background-color: var(--primary-color);
-  font-size: 18px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  color: white;
-  font-family: "PT Sans Narrow", sans-serif;
-  padding: 12px;
-`;
+
 
 export const HeroRight = styled.div`
   width: 49.5vw;

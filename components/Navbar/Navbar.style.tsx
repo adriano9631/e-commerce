@@ -2,17 +2,39 @@ import styled from "styled-components";
 import avatar from "public/icons/avatar.svg";
 import location from "public/icons/location.svg";
 
-export const NavbarContainer = styled.nav`
-  margin-top: 20px;
-  padding: 0 40px;
+type NavbarContainerProps = {
+  isVisible: boolean;
+};
+
+export const NavbarContainer = styled.nav<NavbarContainerProps>`
+  /* margin-top: 20px; */
+  position: sticky;
+  /* top: 0; */
+  z-index: 999;
+  transition: top 0.3s;
+  top: ${(props) => (props.isVisible ? "0" : "-140px")};
+`;
+export const FlexRow = styled.div`
   display: flex;
   align-items: center;
+  padding: 20px 40px;
+  background-color: white;
 `;
+
+export const Discount = styled.div`
+  background-color: var(--primary-color);
+  font-size: 18px;
+  position: absolute;
+
+  color: white;
+  font-family: "PT Sans Narrow", sans-serif;
+  padding: 12px;
+`;
+
 export const LoginWrapper = styled.button`
   display: flex;
   align-items: center;
   border: none;
-  cursor: pointer;
 `;
 
 export const Avatar = styled(avatar)`
@@ -26,7 +48,6 @@ export const LocationWrapper = styled.button`
   align-items: center;
   margin-left: 40px;
   border: none;
-  cursor: pointer;
 `;
 
 export const Location = styled(location)`

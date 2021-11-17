@@ -1,7 +1,8 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 import { useProgressiveImage } from "hooks/useProgressiveImage";
 import * as s from "./FavoriteShorts.style";
 import ShopAllButton from "components/ShopAllButton";
@@ -11,10 +12,12 @@ export type FavoriteShortsProps = {
     name: string;
     price: number;
     id: number;
+    slug: string;
     createdAt: Date;
-    image: {
+    images: {
       url: string;
-    };
+      alt: string;
+    }[];
   }[];
   newArrivalDate: Date;
 };
@@ -23,6 +26,7 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
   favoriteShorts,
   newArrivalDate,
 }) => {
+  const [hoveredImgSlug, setHoveredImgSlug] = useState("");
   const controls = useAnimation();
   const controls2 = useAnimation();
   const controls3 = useAnimation();
@@ -132,19 +136,39 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
         variants={list}
       >
         {favoriteShorts.map((product) => (
-          <s.FavoriteShortWrapper key={product.id} variants={item}>
-            <Image
-              src={product.image.url}
-              alt="Short shorties"
-              width={253}
-              height={344}
-            />
-            <s.Name>{product.name}</s.Name>
-            <s.Price>{product.price}</s.Price>
-            {new Date(product.createdAt) > new Date(newArrivalDate) && (
-              <s.NewArrival>New Arrival</s.NewArrival>
-            )}
-          </s.FavoriteShortWrapper>
+          <Link
+            href={`/product/${encodeURIComponent(product.slug)}`}
+            key={product.slug}
+            passHref
+          >
+            <s.FavoriteShortWrapper
+              onMouseOver={() => setHoveredImgSlug(product.slug)}
+              onMouseOut={() => setHoveredImgSlug("")}
+              key={product.id}
+              variants={item}
+            >
+              {hoveredImgSlug === product.slug && product.images[1] ? (
+                <Image
+                  src={product.images[1].url}
+                  alt={product.images[1].alt}
+                  width={253}
+                  height={344}
+                />
+              ) : (
+                <Image
+                  src={product.images[0].url}
+                  alt={product.images[0].alt}
+                  width={253}
+                  height={344}
+                />
+              )}
+              <s.Name>{product.name}</s.Name>
+              <s.Price>{product.price}</s.Price>
+              {new Date(product.createdAt) > new Date(newArrivalDate) && (
+                <s.NewArrival>New Arrival</s.NewArrival>
+              )}
+            </s.FavoriteShortWrapper>
+          </Link>
         ))}
       </s.FavoriteShortsListWrapper>
     </s.FavoriteShortsContainer>

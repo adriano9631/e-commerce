@@ -19,12 +19,6 @@ export type MainSectionProps = {
   }[];
 };
 
-type disabledButtons = {
-  btn1: boolean;
-  btn2: boolean;
-  btn3: boolean;
-};
-
 type activeButtons = {
   btn1: boolean;
   btn2: boolean;
@@ -57,11 +51,7 @@ const MainSection: FC<MainSectionProps> = ({
   }, [controls, controls3, controls4, inView, inView3, inView4]);
 
   const [currentImageNum, setCurrentImageNum] = useState(1);
-  const [disabledButtons, setDisabledButtons] = useState<disabledButtons>({
-    btn1: false,
-    btn2: false,
-    btn3: false,
-  });
+  const [disabledButtons, setDisabledButtons] = useState(false);
   const [activeButton, setActiveButton] = useState<activeButtons>({
     btn1: false,
     btn2: false,
@@ -92,16 +82,7 @@ const MainSection: FC<MainSectionProps> = ({
 
     setActiveButton(newActiveButton);
 
-    let newDisabledButtons = {} as disabledButtons;
-    for (const [key] of Object.entries(disabledButtons)) {
-      if (btnName === key) {
-        newDisabledButtons = { ...newDisabledButtons, [key]: false };
-      } else {
-        newDisabledButtons = { ...newDisabledButtons, [key]: true };
-      }
-    }
-
-    setDisabledButtons(newDisabledButtons);
+    setDisabledButtons(true);
   }, [currentImageNum]);
 
   const changePicture = (imageNum: number) => {
@@ -112,11 +93,7 @@ const MainSection: FC<MainSectionProps> = ({
   };
 
   const resetButtons = () => {
-    setDisabledButtons({
-      btn1: false,
-      btn2: false,
-      btn3: false,
-    });
+    setDisabledButtons(false);
   };
 
   const outer = {
@@ -140,6 +117,15 @@ const MainSection: FC<MainSectionProps> = ({
   const carouselWrapperAnimation = {
     hidden: { opacity: 0, x: 50 },
     visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+  };
+
+  const carouselImgAnimation = {
+    hidden: { zIndex: -1 },
+    visible: { zIndex: 1, transition: { delay: 1.5 } },
+    exit: {
+      opacity: 0,
+      transition: { duration: 1.5 },
+    },
   };
 
   return (
@@ -214,12 +200,10 @@ const MainSection: FC<MainSectionProps> = ({
               <motion.div
                 key="1"
                 style={{ position: "absolute" }}
-                initial={{ zIndex: -1 }}
-                animate={{ zIndex: 1, transition: { delay: 1.5 } }}
-                exit={{
-                  opacity: 0,
-                  transition: { duration: 1.5 },
-                }}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={carouselImgAnimation}
               >
                 <s.CarouselImg
                   lazyBoundary="500px"
@@ -244,12 +228,10 @@ const MainSection: FC<MainSectionProps> = ({
               <motion.div
                 key="2"
                 style={{ position: "absolute" }}
-                initial={{ zIndex: -1 }}
-                animate={{ zIndex: 1, transition: { delay: 1.5 } }}
-                exit={{
-                  opacity: 0,
-                  transition: { duration: 1.5 },
-                }}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={carouselImgAnimation}
               >
                 <s.CarouselImg
                   lazyBoundary="500px"
@@ -270,12 +252,10 @@ const MainSection: FC<MainSectionProps> = ({
               <motion.div
                 key="3"
                 style={{ position: "absolute" }}
-                initial={{ zIndex: -1 }}
-                animate={{ zIndex: 1, transition: { delay: 1.5 } }}
-                exit={{
-                  opacity: 0,
-                  transition: { duration: 1.5 },
-                }}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={carouselImgAnimation}
               >
                 <s.CarouselImg
                   lazyBoundary="500px"
@@ -297,17 +277,17 @@ const MainSection: FC<MainSectionProps> = ({
           <s.PicutreChangeWrapper>
             <s.PictureChangeBtn
               isActiveBtn={activeButton.btn1}
-              disabled={disabledButtons.btn1}
+              disabled={disabledButtons}
               onClick={() => changePicture(1)}
             />
             <s.PictureChangeBtn
               isActiveBtn={activeButton.btn2}
-              disabled={disabledButtons.btn2}
+              disabled={disabledButtons}
               onClick={() => changePicture(2)}
             />
             <s.PictureChangeBtn
               isActiveBtn={activeButton.btn3}
-              disabled={disabledButtons.btn3}
+              disabled={disabledButtons}
               onClick={() => changePicture(3)}
             />
           </s.PicutreChangeWrapper>

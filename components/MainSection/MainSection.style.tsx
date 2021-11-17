@@ -214,7 +214,7 @@ export const ThirdImgDescription = styled.p`
 `;
 
 export const CarouselWrapper = styled(motion.div)<
-  WrapperProps & { ref: Function }
+  WrapperProps & { ref: (node?: Element | null | undefined) => void }
 >`
   position: relative;
   height: 512px;
@@ -238,7 +238,6 @@ export const PicutreChangeWrapper = styled.div`
 export const PictureChangeBtn = styled.button<PictureChangeBtnProps>`
   height: 12px;
   width: 12px;
-  cursor: pointer;
   opacity: ${(props) => (props.isActiveBtn ? 1 : 0.5)};
   border: none;
   border-radius: 50%;

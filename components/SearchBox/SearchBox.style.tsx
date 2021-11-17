@@ -6,9 +6,7 @@ import heart from "public/icons/heart.svg";
 export const SearchBoxContainer = styled.div`
   width: 500px;
   position: absolute;
-  top: 0;
   right: 0;
-  z-index: 2;
   display: flex;
   height: 47px;
 `;
@@ -50,7 +48,6 @@ export const SearchIconBtn = styled.button`
   background: none;
   border: none;
   height: 100%;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +57,6 @@ export const WishListWrapper = styled.button`
   display: flex;
   background-color: white;
   flex: 0 1 20%;
-  cursor: pointer;
   border: none;
   display: flex;
   justify-content: center;
@@ -82,7 +78,6 @@ export const TrolleyWrapper = styled.button`
   display: flex;
   background-color: var(--primary-color);
   flex: 0 1 20%;
-  cursor: pointer;
   border: none;
   display: flex;
   justify-content: center;
