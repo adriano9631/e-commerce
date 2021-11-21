@@ -10,7 +10,6 @@ import Footer from "components/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-
   let persistor = persistStore(store);
 
   if (router.pathname === "/") {

@@ -3,6 +3,7 @@ import Link from "next/link";
 import SearchBox from "components/SearchBox";
 import useScrollListener from "hooks/useScrollListeners";
 import * as s from "./Navbar.style";
+import { reset } from "features/productsSlice";
 
 const Navbar: React.FC = () => {
   const scroll = useScrollListener();

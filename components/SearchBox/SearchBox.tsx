@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "features/store";
 import * as s from "./SearchBox.style";
 
 const SearchBox: React.FC = () => {
+  const totalQuantity = useSelector((state: RootState) => state.products.totalQuantity);
   return (
     <s.SearchBoxContainer>
       <s.SearchBoxWrapper tabIndex={0}>
@@ -16,7 +19,7 @@ const SearchBox: React.FC = () => {
       </s.WishListWrapper>
       <s.TrolleyWrapper>
         <s.TrolleyIcon />
-        <s.TrolleyCurrentItems>0</s.TrolleyCurrentItems>
+        <s.TrolleyCurrentItems>{totalQuantity}</s.TrolleyCurrentItems>
       </s.TrolleyWrapper>
     </s.SearchBoxContainer>
   );

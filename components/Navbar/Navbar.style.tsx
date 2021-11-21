@@ -7,9 +7,7 @@ type NavbarContainerProps = {
 };
 
 export const NavbarContainer = styled.nav<NavbarContainerProps>`
-  /* margin-top: 20px; */
   position: sticky;
-  /* top: 0; */
   z-index: 999;
   transition: top 0.3s;
   top: ${(props) => (props.isVisible ? "0" : "-140px")};

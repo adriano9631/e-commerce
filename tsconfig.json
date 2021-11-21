@@ -21,7 +21,9 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/_document.tsx",
-    "custom.d.ts"
-, "components/MainSection/MainSection.tsx", "components/FavoriteShorts"  ],
+    "custom.d.ts",
+    "components/MainSection/MainSection.tsx",
+    "components/FavoriteShorts"
+  ],
   "exclude": ["node_modules"]
 }

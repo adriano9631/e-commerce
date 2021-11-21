@@ -5,7 +5,6 @@ import dropownArrowDownIcon from "public/icons/dropdown-arrow-down.svg";
 import dropownArrowUpIcon from "public/icons/dropdown-arrow-up.svg";
 import plusIcon from "public/icons/plus.svg";
 
-
 type DropdownProps = {
   onClick: (value: React.SetStateAction<boolean>) => void;
   children: ReactNode;
@@ -42,7 +41,7 @@ type CollapsibleProps = {
   onClick: (value: React.SetStateAction<boolean>) => void;
 };
 
-export const ProductContainer = styled.main`
+export const ProductContainer = styled.div`
   width: 890px;
   margin: 0 auto;
   margin-top: 100px;
@@ -66,19 +65,15 @@ export const Arrow = styled.span`
   transform: translateY(3px);
 `;
 
-export const FlexWrapper = styled.article`
+export const FlexWrapper = styled.main`
   display: flex;
   column-gap: 30px;
   margin-top: 50px;
 `;
 
-export const LeftSide = styled.section`
-  /* flex-basis: 60%; */
-`;
+export const LeftSide = styled.section``;
 
-export const RightSide = styled.section`
-  /* flex-basis: 40%; */
-`;
+export const RightSide = styled.section``;
 
 export const ImgWrapper = styled.div`
   position: relative;
@@ -172,52 +167,52 @@ export const Size = styled.p``;
 
 export const QuantityText = styled.label``;
 
-export const QuantityWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 96px;
-  height: 50px;
-  margin-top: 5px;
-`;
+// export const QuantityWrapper = styled.div`
+//   display: flex;
+//   align-items: center;
+//   position: relative;
+//   width: 96px;
+//   height: 50px;
+//   margin-top: 5px;
+// `;
 
-export const QuantityInput = styled.input`
-  padding-left: 20px;
-  border: 1px solid #c8c8c8;
-  outline: none;
-  width: 96px;
-  height: 50px;
-  /* padding: 60px; */
-  -moz-appearance: textfield;
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`;
+// export const QuantityInput = styled.input`
+//   padding-left: 20px;
+//   border: 1px solid #c8c8c8;
+//   outline: none;
+//   width: 96px;
+//   height: 50px;
+//   /* padding: 60px; */
+//   -moz-appearance: textfield;
+//   &::-webkit-outer-spin-button,
+//   &::-webkit-inner-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
+// `;
 
-export const SignsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: 0;
-`;
+// export const SignsWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   position: absolute;
+//   right: 0;
+// `;
 
-export const SignBtn = styled.button`
-  border: none;
-  /* background-color: #dbcccc; */
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0 5px;
-  height: 24px;
-`;
-export const IncrementSign = styled.span`
-  font-size: 18px;
-`;
+// export const SignBtn = styled.button`
+//   border: none;
+//   /* background-color: #dbcccc; */
+//   background-color: var(--primary-color);
+//   color: white;
+//   padding: 0 5px;
+//   height: 24px;
+// `;
+// export const IncrementSign = styled.span`
+//   font-size: 18px;
+// `;
 
-export const DecrementSign = styled.span`
-  font-size: 18px;
-`;
+// export const DecrementSign = styled.span`
+//   font-size: 18px;
+// `;
 
 export const ButtonsWrapper = styled.div`
   display: flex;
@@ -286,6 +281,7 @@ export const Collapsible = styled.button<CollapsibleProps>`
   border-right: none;
   border-left: none;
   color: #393c3e;
+  background-color: white;
   &:last-child {
     border-bottom: 1px solid transparent;
   }

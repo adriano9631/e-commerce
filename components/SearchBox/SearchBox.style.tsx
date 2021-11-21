@@ -92,7 +92,7 @@ export const TrolleyIcon = styled(trolley)`
 `;
 
 export const TrolleyCurrentItems = styled.p`
-  padding: 1px 6px;
+  padding: 0px 9px;
   border-radius: 50%;
   background-color: white;
   color: var(--primary-color);

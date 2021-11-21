@@ -6,34 +6,42 @@ import Image from "next/image";
 import { useOnClickOutside } from "usehooks-ts";
 import * as queries from "lib/queries";
 import { request } from "lib/datocms";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import ReactTooltip from "react-tooltip";
 import { RootState } from "features/store";
 import type { RelatedProductsProps } from "components/RelatedProducts";
 import * as s from "styles/Product.style";
 import RelatedProducts from "components/RelatedProducts";
+import ShoppingCartPopup from "components/ShoppingCartPopup";
+import QuantityInput from "components/QuantityInput";
+import { addCartItem } from "features/productsSlice";
+import { setIsPopupVisible } from "features/commonSlice";
 
 type ProductProps = {
   product: {
     name: string;
     productType: string;
-    id: number;
+    id: string;
     stock: number;
-    price: number;
-    description: { value: any };
-    details: { value: any };
+    description: string;
+    details: string;
+    price: string;
     images: {
       url: string;
       alt: string;
     }[];
   };
-  description: string;
-  details: string;
 } & RelatedProductsProps;
 
 const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
+  const dispatch = useDispatch();
   const previouslyViewedProductsLinks = useSelector(
     (state: RootState) => state.products.previouslyViewedProductsLinks
+  );
+  const isPopupVisible = useSelector(
+    (state: RootState) => state.common.isPopupVisible
   );
   const [previousProductLink, setPreviousProductLink] = useState(0);
   const [nextProductLink, setNextProductLink] = useState(1);
@@ -48,12 +56,17 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const dynamicRoute = useRouter().asPath;
   const [isDropdownContentVisible, setIsDropdownContentVisible] =
     useState(false);
-  const [quantity, setQuantity] = useState<number>(1);
-  const [size, setSize] = useState("");
+  const [quantity, setQuantity] = useState<any>(1);
+  const [size, setSize] = useState("Choose");
+  const [productTotalPrice, setProductTotalPrice] = useState(
+    quantity * parseInt(product.price)
+  );
   const ref1 = useRef<HTMLParagraphElement>(null);
   const ref2 = useRef<HTMLParagraphElement>(null);
   const ref3 = useRef<HTMLParagraphElement>(null);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const sizeRef = useRef<HTMLSpanElement>(null);
+  const quantityRef = useRef<HTMLSpanElement>(null);
   const scrollHeight1: number | undefined = ref1?.current?.scrollHeight;
   const scrollHeight2: number | undefined = ref2?.current?.scrollHeight;
   const scrollHeight3: number | undefined = ref3?.current?.scrollHeight;
@@ -65,12 +78,15 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
     });
   }, [dynamicRoute]);
 
+  useEffect(() => {
+    setProductTotalPrice(quantity * parseInt(product.price));
+  }, [quantity]);
+
   const handleClickOutside = () => {
     setIsDropdownContentVisible(false);
   };
   useOnClickOutside(dropdownRef, handleClickOutside);
-  console.log(currentImage);
-  console.log(product);
+
   const currentImgAnimation = {
     hidden: { zIndex: -1 },
     visible: { zIndex: 1, transition: { delay: 0.5 } },
@@ -87,19 +103,41 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
     setCurrentImage({ url, alt });
   };
 
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
-    }
-  };
 
   const handleDropdownOption = (size: string) => {
     setSize(size);
     setIsDropdownContentVisible((prevValue) => !prevValue);
+    const element = sizeRef?.current as unknown as Element;
+    ReactTooltip.hide(element);
   };
 
-  const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantity(parseInt(event.target.value));
+
+  const handleAddCartItem = () => {
+    if (size !== "Choose" && quantity !== "") {
+      dispatch(
+        addCartItem({
+          id: product.id,
+          name: product.name,
+          price: parseInt(product.price),
+          image: product.images[0].url,
+          alt: product.images[0].alt,
+          stock: product.stock,
+          size,
+          quantity,
+          productTotalPrice,
+        })
+      );
+      dispatch(setIsPopupVisible(true));
+    }
+
+    if (size === "Choose") {
+      const element = sizeRef?.current as unknown as Element;
+      ReactTooltip.show(element);
+    }
+    if (quantity === "") {
+      const element = quantityRef?.current as unknown as Element;
+      ReactTooltip.show(element);
+    }
   };
 
   const handleBackProductLinkChange = () => {
@@ -112,6 +150,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
     setNextProductLink((prevValue) => prevValue + 1);
   };
 
+
   return (
     <s.ProductContainer>
       <s.LinksWrapper>
@@ -121,7 +160,11 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
           </Link>
           <s.Divider>/</s.Divider>
           <p
-            style={{ fontSize: "18px", opacity: 0.6, display: "inline-block" }}
+            style={{
+              fontSize: "18px",
+              opacity: 0.6,
+              display: "inline-block",
+            }}
           >
             {product.name}
           </p>
@@ -135,6 +178,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
               onClick={() => handleBackProductLinkChange()}
               style={{
                 border: "none",
+                backgroundColor: "white",
                 pointerEvents:
                   previouslyViewedProductsLinks.indexOf(
                     previouslyViewedProductsLinks[previousProductLink]
@@ -176,6 +220,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
               onClick={() => handleNextProductLinkChange()}
               style={{
                 border: "none",
+                backgroundColor: "white",
                 pointerEvents:
                   previouslyViewedProductsLinks.indexOf(
                     previouslyViewedProductsLinks[nextProductLink]
@@ -248,20 +293,36 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
           <s.Price>{product.price}</s.Price>
           <s.SizeText>Size</s.SizeText>
           <div ref={dropdownRef}>
-            <s.Dropdown
-              onClick={() =>
-                setIsDropdownContentVisible((prevValue) => !prevValue)
-              }
+            <span
+              data-tip
+              data-for="chooseSize"
+              ref={sizeRef}
+              data-event="fakeEvent"
             >
-              <s.DropdownFlexWrapper>
-                <s.ChooseText>{size ? size : "Choose"}</s.ChooseText>
-                {isDropdownContentVisible ? (
-                  <s.DropdownArrowDownIcon />
-                ) : (
-                  <s.DropdownArrowUpIcon />
-                )}
-              </s.DropdownFlexWrapper>
-            </s.Dropdown>
+              <s.Dropdown
+                onClick={() =>
+                  setIsDropdownContentVisible((prevValue) => !prevValue)
+                }
+              >
+                <s.DropdownFlexWrapper>
+                  <s.ChooseText>{size}</s.ChooseText>
+                  {isDropdownContentVisible ? (
+                    <s.DropdownArrowDownIcon />
+                  ) : (
+                    <s.DropdownArrowUpIcon />
+                  )}
+                </s.DropdownFlexWrapper>
+              </s.Dropdown>
+            </span>
+            <ReactTooltip
+              effect="solid"
+              place="left"
+              id="chooseSize"
+              type="error"
+            >
+              <span>Please choose size</span>
+            </ReactTooltip>
+
             <s.DropdownContent
               isDropdownContentVisible={isDropdownContentVisible}
             >
@@ -277,26 +338,16 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
             </s.DropdownContent>
           </div>
           <s.QuantityText>Quantity</s.QuantityText>
-          <s.QuantityWrapper>
-            <s.QuantityInput
-              type="number"
-              onChange={handleQuantityChange}
-              value={quantity}
-              min="1"
-            />
-            <s.SignsWrapper>
-              <s.SignBtn
-                onClick={() => setQuantity((prevQuantity) => prevQuantity + 1)}
-              >
-                <s.IncrementSign>+</s.IncrementSign>
-              </s.SignBtn>
-              <s.SignBtn onClick={decrementQuantity}>
-                <s.DecrementSign>-</s.DecrementSign>
-              </s.SignBtn>
-            </s.SignsWrapper>
-          </s.QuantityWrapper>
+          <QuantityInput
+            quantityRef={quantityRef}
+            productStock={product.stock}
+            quantity={quantity}
+            setQuantity={setQuantity}
+          />
           <s.ButtonsWrapper>
-            <s.AddToCartBtn>Add to cart</s.AddToCartBtn>
+            <s.AddToCartBtn onClick={handleAddCartItem}>
+              Add to cart
+            </s.AddToCartBtn>
             <s.AddToFavoriteBtn>
               <s.HeartIcon />
             </s.AddToFavoriteBtn>
@@ -354,6 +405,9 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
         </s.RightSide>
       </s.FlexWrapper>
       <RelatedProducts relatedProductsList={relatedProductsList} />
+      <AnimatePresence>
+        {isPopupVisible && <ShoppingCartPopup />}
+      </AnimatePresence>
     </s.ProductContainer>
   );
 };
@@ -388,7 +442,6 @@ export async function getStaticProps({ params }: Params) {
     props: {
       product: data1.product,
       relatedProductsList: data2.allProducts,
-      // key: data1.product.id,
     },
   };
 }

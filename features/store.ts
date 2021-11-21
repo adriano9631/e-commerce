@@ -1,30 +1,30 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productsReducer from "./productsSlice";
+import commonReducer from "./commonSlice";
 
 import storage from "storage";
 import {
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
+  persistReducer,
 } from "redux-persist";
-import { combineReducers } from "redux";
+
+const rootReducer = combineReducers({
+  products: productsReducer,
+  common: commonReducer,
+});
 
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ["products"],
 };
 
-const reducers = combineReducers({
-  products: productsReducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
@@ -34,9 +34,8 @@ const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  devTools: true,
 });
-
+//
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
