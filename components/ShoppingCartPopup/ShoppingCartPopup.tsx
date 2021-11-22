@@ -1,4 +1,4 @@
-import React, { useRef, FC } from "react";
+import React, { useRef, FC, createRef, RefObject } from "react";
 import ReactDom from "react-dom";
 import * as s from "./ShoppingCartPopup.style";
 import { setIsPopupVisible } from "features/commonSlice";
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import uniqid from "uniqid";
+import ReactTooltip from "react-tooltip";
 import { RootState } from "features/store";
 import { setQuantity } from "features/productsSlice";
 import QuantityInput from "components/QuantityInput";
@@ -35,19 +36,38 @@ const OVERLAY_STYLES = {
 };
 
 const ShoppingCartPopup: FC = () => {
+  const [elRefs, setElRefs] = React.useState<any[]>([]);
   const ref = useRef<HTMLDivElement>(null);
-  const quantityRef = useRef<HTMLSpanElement>(null);
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.products.cartItems);
   const totalPrice = useSelector(
     (state: RootState) => state.products.totalPrice
   );
 
+  React.useEffect(() => {
+    setElRefs((elRefs) =>
+      Array(cartItems.length)
+        .fill(undefined)
+        .map((_, i) => elRefs[i] || createRef())
+    );
+  }, [cartItems.length]);
+
   const handleClickOutside = () => {
     dispatch(setIsPopupVisible(false));
   };
 
   useOnClickOutside(ref, handleClickOutside);
+
+  const handleViewCart = () => {
+    for (let i = 0; i < elRefs.length; i++) {
+      if ((cartItems[i].quantity as "") === "") {
+        const element = elRefs[i]?.current as unknown as Element;
+        console.log(element);
+
+        ReactTooltip.show(element);
+      }
+    }
+  };
 
   return ReactDom.createPortal(
     <div style={OVERLAY_STYLES}>
@@ -59,11 +79,13 @@ const ShoppingCartPopup: FC = () => {
         ref={ref}
       >
         <s.Header>
-          <s.RightArrowIcon />
+          <s.RightArrowIcon
+            onClick={() => dispatch(setIsPopupVisible(false))}
+          />
           <s.CartText>CART</s.CartText>
         </s.Header>
         <s.CartItemsList>
-          {cartItems.map((item) => (
+          {cartItems.map((item, i) => (
             <s.CartItem key={item.id + uniqid()}>
               <Image src={item.image} width={200} height={200} alt={item.alt} />
               <s.Wrapper>
@@ -78,20 +100,21 @@ const ShoppingCartPopup: FC = () => {
                   setQuantity={setQuantity}
                   id={item.id}
                   size={item.size}
-                  quantityRef={quantityRef}
+                  quantityRef={elRefs[i]}
                 />
               </s.Wrapper>
             </s.CartItem>
           ))}
         </s.CartItemsList>
+
         <s.SumWrapper>
           <s.SumText>Total price:&nbsp;</s.SumText>
           <s.Sum> {totalPrice} zł</s.Sum>
         </s.SumWrapper>
         <s.Footer>
-          <Link href="/" passHref>
-            <s.ViewCartBtn>View Cart</s.ViewCartBtn>
-          </Link>
+          {/* <Link href="/" passHref> */}
+          <s.ViewCartBtn onClick={handleViewCart}>View Cart</s.ViewCartBtn>
+          {/* </Link> */}
         </s.Footer>
       </s.ShoppingCartPopupContainer>
     </div>,

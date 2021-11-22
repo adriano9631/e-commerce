@@ -43,6 +43,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const isPopupVisible = useSelector(
     (state: RootState) => state.common.isPopupVisible
   );
+  const cartItems = useSelector((state: RootState) => state.products.cartItems);
   const [previousProductLink, setPreviousProductLink] = useState(0);
   const [nextProductLink, setNextProductLink] = useState(1);
   const [isActive1, setisActive1] = useState(false);
@@ -56,10 +57,11 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const dynamicRoute = useRouter().asPath;
   const [isDropdownContentVisible, setIsDropdownContentVisible] =
     useState(false);
-  const [quantity, setQuantity] = useState<any>(1);
+  const [quantity, setQuantity] = useState<number | "">(1);
+  const [maximumQuantityError, setMaximumQuantityError] = useState("");
   const [size, setSize] = useState("Choose");
   const [productTotalPrice, setProductTotalPrice] = useState(
-    quantity * parseInt(product.price)
+    (quantity as number) * parseInt(product.price)
   );
   const ref1 = useRef<HTMLParagraphElement>(null);
   const ref2 = useRef<HTMLParagraphElement>(null);
@@ -79,7 +81,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   }, [dynamicRoute]);
 
   useEffect(() => {
-    setProductTotalPrice(quantity * parseInt(product.price));
+    setProductTotalPrice((quantity as number) * parseInt(product.price));
   }, [quantity]);
 
   const handleClickOutside = () => {
@@ -103,7 +105,6 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
     setCurrentImage({ url, alt });
   };
 
-
   const handleDropdownOption = (size: string) => {
     setSize(size);
     setIsDropdownContentVisible((prevValue) => !prevValue);
@@ -111,23 +112,56 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
     ReactTooltip.hide(element);
   };
 
-
   const handleAddCartItem = () => {
-    if (size !== "Choose" && quantity !== "") {
-      dispatch(
-        addCartItem({
-          id: product.id,
-          name: product.name,
-          price: parseInt(product.price),
-          image: product.images[0].url,
-          alt: product.images[0].alt,
-          stock: product.stock,
-          size,
-          quantity,
-          productTotalPrice,
-        })
+    const productFromShoppingCard: any = cartItems.find(
+      (item) => item.id === product.id && item.size === size
+    );
+    if (productFromShoppingCard?.quantity) {
+      if (
+        size !== "Choose" &&
+        quantity !== "" &&
+        quantity + productFromShoppingCard?.quantity <= product.stock
+      ) {
+        dispatch(
+          addCartItem({
+            id: product.id,
+            name: product.name,
+            price: parseInt(product.price),
+            image: product.images[0].url,
+            alt: product.images[0].alt,
+            stock: product.stock,
+            size,
+            quantity,
+            productTotalPrice,
+          })
+        );
+        dispatch(setIsPopupVisible(true));
+      }
+    } else {
+      if (size !== "Choose" && quantity !== "") {
+        dispatch(
+          addCartItem({
+            id: product.id,
+            name: product.name,
+            price: parseInt(product.price),
+            image: product.images[0].url,
+            alt: product.images[0].alt,
+            stock: product.stock,
+            size,
+            quantity,
+            productTotalPrice,
+          })
+        );
+        dispatch(setIsPopupVisible(true));
+      }
+    }
+
+    if (quantity + productFromShoppingCard?.quantity > product.stock) {
+      setMaximumQuantityError(
+        `Sum quantity of this product is higher than the maximum allowed quantity which is ${product.stock}`
       );
-      dispatch(setIsPopupVisible(true));
+    } else {
+      setMaximumQuantityError("");
     }
 
     if (size === "Choose") {
@@ -149,7 +183,6 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
     setPreviousProductLink((prevValue) => prevValue + 1);
     setNextProductLink((prevValue) => prevValue + 1);
   };
-
 
   return (
     <s.ProductContainer>
@@ -344,6 +377,9 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
             quantity={quantity}
             setQuantity={setQuantity}
           />
+          <p style={{ color: "var(--primary-color)" }}>
+            {maximumQuantityError}
+          </p>
           <s.ButtonsWrapper>
             <s.AddToCartBtn onClick={handleAddCartItem}>
               Add to cart

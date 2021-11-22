@@ -12,8 +12,6 @@ export const ShoppingCartPopupContainer = styled(motion.aside)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* overflow: hidden; */
-  /* overflow-y: scroll */
 `;
 
 export const Header = styled.header`
@@ -29,6 +27,7 @@ export const RightArrowIcon = styled(rightArrowIcon)`
   position: relative;
   top: 45%;
   transform: translateY(-45%);
+  cursor: pointer;
 `;
 
 export const CartText = styled.h2`
@@ -50,12 +49,16 @@ export const CartItemsList = styled.ul`
 
 export const CartItem = styled.li`
   display: flex;
-  column-gap: 30px;
+  column-gap: 10px;
   align-items: center;
-  margin-right: 40px;
+  margin-right: 35px;
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const Name = styled.p`
   font-size: 18px;

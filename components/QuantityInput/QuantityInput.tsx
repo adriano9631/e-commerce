@@ -3,6 +3,7 @@ import React, { useState, FC } from "react";
 import ReactTooltip from "react-tooltip";
 import * as s from "./QuantityInput.style";
 import { useDispatch } from "react-redux";
+import uniqid from "uniqid";
 
 type QuantityInputProps = {
   quantityRef: React.RefObject<HTMLSpanElement>;
@@ -30,10 +31,15 @@ const QuantityInput: FC<QuantityInputProps> = ({
 }) => {
   const [quantityError, setQuantityError] = useState("");
   const dispatch = useDispatch();
+  const toolTipId = uniqid();
   const resetToDefaultQuantity = (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
-    if (event.key === "Backspace" || event.key === "Delete") {
+    const quantityAsString = quantity.toString();
+    if (
+      (event.key === "Backspace" && quantityAsString.length === 1) ||
+      (event.key === "Delete" && quantityAsString.length === 1)
+    ) {
       id ? dispatch(setQuantity({ quantity: "", size, id })) : setQuantity("");
     }
   };
@@ -41,13 +47,14 @@ const QuantityInput: FC<QuantityInputProps> = ({
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
     const max = Number(event.target.max);
+    const min = Number(event.target.min);
 
     if (value <= max) {
       const element = quantityRef?.current as unknown as Element;
       ReactTooltip.hide(element);
       setQuantityError("");
     }
-    if (value > max) {
+    if (value > max || value < min) {
       setQuantityError(`Enter min. 1, max. ${productStock}`);
     } else {
       id
@@ -55,8 +62,8 @@ const QuantityInput: FC<QuantityInputProps> = ({
         : setQuantity(value);
     }
   };
-  const incrementQuantity = () => {
 
+  const incrementQuantity = () => {
     id
       ? dispatch(setQuantity({ quantity: Number(quantity + 1), size, id }))
       : setQuantity((prevQuantity: number) => Number(prevQuantity + 1));
@@ -77,9 +84,9 @@ const QuantityInput: FC<QuantityInputProps> = ({
     <>
       <span
         data-tip
-        data-for="chooseQuantity"
+        data-for={toolTipId}
         ref={quantityRef}
-        data-event="fakeEvent2"
+        data-event={`${id}`}
       >
         <s.QuantityWrapper>
           <s.QuantityInput
@@ -99,7 +106,7 @@ const QuantityInput: FC<QuantityInputProps> = ({
               <s.IncrementSign>+</s.IncrementSign>
             </s.SignBtn>
             <s.SignBtn
-              style={{ opacity: quantity === 1 ? 0.6 : 1 }}
+              style={{ opacity: quantity === 1 || quantity === "" ? 0.6 : 1 }}
               onClick={decrementQuantity}
             >
               <s.DecrementSign>-</s.DecrementSign>
@@ -107,15 +114,18 @@ const QuantityInput: FC<QuantityInputProps> = ({
           </s.SignsWrapper>
         </s.QuantityWrapper>
       </span>
-      <ReactTooltip
-        effect="solid"
-        place="left"
-        id="chooseQuantity"
-        type="error"
-      >
+      <ReactTooltip effect="solid" place="left" id={toolTipId} type="error">
         <span>Please choose quantity</span>
       </ReactTooltip>
-      <p style={{ color: "#ff3333" }}>{quantityError}</p>
+      <p
+        style={{
+          color: "#ff3333",
+          fontSize: "12px",
+          maxWidth: "60px",
+        }}
+      >
+        {quantityError}
+      </p>
     </>
   );
 };

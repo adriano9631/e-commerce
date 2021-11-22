@@ -8,7 +8,7 @@ type CartItem = {
   stock: number;
   alt: string;
   size: string;
-  quantity: number;
+  quantity: number | "";
   productTotalPrice: number;
 };
 
@@ -63,14 +63,23 @@ const productsSlice = createSlice({
             item.id === action.payload.id &&
             item.size === action.payload.size
           ) {
-            item.quantity += action.payload.quantity;
+            if (
+              typeof item.quantity === "number" &&
+              typeof action.payload.quantity === "number"
+            ) {
+              item.quantity = item.quantity + action.payload.quantity;
+            } else {
+              item.quantity = action.payload.quantity;
+            }
+
             item.productTotalPrice += action.payload.productTotalPrice;
             break;
           }
         }
       }
-
-      state.totalQuantity += action.payload.quantity;
+      if (typeof action.payload.quantity === "number") {
+        state.totalQuantity += action.payload.quantity;
+      }
       state.totalPrice += action.payload.productTotalPrice;
     },
     setQuantity: (
