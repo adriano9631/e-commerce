@@ -15,8 +15,10 @@ export const NavbarContainer = styled.nav<NavbarContainerProps>`
 export const FlexRow = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 20px 40px;
   background-color: white;
+  position: relative;
 `;
 
 export const Discount = styled.div`
@@ -41,6 +43,10 @@ export const Avatar = styled(avatar)`
 
 export const Login = styled.p``;
 
+export const FlexWrapper = styled.div`
+  display: flex;
+`;
+
 export const LocationWrapper = styled.button`
   display: flex;
   align-items: center;
@@ -57,17 +63,19 @@ export const LocationsText = styled.p`
   margin-left: 8px;
 `;
 
-export const BrandLogo = styled.img<{ src: any }>`
+export const BrandLogo = styled.img`
   width: 92px;
   height: 41px;
   position: absolute;
-  left: calc(50% - 40px);
   cursor: pointer;
+  margin-left: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const NavItemsWrapper = styled.ul`
   display: flex;
-  margin-left: auto;
 `;
 
 export const NavItem = styled.li`

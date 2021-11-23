@@ -7,7 +7,7 @@ import { persistStore } from "redux-persist";
 import "../styles/globals.css";
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
-
+import ConnectedWithProvider from "components/ConnectedWithProvider";
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   let persistor = persistStore(store);
@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <ConnectedWithProvider />
           <Navbar />
           <Component {...pageProps} />
           <Footer isHomePage />
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <ConnectedWithProvider />
         <Navbar />
         <Component {...pageProps} />
         <Footer />

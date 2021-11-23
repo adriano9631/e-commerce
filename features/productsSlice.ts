@@ -72,7 +72,6 @@ const productsSlice = createSlice({
               item.quantity = action.payload.quantity;
             }
 
-            item.productTotalPrice += action.payload.productTotalPrice;
             break;
           }
         }
@@ -94,6 +93,34 @@ const productsSlice = createSlice({
           item.quantity = action.payload.quantity;
         }
       }
+
+      for (const item of state.cartItems) {
+        if (
+          item.id === action.payload.id &&
+          item.size === action.payload.size
+        ) {
+          item.productTotalPrice = action.payload.quantity * item.price;
+        }
+      }
+
+      const calculateTotalPrice = () => {
+        state.totalPrice = state.cartItems.reduce((amount, product) => {
+          if (typeof product.quantity === "number") {
+            return amount + product.quantity * product.price;
+          }
+          return amount;
+        }, 0);
+      };
+      calculateTotalPrice();
+    },
+    removeItemFromCart: (
+      state,
+      action: PayloadAction<{ id: string; size: string }>
+    ) => {
+      state.cartItems.filter(
+        (item) =>
+          item.id !== action.payload.id && item.size !== action.payload.size
+      );
     },
     reset: () => initialState,
   },
@@ -103,6 +130,7 @@ export const {
   addPreviouslyViewedProductsLinks,
   addCartItem,
   setQuantity,
+  removeItemFromCart,
   reset,
 } = productsSlice.actions;
 

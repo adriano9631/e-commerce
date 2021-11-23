@@ -111,6 +111,7 @@ export const SumWrapper = styled.div`
 export const SumText = styled.p`
   font-size: 30px;
   font-weight: bold;
+  margin-left: 10px;
   font-family: var(--secondary-font-family);
 `;
 export const Sum = styled.p`

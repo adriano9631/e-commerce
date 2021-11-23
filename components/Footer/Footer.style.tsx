@@ -9,8 +9,8 @@ type ImageProps = {
 };
 
 export const FooterContainer = styled.footer`
-  margin-bottom: 50px;
   margin: 0 auto;
+  margin-bottom: 60px;
 `;
 
 export const FooterTopSide = styled.div`
@@ -33,7 +33,7 @@ export const DecorationImg2 = styled(Image)<ImageProps>``;
 export const FooterBottomSide = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
+  margin-top: 40px;
 `;
 
 export const SubpageTypeWrapper = styled.article`

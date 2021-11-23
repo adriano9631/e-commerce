@@ -91,39 +91,40 @@ const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
             <Link
               href={`/product/${encodeURIComponent(product.slug)}`}
               key={product.slug}
-              passHref
             >
-              <s.BestSellerWrapper
-                onMouseOver={() => setHoveredImgSlug(product.slug)}
-                onMouseOut={() => setHoveredImgSlug("")}
-                variants={item}
-                onClick={() =>
-                  dispatch(
-                    addPreviouslyViewedProductsLinks(
-                      previouslyViewedProductsLinks
+              <a>
+                <s.BestSellerWrapper
+                  onMouseOver={() => setHoveredImgSlug(product.slug)}
+                  onMouseOut={() => setHoveredImgSlug("")}
+                  variants={item}
+                  onClick={() =>
+                    dispatch(
+                      addPreviouslyViewedProductsLinks(
+                        previouslyViewedProductsLinks
+                      )
                     )
-                  )
-                }
-              >
-                <s.BestSellerImg
-                  src={
-                    hoveredImgSlug === product.slug && product.images[1]
-                      ? product.images[1].url
-                      : product.images[0].url
                   }
-                  alt={
-                    hoveredImgSlug === product.slug && product.images[1]
-                      ? product.images[1].alt
-                      : product.images[0].alt
-                  }
-                  width={280}
-                  height={373}
-                />
+                >
+                  <s.BestSellerImg
+                    src={
+                      hoveredImgSlug === product.slug && product.images[1]
+                        ? product.images[1].url
+                        : product.images[0].url
+                    }
+                    alt={
+                      hoveredImgSlug === product.slug && product.images[1]
+                        ? product.images[1].alt
+                        : product.images[0].alt
+                    }
+                    width={280}
+                    height={373}
+                  />
 
-                <s.BestSeller>Best Seller</s.BestSeller>
-                <s.Name>{product.name}</s.Name>
-                <s.Price>{product.price}</s.Price>
-              </s.BestSellerWrapper>
+                  <s.BestSeller>Best Seller</s.BestSeller>
+                  <s.Name>{product.name}</s.Name>
+                  <s.Price>{product.price}</s.Price>
+                </s.BestSellerWrapper>
+              </a>
             </Link>
           );
         })}

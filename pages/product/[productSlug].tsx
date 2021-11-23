@@ -12,9 +12,8 @@ import { useSelector } from "react-redux";
 import ReactTooltip from "react-tooltip";
 import { RootState } from "features/store";
 import type { RelatedProductsProps } from "components/RelatedProducts";
-import * as s from "styles/Product.style";
+import * as s from "styles/product.style";
 import RelatedProducts from "components/RelatedProducts";
-import ShoppingCartPopup from "components/ShoppingCartPopup";
 import QuantityInput from "components/QuantityInput";
 import { addCartItem } from "features/productsSlice";
 import { setIsPopupVisible } from "features/commonSlice";
@@ -39,9 +38,6 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const dispatch = useDispatch();
   const previouslyViewedProductsLinks = useSelector(
     (state: RootState) => state.products.previouslyViewedProductsLinks
-  );
-  const isPopupVisible = useSelector(
-    (state: RootState) => state.common.isPopupVisible
   );
   const cartItems = useSelector((state: RootState) => state.products.cartItems);
   const [previousProductLink, setPreviousProductLink] = useState(0);
@@ -441,9 +437,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
         </s.RightSide>
       </s.FlexWrapper>
       <RelatedProducts relatedProductsList={relatedProductsList} />
-      <AnimatePresence>
-        {isPopupVisible && <ShoppingCartPopup />}
-      </AnimatePresence>
+      <AnimatePresence></AnimatePresence>
     </s.ProductContainer>
   );
 };

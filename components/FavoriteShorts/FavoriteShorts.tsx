@@ -141,33 +141,35 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
             key={product.slug}
             passHref
           >
-            <s.FavoriteShortWrapper
-              onMouseOver={() => setHoveredImgSlug(product.slug)}
-              onMouseOut={() => setHoveredImgSlug("")}
-              key={product.id}
-              variants={item}
-            >
-              {hoveredImgSlug === product.slug && product.images[1] ? (
-                <Image
-                  src={product.images[1].url}
-                  alt={product.images[1].alt}
-                  width={253}
-                  height={344}
-                />
-              ) : (
-                <Image
-                  src={product.images[0].url}
-                  alt={product.images[0].alt}
-                  width={253}
-                  height={344}
-                />
-              )}
-              <s.Name>{product.name}</s.Name>
-              <s.Price>{product.price}</s.Price>
-              {new Date(product.createdAt) > new Date(newArrivalDate) && (
-                <s.NewArrival>New Arrival</s.NewArrival>
-              )}
-            </s.FavoriteShortWrapper>
+            <a>
+              <s.FavoriteShortWrapper
+                onMouseOver={() => setHoveredImgSlug(product.slug)}
+                onMouseOut={() => setHoveredImgSlug("")}
+                key={product.id}
+                variants={item}
+              >
+                {hoveredImgSlug === product.slug && product.images[1] ? (
+                  <Image
+                    src={product.images[1].url}
+                    alt={product.images[1].alt}
+                    width={253}
+                    height={344}
+                  />
+                ) : (
+                  <Image
+                    src={product.images[0].url}
+                    alt={product.images[0].alt}
+                    width={253}
+                    height={344}
+                  />
+                )}
+                <s.Name>{product.name}</s.Name>
+                <s.Price>{product.price}</s.Price>
+                {new Date(product.createdAt) > new Date(newArrivalDate) && (
+                  <s.NewArrival>New Arrival</s.NewArrival>
+                )}
+              </s.FavoriteShortWrapper>
+            </a>
           </Link>
         ))}
       </s.FavoriteShortsListWrapper>

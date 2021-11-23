@@ -11,6 +11,7 @@ import ReactTooltip from "react-tooltip";
 import { RootState } from "features/store";
 import { setQuantity } from "features/productsSlice";
 import QuantityInput from "components/QuantityInput";
+import { useRouter } from "next/router";
 const variants = {
   hidden: {
     x: 500,
@@ -38,11 +39,14 @@ const OVERLAY_STYLES = {
 const ShoppingCartPopup: FC = () => {
   const [elRefs, setElRefs] = React.useState<any[]>([]);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.products.cartItems);
   const totalPrice = useSelector(
     (state: RootState) => state.products.totalPrice
   );
+
+  
 
   React.useEffect(() => {
     setElRefs((elRefs) =>
@@ -58,17 +62,26 @@ const ShoppingCartPopup: FC = () => {
 
   useOnClickOutside(ref, handleClickOutside);
 
+  const isAnyQuantityInputEmpty = cartItems.some(
+    (item) => item.quantity === ""
+  );
+
+
   const handleViewCart = () => {
     for (let i = 0; i < elRefs.length; i++) {
       if ((cartItems[i].quantity as "") === "") {
         const element = elRefs[i]?.current as unknown as Element;
-        console.log(element);
 
         ReactTooltip.show(element);
       }
     }
+    if (!isAnyQuantityInputEmpty) {
+      router.push("/shopping-cart");
+      dispatch(setIsPopupVisible(false));
+    }
   };
 
+  const d = "3213k213k21321";
   return ReactDom.createPortal(
     <div style={OVERLAY_STYLES}>
       <s.ShoppingCartPopupContainer
@@ -108,13 +121,11 @@ const ShoppingCartPopup: FC = () => {
         </s.CartItemsList>
 
         <s.SumWrapper>
-          <s.SumText>Total price:&nbsp;</s.SumText>
+          <s.SumText>Price without shipping costs&nbsp;</s.SumText>
           <s.Sum> {totalPrice} zł</s.Sum>
         </s.SumWrapper>
         <s.Footer>
-          {/* <Link href="/" passHref> */}
           <s.ViewCartBtn onClick={handleViewCart}>View Cart</s.ViewCartBtn>
-          {/* </Link> */}
         </s.Footer>
       </s.ShoppingCartPopupContainer>
     </div>,

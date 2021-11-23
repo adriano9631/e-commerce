@@ -1,4 +1,3 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import React, { useState, FC } from "react";
 import ReactTooltip from "react-tooltip";
 import * as s from "./QuantityInput.style";
@@ -8,18 +7,11 @@ import uniqid from "uniqid";
 type QuantityInputProps = {
   quantityRef: React.RefObject<HTMLSpanElement>;
   productStock: number;
-  quantity: any;
+  quantity: number | "";
   setQuantity: any;
   size?: string;
   id?: string;
 };
-
-// quantity: string | number;
-
-// ActionCreatorWithPayload<{
-//   quantity: number;
-//   id: string;
-// }> | React.Dispatch<any>;
 
 const QuantityInput: FC<QuantityInputProps> = ({
   quantityRef,
@@ -40,7 +32,9 @@ const QuantityInput: FC<QuantityInputProps> = ({
       (event.key === "Backspace" && quantityAsString.length === 1) ||
       (event.key === "Delete" && quantityAsString.length === 1)
     ) {
-      id ? dispatch(setQuantity({ quantity: "", size, id })) : setQuantity("");
+      id
+        ? dispatch(setQuantity({ quantity: "", size, id }))
+        : (setQuantity("") as React.Dispatch<any>);
     }
   };
 
@@ -65,7 +59,9 @@ const QuantityInput: FC<QuantityInputProps> = ({
 
   const incrementQuantity = () => {
     id
-      ? dispatch(setQuantity({ quantity: Number(quantity + 1), size, id }))
+      ? dispatch(
+          setQuantity({ quantity: Number((quantity as number) + 1), size, id })
+        )
       : setQuantity((prevQuantity: number) => Number(prevQuantity + 1));
 
     const element = quantityRef?.current as unknown as Element;
@@ -75,7 +71,13 @@ const QuantityInput: FC<QuantityInputProps> = ({
   const decrementQuantity = () => {
     if (quantity > 1) {
       id
-        ? dispatch(setQuantity({ quantity: Number(quantity - 1), size, id }))
+        ? dispatch(
+            setQuantity({
+              quantity: Number((quantity as number) - 1),
+              size,
+              id,
+            })
+          )
         : setQuantity((prevQuantity: number) => prevQuantity - 1);
     }
   };

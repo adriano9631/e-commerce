@@ -56,9 +56,9 @@ export const FavoriteShortsListWrapper = styled(
   motion.ul
 )<FavoriteShortsListWrapperProps>`
   display: flex;
-  justify-content: space-around;
-  column-gap: 20px;
+  justify-content: space-between;
   margin-top: 80px;
+  width: 90vw;
 `;
 
 export const FavoriteShortWrapper = styled(motion.li)<{ variants: object }>`
