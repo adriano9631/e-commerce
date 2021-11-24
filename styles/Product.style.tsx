@@ -167,8 +167,6 @@ export const Size = styled.p``;
 
 export const QuantityText = styled.label``;
 
-
-
 export const ButtonsWrapper = styled.div`
   display: flex;
   margin-top: 40px;
@@ -194,14 +192,7 @@ export const HeartIcon = styled(heartIcon)``;
 export const AddToFavoriteBtn = styled.button`
   flex-basis: 15%;
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
-  &:hover {
-    background-color: var(--primary-color);
-  }
-
-  &:hover ${HeartIcon} {
-    stroke: #fff;
-  }
+  border-radius: 7px;
 `;
 
 export const BuyProductBtn = styled.button`

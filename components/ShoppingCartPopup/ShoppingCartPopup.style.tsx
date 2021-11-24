@@ -44,7 +44,7 @@ export const CartItemsList = styled.ul`
   row-gap: 30px;
   align-items: center;
   overflow: auto;
-  height: 700px;
+  height: 650px;
 `;
 
 export const CartItem = styled.li`
@@ -106,15 +106,19 @@ export const ViewCartBtn = styled.button`
 export const SumWrapper = styled.div`
   display: flex;
   margin-top: 30px;
+  flex-direction: column;
+  margin-top: 35px;
 `;
 
 export const SumText = styled.p`
   font-size: 30px;
-  font-weight: bold;
   margin-left: 10px;
   font-family: var(--secondary-font-family);
 `;
 export const Sum = styled.p`
   font-size: 30px;
   font-family: var(--secondary-font-family);
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
 `;

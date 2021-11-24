@@ -111,16 +111,38 @@ const productsSlice = createSlice({
           return amount;
         }, 0);
       };
+      const calculateTotalQuantity = () => {
+        state.totalQuantity = state.cartItems.reduce((amount, product) => {
+          if (typeof product.quantity === "number") {
+            return amount + product.quantity;
+          }
+          return amount;
+        }, 0);
+      };
       calculateTotalPrice();
+      calculateTotalQuantity();
     },
     removeItemFromCart: (
       state,
       action: PayloadAction<{ id: string; size: string }>
     ) => {
-      state.cartItems.filter(
+      const itemToRemove = state.cartItems.find(
         (item) =>
-          item.id !== action.payload.id && item.size !== action.payload.size
+          item.id === action.payload.id && item.size === action.payload.size
       );
+      const itemQuantity = itemToRemove?.quantity;
+      const itemTotalPrice = itemToRemove?.productTotalPrice;
+      const itemToRemoveIndex = state.cartItems.findIndex(
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
+      );
+      state.cartItems.splice(itemToRemoveIndex, 1);
+      if (typeof itemQuantity === "number") {
+        state.totalQuantity -= itemQuantity;
+      }
+      if (typeof itemTotalPrice == "number") {
+        state.totalPrice -= itemTotalPrice;
+      }
     },
     reset: () => initialState,
   },
@@ -135,3 +157,6 @@ export const {
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
+function calculateTotalPrice() {
+  throw new Error("Function not implemented.");
+}

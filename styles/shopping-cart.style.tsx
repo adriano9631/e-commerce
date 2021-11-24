@@ -1,24 +1,32 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
+import { motion } from "framer-motion";
 import crossIcon from "public/icons/cross.svg";
 import couponIcon from "public/icons/coupon.svg";
 import errorIcon from "public/icons/error.svg";
 import lockIcon from "public/icons/lock.svg";
+import CircularProgress from "@mui/material/CircularProgress";
 
-export const ShoppingCartContainer = styled.main`
+export const ShoppingCartContainer = styled.div<{ isCartItemsEmpty: boolean }>`
   width: 75vw;
   margin: 0 auto;
   margin-top: 150px;
-  margin-bottom: 150px;
+  margin-bottom: 200px;
+  ${(props) =>
+    props.isCartItemsEmpty &&
+    css`
+      margin-top: 400px;
+      margin-bottom: 400px;
+    `}
 `;
 
 export const Main = styled.main`
   display: flex;
-  min-height: 400px;
   column-gap: 50px;
+  position: relative;
 `;
 
 export const MyCartText = styled.h1`
-  font-size: 20px;
+  font-size: 23px;
   color: var(--secondary-color);
 `;
 
@@ -29,7 +37,7 @@ export const ShoppingCartList = styled.ul`
   flex-basis: 76%;
 `;
 
-export const ShoppingCart = styled.li`
+export const ShoppingCartWrapper = styled(motion.li)`
   display: flex;
   align-items: center;
 `;
@@ -67,18 +75,23 @@ export const ExitIcon = styled(crossIcon)`
   overflow: visible;
 `;
 
-export const CouponIcon = styled(couponIcon)``;
+export const CouponIcon = styled(couponIcon)`
+  margin-top: 2px;
+`;
 
 export const EnterPromoCodeText = styled.p`
   color: #b73030;
   font-size: 16px;
   margin-left: 7px;
+  /* margin-top: 80px;
+  margin-bottom: 10px; */
 `;
 
 export const EnterPromoCodeBtn = styled.button`
   border: none;
   display: flex;
-  margin-bottom: -30px;
+  height: 40px;
+  margin-top: 10px;
   &:hover ${EnterPromoCodeText} {
     opacity: 0.8;
   }
@@ -91,11 +104,10 @@ export const EnterPromoCodeWrapper = styled.div`
   height: 45px;
   display: flex;
   position: relative;
-  margin-top: -20px;
 `;
 
 export const EnterPromoCodeInput = styled.input`
-  width: 236px;
+  width: 220px;
   border: 1px solid rgb(122, 126, 128);
   border-right: none;
   padding-left: 10px;
@@ -115,7 +127,7 @@ export const EnterPromoCodeInput = styled.input`
 
 export const ErrorIcon = styled(errorIcon)`
   align-self: center;
-  margin-left: 10px;
+  margin-left: -7px;
   position: absolute;
   left: 190px;
   z-index: 99;
@@ -125,7 +137,7 @@ export const ApplyPromoCodeBtn = styled.button`
   border: 1px solid #992424;
   color: #992424;
   font-size: 17px;
-  width: 100px;
+  width: 60px;
   &:hover {
     background-color: #992424;
     color: white;
@@ -146,6 +158,15 @@ export const OrderSummaryWrapper = styled.aside`
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+  position: absolute;
+  right: 0;
+`;
+
+export const CustomizedCircularProgress = styled(CircularProgress)`
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const OrderSummaryText = styled.h2`
@@ -181,6 +202,7 @@ export const ShippingPrice = styled.p`
 
 export const ShippingCountryBtn = styled.button`
   font-size: 17px;
+  text-align: left;
   color: var(--gray-color);
   text-decoration: underline;
 `;
@@ -205,10 +227,12 @@ export const MakeAnOrderBtn = styled.button`
   border: none;
   border-radius: 4px;
   margin-top: 10px;
-
   &:hover {
     opacity: 0.8;
     transition: 0.2s;
+  }
+  &:disabled {
+    opacity: 0.5;
   }
 `;
 
@@ -216,4 +240,23 @@ export const LockIcon = styled(lockIcon)`
   width: 18px;
   height: 16px;
   margin-bottom: -2px;
+`;
+
+export const EmptyShoppingCartWrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const EmptyShoppingCartText = styled.h3`
+  font-size: 22px;
+  text-align: center;
+  color: var(--gray-color);
+`;
+
+export const ContinueShoppingLink = styled.a`
+  text-decoration: underline;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 17px;
 `;

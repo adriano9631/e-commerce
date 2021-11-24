@@ -16,6 +16,7 @@ import * as s from "styles/product.style";
 import RelatedProducts from "components/RelatedProducts";
 import QuantityInput from "components/QuantityInput";
 import { addCartItem } from "features/productsSlice";
+import PaymentDisabledModal from "components/PaymentDisabledModal";
 import { setIsPopupVisible } from "features/commonSlice";
 
 type ProductProps = {
@@ -42,6 +43,8 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const cartItems = useSelector((state: RootState) => state.products.cartItems);
   const [previousProductLink, setPreviousProductLink] = useState(0);
   const [nextProductLink, setNextProductLink] = useState(1);
+  const [isPaymentDisabledModalOpen, setIsPaymentDisabledModalOpen] =
+    useState(false);
   const [isActive1, setisActive1] = useState(false);
   const [isActive2, setisActive2] = useState(false);
   const [isActive3, setisActive3] = useState(false);
@@ -384,7 +387,9 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
               <s.HeartIcon />
             </s.AddToFavoriteBtn>
           </s.ButtonsWrapper>
-          <s.BuyProductBtn>Buy</s.BuyProductBtn>
+          <s.BuyProductBtn onClick={() => setIsPaymentDisabledModalOpen(true)}>
+            Buy
+          </s.BuyProductBtn>
           <s.CollapsibleWrapper>
             <s.Collapsible
               onClick={() => setisActive1((prevValue) => !prevValue)}
@@ -437,7 +442,11 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
         </s.RightSide>
       </s.FlexWrapper>
       <RelatedProducts relatedProductsList={relatedProductsList} />
-      <AnimatePresence></AnimatePresence>
+      {isPaymentDisabledModalOpen && (
+        <PaymentDisabledModal
+          setIsPaymentDisabledModalOpen={setIsPaymentDisabledModalOpen}
+        />
+      )}
     </s.ProductContainer>
   );
 };
