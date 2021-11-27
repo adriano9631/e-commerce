@@ -4,6 +4,8 @@ import { RootState } from "features/store";
 import * as s from "./SearchBox.style";
 import { setIsPopupVisible } from "features/commonSlice";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
+
 
 const SearchBox: React.FC = () => {
   const totalQuantity = useSelector(
@@ -18,10 +20,16 @@ const SearchBox: React.FC = () => {
           <s.SearchIcon />
         </s.SearchIconBtn>
       </s.SearchBoxWrapper>
-      <s.WishListWrapper>
-        <s.HeartIcon />
-        <s.Wishlist>Wishlist</s.Wishlist>
-      </s.WishListWrapper>
+      <Link href="/account/my-wishlist">
+        <a>
+          <s.WishListBtnWrapper>
+            <s.HeartIcon />
+            <s.Wishlist>Wishlist</s.Wishlist>
+          </s.WishListBtnWrapper>
+        </a>
+
+  
+      </Link>
       <s.TrolleyWrapper onClick={() => dispatch(setIsPopupVisible(true))}>
         <s.TrolleyIcon />
         <s.TrolleyCurrentItems>{totalQuantity}</s.TrolleyCurrentItems>

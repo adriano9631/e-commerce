@@ -29,6 +29,7 @@ const productBySlugQuery = gql`
       id
       productType
       price
+      slug
       name
       description
       details

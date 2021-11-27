@@ -2,11 +2,20 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import SearchBox from "components/SearchBox";
 import useScrollListener from "hooks/useScrollListeners";
+import { useSession, signIn, signOut } from "next-auth/react";
+
 import * as s from "./Navbar.style";
 
 const Navbar: React.FC = () => {
   const scroll = useScrollListener();
   const [isVisible, setIsVisible] = useState(true);
+  const { data: session } = useSession();
+
+  if (session) {
+    console.log(session);
+  } else {
+    console.log("not logged in");
+  }
 
   useEffect(() => {
     if (scroll.y > 150 && scroll.y - scroll.lastY > 0) {
@@ -20,6 +29,8 @@ const Navbar: React.FC = () => {
     <s.NavbarContainer isVisible={isVisible}>
       <s.FlexRow>
         <s.FlexWrapper>
+          <button onClick={() => signIn("google")}>Sign in</button>
+          <button onClick={() => signOut({ redirect: false })}>Sign out</button>
           <s.LoginWrapper>
             <s.Avatar />
             <s.Login>Log In</s.Login>

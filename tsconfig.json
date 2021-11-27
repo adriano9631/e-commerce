@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "typeRoots": ["./types/session.ts"],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,10 +21,15 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "pages/api/auth/[...nextauth].js",
     "pages/_document.tsx",
     "custom.d.ts",
     "components/MainSection/MainSection.tsx",
-    "components/FavoriteShorts"
+    "components/FavoriteShorts",
+    "pages/api/auth/[...nextauth].js",
+    "pages/api/auth/providers.js",
+    "pages/api/[...nextauth].js",
+    "pages/api/[...nextauth].js"
   ],
   "exclude": ["node_modules"]
 }

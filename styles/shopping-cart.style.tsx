@@ -4,7 +4,6 @@ import crossIcon from "public/icons/cross.svg";
 import couponIcon from "public/icons/coupon.svg";
 import errorIcon from "public/icons/error.svg";
 import lockIcon from "public/icons/lock.svg";
-import CircularProgress from "@mui/material/CircularProgress";
 
 export const ShoppingCartContainer = styled.div<{ isCartItemsEmpty: boolean }>`
   width: 75vw;
@@ -160,13 +159,6 @@ export const OrderSummaryWrapper = styled.aside`
   row-gap: 10px;
   position: absolute;
   right: 0;
-`;
-
-export const CustomizedCircularProgress = styled(CircularProgress)`
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 export const OrderSummaryText = styled.h2`

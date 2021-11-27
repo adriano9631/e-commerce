@@ -7,19 +7,23 @@ import { useOnClickOutside } from "usehooks-ts";
 import * as queries from "lib/queries";
 import { request } from "lib/datocms";
 import { useDispatch } from "react-redux";
+import axiosInstance from "lib/axios";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import ReactTooltip from "react-tooltip";
 import { RootState } from "features/store";
 import type { RelatedProductsProps } from "components/RelatedProducts";
-import * as s from "styles/product.style";
+import * as s from "styles/product/[productSlug].style";
 import RelatedProducts from "components/RelatedProducts";
 import QuantityInput from "components/QuantityInput";
 import { addCartItem } from "features/productsSlice";
 import PaymentDisabledModal from "components/PaymentDisabledModal";
 import { setIsPopupVisible } from "features/commonSlice";
+import { useSession } from "next-auth/react";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
-type ProductProps = {
+export type ProductProps = {
   product: {
     name: string;
     productType: string;
@@ -27,6 +31,7 @@ type ProductProps = {
     stock: number;
     description: string;
     details: string;
+    slug: string;
     price: string;
     images: {
       url: string;
@@ -37,6 +42,7 @@ type ProductProps = {
 
 const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const dispatch = useDispatch();
+  const { data: session } = useSession();
   const previouslyViewedProductsLinks = useSelector(
     (state: RootState) => state.products.previouslyViewedProductsLinks
   );
@@ -59,6 +65,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const [quantity, setQuantity] = useState<number | "">(1);
   const [maximumQuantityError, setMaximumQuantityError] = useState("");
   const [size, setSize] = useState("Choose");
+  const [isOpenSnackbar, setIsOpenSnackbar] = useState(false);
   const [productTotalPrice, setProductTotalPrice] = useState(
     (quantity as number) * parseInt(product.price)
   );
@@ -181,6 +188,31 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const handleNextProductLinkChange = () => {
     setPreviousProductLink((prevValue) => prevValue + 1);
     setNextProductLink((prevValue) => prevValue + 1);
+  };
+
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setIsOpenSnackbar(false);
+  };
+
+  const handleAddProductToWishlist = async () => {
+    try {
+      await axiosInstance.post("wishlists", {
+        name: product.name,
+        image: product.images[0].url,
+        alt: product.images[0].alt,
+        price: product.price,
+        userId: session?.id,
+        productId: product.id,
+        productSlug: product.slug,
+      });
+      setIsOpenSnackbar(true);
+    } catch (error: any) {
+      throw new Error(error);
+    }
   };
 
   return (
@@ -383,7 +415,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
             <s.AddToCartBtn onClick={handleAddCartItem}>
               Add to cart
             </s.AddToCartBtn>
-            <s.AddToFavoriteBtn>
+            <s.AddToFavoriteBtn onClick={handleAddProductToWishlist}>
               <s.HeartIcon />
             </s.AddToFavoriteBtn>
           </s.ButtonsWrapper>
@@ -447,6 +479,24 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
           setIsPaymentDisabledModalOpen={setIsPaymentDisabledModalOpen}
         />
       )}
+      <Snackbar
+        open={isOpenSnackbar}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        key={"bottom right"}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          onClose={handleClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Product have been added
+        </MuiAlert>
+      </Snackbar>
     </s.ProductContainer>
   );
 };

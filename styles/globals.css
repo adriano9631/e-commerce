@@ -16,13 +16,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  /* color: #e7dcdc; */
-}
-
-html {
-  /* increases smoothness of scrolling */
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
 }
 
 body {

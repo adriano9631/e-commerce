@@ -53,7 +53,7 @@ export const SearchIconBtn = styled.button`
   justify-content: center;
 `;
 
-export const WishListWrapper = styled.button`
+export const WishListBtnWrapper = styled.button`
   display: flex;
   background-color: white;
   flex: 0 1 20%;
@@ -61,6 +61,9 @@ export const WishListWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 19px;
 `;
 
 export const HeartIcon = styled(heart)`

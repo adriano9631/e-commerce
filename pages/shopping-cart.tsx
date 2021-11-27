@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import ReactTooltip from "react-tooltip";
 import PaymentDisabledModal from "components/PaymentDisabledModal";
 import ShippingCountryModal from "components/ShippingCountryModal";
+import LoadingIndicator from "components/LoadingIndicator";
 
 const ShoppingCart = () => {
   const cartItems = useSelector((state: RootState) => state.products.cartItems);
@@ -28,7 +29,9 @@ const ShoppingCart = () => {
     useState(false);
   const [isShippingCountryModalOpen, setIsShippingCountryModalOpen] =
     useState(false);
-  const [shippingCountry, setShippingCountry] = useState<string | undefined>("Poland");
+  const [shippingCountry, setShippingCountry] = useState<string | undefined>(
+    "Poland"
+  );
   const [isPromoInputOpen, setIsPromoInputOpen] = useState(false);
   const [code, setCode] = useState("");
   const inputRef = useRef<HTMLSpanElement>(null);
@@ -151,9 +154,7 @@ const ShoppingCart = () => {
             </s.ShoppingCartList>
 
             <s.OrderSummaryWrapper>
-              {isTotalPriceChanged && (
-                <s.CustomizedCircularProgress color="error" />
-              )}
+              {isTotalPriceChanged && <LoadingIndicator color="error" />}
               <s.OrderSummaryText>Order summary</s.OrderSummaryText>
               <s.FlexWrapper>
                 <s.PartialAmountText>

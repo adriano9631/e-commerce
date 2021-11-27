@@ -10,6 +10,10 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ["www.datocms-assets.com"],
+    domains: [
+      "www.datocms-assets.com",
+      "res.cloudinary.com",
+      "lh3.googleusercontent.com",
+    ],
   },
 };
