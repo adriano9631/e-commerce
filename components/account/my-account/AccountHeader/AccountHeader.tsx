@@ -1,8 +1,8 @@
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState, FC } from "react";
-import axiosInstance from "lib/axios";
+import axiosInstance from "lib/api/axios";
 import * as s from "./AccountHeader.style";
-import LoadingIndicator from "components/LoadingIndicator";
+import LoadingIndicator from "components/common/LoadingIndicator";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

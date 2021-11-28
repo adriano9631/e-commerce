@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import SearchBox from "components/SearchBox";
-import useScrollListener from "hooks/useScrollListeners";
+import SearchBox from "components/common/SearchBox";
+import useScrollListener from "lib/hooks/useScrollListeners";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import * as s from "./Navbar.style";

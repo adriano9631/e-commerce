@@ -3,13 +3,13 @@ import { request } from "lib/datocms";
 import { useProgressiveImage } from "hooks/useProgressiveImage";
 import styled from "styled-components";
 import * as queries from "lib/queries";
-import BestSellers from "components/BestSellers";
-import MainSection from "components/MainSection";
-import FavoriteShorts from "components/FavoriteShorts";
-import type { BestSellersProps } from "components/BestSellers";
-import type { MainSectionProps } from "components/MainSection";
-import type { FavoriteShortsProps } from "components/FavoriteShorts";
-import Header from "components/Header";
+import BestSellers from "components/home/BestSellers";
+import MainSection from "components/home/MainSection";
+import FavoriteShorts from "components/home/FavoriteShorts";
+import type { BestSellersProps } from "components/home/BestSellers";
+import type { MainSectionProps } from "components/home/MainSection";
+import type { FavoriteShortsProps } from "components/home/FavoriteShorts";
+import Header from "components/home/Header";
 
 const FourModelsPosingImg = styled.div<{ loadedbBackgroundImage: string }>`
   background-image: ${({ loadedbBackgroundImage }) =>

@@ -2,7 +2,7 @@ import React, { createRef, useState, useEffect, useRef } from "react";
 import * as s from "styles/shopping-cart.style";
 import Image from "next/image";
 import Link from "next/link";
-import QuantityInput from "components/QuantityInput";
+import QuantityInput from "components/common/QuantityInput";
 import { useSelector } from "react-redux";
 import { AnimatePresence } from "framer-motion";
 import { RootState } from "features/store";
@@ -10,9 +10,9 @@ import { setQuantity } from "features/productsSlice";
 import { removeItemFromCart } from "features/productsSlice";
 import { useDispatch } from "react-redux";
 import ReactTooltip from "react-tooltip";
-import PaymentDisabledModal from "components/PaymentDisabledModal";
-import ShippingCountryModal from "components/ShippingCountryModal";
-import LoadingIndicator from "components/LoadingIndicator";
+import PaymentDisabledModal from "components/common/PaymentDisabledModal";
+import ShippingCountryModal from "components/shopping-cart/ShippingCountryModal";
+import LoadingIndicator from "components/common/LoadingIndicator";
 
 const ShoppingCart = () => {
   const cartItems = useSelector((state: RootState) => state.products.cartItems);

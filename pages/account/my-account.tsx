@@ -1,9 +1,9 @@
-import AccountHeader from "components/AccountHeader";
+import AccountHeader from "components/account/my-account/AccountHeader";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
-import axiosInstance from "lib/axios";
+import axiosInstance from "lib/api/axios";
 import * as s from "styles/account/my-account.style";
-import DiscardChangesModal from "components/DiscardChangesModal";
+import DiscardChangesModal from "components/account/my-account/DiscardChangesModal";
 
 const MyAccount = () => {
   const { data: session } = useSession();

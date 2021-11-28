@@ -1,10 +1,10 @@
 import { FC } from "react";
 import * as s from "styles/account/my-wishlist.style";
-import AccountHeader from "components/AccountHeader";
+import AccountHeader from "components/account/my-account/AccountHeader";
 import { getSession } from "next-auth/react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { prisma } from "lib/db";
+import { prisma } from "lib/api/db";
 type MyWishlistProps = {
   wishlist: {
     id: string;

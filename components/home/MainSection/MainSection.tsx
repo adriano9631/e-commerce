@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import * as s from "./MainSection.style";
-import ShopAllBtn from "components/ShopAllButton";
+import ShopAllBtn from "components/home/ShopAllButton";
 
 export type MainSectionProps = {
   modelsImage: {

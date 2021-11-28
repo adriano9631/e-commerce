@@ -2,7 +2,7 @@ import React from "react";
 import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { RootState } from "features/store";
-import ShoppingCartPopup from "components/ShoppingCartPopup";
+import ShoppingCartPopup from "components/common/ShoppingCartPopup";
 
 const ConnectedWithProvider = () => {
   const isPopupVisible = useSelector(

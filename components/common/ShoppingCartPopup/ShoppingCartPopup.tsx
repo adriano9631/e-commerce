@@ -1,16 +1,15 @@
-import React, { useRef, FC, createRef, RefObject } from "react";
+import React, { useRef, FC, createRef } from "react";
 import ReactDom from "react-dom";
 import * as s from "./ShoppingCartPopup.style";
 import { setIsPopupVisible } from "features/commonSlice";
 import { useOnClickOutside } from "usehooks-ts";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
-import Link from "next/link";
 import uniqid from "uniqid";
 import ReactTooltip from "react-tooltip";
 import { RootState } from "features/store";
 import { setQuantity } from "features/productsSlice";
-import QuantityInput from "components/QuantityInput";
+import QuantityInput from "components/common/QuantityInput";
 import { useRouter } from "next/router";
 const variants = {
   hidden: {
@@ -46,8 +45,6 @@ const ShoppingCartPopup: FC = () => {
     (state: RootState) => state.products.totalPrice
   );
 
-  
-
   React.useEffect(() => {
     setElRefs((elRefs) =>
       Array(cartItems.length)
@@ -65,7 +62,6 @@ const ShoppingCartPopup: FC = () => {
   const isAnyQuantityInputEmpty = cartItems.some(
     (item) => item.quantity === ""
   );
-
 
   const handleViewCart = () => {
     for (let i = 0; i < elRefs.length; i++) {

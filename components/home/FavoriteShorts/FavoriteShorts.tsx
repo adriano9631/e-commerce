@@ -3,9 +3,9 @@ import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
-import { useProgressiveImage } from "hooks/useProgressiveImage";
+import { useProgressiveImage } from "lib/hooks/useProgressiveImage";
 import * as s from "./FavoriteShorts.style";
-import ShopAllButton from "components/ShopAllButton";
+import ShopAllButton from "components/home/ShopAllButton";
 
 export type FavoriteShortsProps = {
   favoriteShorts: {
