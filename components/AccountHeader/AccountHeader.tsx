@@ -1,16 +1,19 @@
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import axiosInstance from "lib/axios";
 import * as s from "./AccountHeader.style";
 import LoadingIndicator from "components/LoadingIndicator";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const AccountHeader = () => {
+type AccountHeaderProps = {
+  updatedDisplayName?: string;
+};
+
+const AccountHeader: FC<AccountHeaderProps> = ({ updatedDisplayName }) => {
   const router = useRouter();
   const { data: session } = useSession();
   const [image, setImage] = useState("");
-  const [isLinkActive, setIsLinkActive] = useState(false);
   const [url, setUrl] = useState(session?.user.image);
   const [isLoadingIndicator, setIsLoadingIndicator] = useState(false);
 
@@ -37,8 +40,6 @@ const AccountHeader = () => {
       uploadImage();
     }
   }, [image]);
-
-  console.log(router);
 
   useEffect(() => {
     const changeProfileAvatar = async () => {
@@ -79,7 +80,9 @@ const AccountHeader = () => {
           </s.AvatarWrapper>
 
           <s.NameEmailWrapper>
-            <s.Name>{session?.user.name}</s.Name>
+            <s.Name>
+              {updatedDisplayName ? updatedDisplayName : session?.user.name}
+            </s.Name>
             <s.Email>{session?.user.email}</s.Email>
           </s.NameEmailWrapper>
         </s.AccountInfoWrapper>
@@ -87,9 +90,9 @@ const AccountHeader = () => {
         {isLoadingIndicator && <LoadingIndicator />}
       </s.ProfileCardWrapper>
       <s.NavLinksWrapper>
-        <Link href="/profile/:username">
+        <Link href="/profile/username123">
           <s.NavLink
-            isActive={router.pathname === "/profile/:username" ? true : false}
+            isActive={router.pathname === "/profile/[username]" ? true : false}
           >
             Profile
           </s.NavLink>
@@ -108,9 +111,6 @@ const AccountHeader = () => {
             My Wishlist
           </s.NavLink>
         </Link>
-        {/* <a className={router.pathname == "/" ? "active" : ""}>
-           Home
-        </a> */}
       </s.NavLinksWrapper>
     </s.AccountHeaderContainer>
   );

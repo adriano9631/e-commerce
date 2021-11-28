@@ -75,7 +75,6 @@ export const FileInput = styled.input`
 
 export const NavLinksWrapper = styled.div`
   display: flex;
-  /* margin-top: 20px; */
   margin-left: 20px;
   column-gap: 30px;
 `;

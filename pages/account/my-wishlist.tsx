@@ -19,32 +19,32 @@ const MyWishlist: FC<MyWishlistProps> = ({ wishlist }) => {
   return (
     <s.MyWishlistContainer>
       <AccountHeader />
-      <s.Wrapper>
+      <s.MyWishlistTextWrapper>
         <s.Title>My wishlist</s.Title>
         <s.Description>
           View your favorite products on the wishlist.
         </s.Description>
-        <s.WishlistWrapper>
-          {wishlist.map((product) => (
-            <s.ProductWrapper key={product.productSlug}>
-              <Link href={`/product/${product.productSlug}`} passHref>
-                <a>
-                  <s.ProductImage
-                    src={product.image}
-                    width={300}
-                    height={300}
-                    alt={product.alt}
-                  />
-                  <s.Name>{product.alt}</s.Name>
-                  <s.Price>{product.price}</s.Price>
-                </a>
-              </Link>
+      </s.MyWishlistTextWrapper>
+      <s.WishlistWrapper>
+        {wishlist.map((product) => (
+          <s.ProductWrapper key={product.productSlug}>
+            <Link href={`/product/${product.productSlug}`} passHref>
+              <a>
+                <s.ProductImage
+                  src={product.image}
+                  width={300}
+                  height={300}
+                  alt={product.alt}
+                />
+                <s.Name>{product.alt}</s.Name>
+                <s.Price>{product.price}</s.Price>
+              </a>
+            </Link>
 
-              <s.AddToCartBtn>Add to cart</s.AddToCartBtn>
-            </s.ProductWrapper>
-          ))}
-        </s.WishlistWrapper>
-      </s.Wrapper>
+            <s.AddToCartBtn>Add to cart</s.AddToCartBtn>
+          </s.ProductWrapper>
+        ))}
+      </s.WishlistWrapper>
     </s.MyWishlistContainer>
   );
 };

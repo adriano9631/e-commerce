@@ -6,10 +6,15 @@ export const MyWishlistContainer = styled.div`
   margin: 70px auto;
 `;
 
+export const MyWishlistTextWrapper = styled.div`
+  margin-left: 20px;
+  margin-top: 30px;
+`;
+
 export const Title = styled.h1`
   font-size: 26px;
   font-family: var(--secondary-font-family);
-  margin-top: 5px;
+  margin-top: 25px;
 `;
 
 export const Description = styled.p`
@@ -21,9 +26,10 @@ export const WishlistWrapper = styled.ul`
   display: flex;
   column-gap: 10px;
   row-gap: 10px;
-  margin-top: 50px;
   border-top: 1px solid #dcdcdc;
   padding-top: 40px;
+  margin-left: 20px;
+  margin-top: 30px;
 `;
 
 export const ProductWrapper = styled.li`
@@ -53,9 +59,4 @@ export const AddToCartBtn = styled.button`
   &:hover {
     opacity: 0.8;
   }
-`;
-
-export const Wrapper = styled.div`
-  margin: 20px;
-  margin-top: 30px;
 `;
