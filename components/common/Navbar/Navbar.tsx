@@ -46,6 +46,7 @@ const Navbar: React.FC = () => {
           </a>
         </Link>
         <s.NavItemsWrapper>
+          {session ? <p>LOGGED IN </p> : <p>NOT LOGGED IN</p>}
           <s.NavItem>Women</s.NavItem>
           <s.NavItem>Men</s.NavItem>
           <s.NavItem>Accessories</s.NavItem>

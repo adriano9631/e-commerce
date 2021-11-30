@@ -38,22 +38,29 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
+  name          String
+  email         String   @unique
   emailVerified DateTime?
-  image         String?
+  image         String
   username      String
   wishlist      Wishlist[]
   accounts      Account[]
   sessions      Session[]
 }
 
+
 model Wishlist {
    id            String    @id
-   image         String
-   alt           String
+   first_image   String
+   first_image_alt     String
+   second_image  String?
+   second_image_alt String?
    price         String
+   description   String
+   details       String
+   name          String
    productSlug   String
+   stock         Int
    user          User @relation(fields: [userId], references: [id])
    userId        String
  }

@@ -79,7 +79,7 @@ export const Price = styled.p`
 `;
 
 export const Footer = styled.footer`
-  height: 150px;
+  height: 100px;
   position: absolute;
   z-index: 1;
   width: 100%;

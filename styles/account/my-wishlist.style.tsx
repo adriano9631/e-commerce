@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 import Image from "next/image";
+import removeIcon from "public/icons/cross.svg";
 
 export const MyWishlistContainer = styled.div`
   width: 980px;
@@ -22,6 +23,27 @@ export const Description = styled.p`
   margin-top: 10px;
 `;
 
+export const NoProductsWrapper = styled.section`
+  width: 920px;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const NoProductsText = styled.h2`
+  font-size: 25px;
+`;
+
+export const NoProductsLink = styled.a`
+  font-size: 20px;
+  margin-top: 20px;
+  text-decoration: underline;
+`;
+
 export const WishlistWrapper = styled.ul`
   display: flex;
   column-gap: 10px;
@@ -32,8 +54,23 @@ export const WishlistWrapper = styled.ul`
   margin-top: 30px;
 `;
 
+export const RemoveProductFromWishlistBtn = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 15px;
+  margin-right: 15px;
+  background-color: transparent;
+  opacity: 0;
+`;
+
+export const RemoveIcon = styled(removeIcon)``;
+
 export const ProductWrapper = styled.li`
-  cursor: pointer;
+  position: relative;
+  &:hover ${RemoveProductFromWishlistBtn} {
+    opacity: 1;
+  }
 `;
 
 export const ProductImage = styled(Image)``;

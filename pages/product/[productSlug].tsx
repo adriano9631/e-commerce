@@ -6,27 +6,25 @@ import Image from "next/image";
 import { useOnClickOutside } from "usehooks-ts";
 import * as queries from "lib/api/queries";
 import { request } from "lib/api/datocms";
-import { useDispatch } from "react-redux";
 import axiosInstance from "lib/api/axios";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import ReactTooltip from "react-tooltip";
 import { RootState } from "features/store";
-import type { RelatedProductsProps } from "components/home/RelatedProducts";
+import type { RelatedProductsProps } from "components/profile/[productSlug]/RelatedProducts";
 import * as s from "styles/product/[productSlug].style";
-import RelatedProducts from "components/home/RelatedProducts";
+import RelatedProducts from "components/profile/[productSlug]/RelatedProducts";
 import QuantityInput from "components/common/QuantityInput";
-import { addCartItem } from "features/productsSlice";
 import PaymentDisabledModal from "components/common/PaymentDisabledModal";
+import Dropdown from "components/common/Dropdown";
 import { setIsPopupVisible } from "features/commonSlice";
 import { useSession } from "next-auth/react";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import AddToCartBtn from "components/common/AddCartItemButton";
 
 export type ProductProps = {
   product: {
     name: string;
-    productType: string;
     id: string;
     stock: number;
     description: string;
@@ -41,7 +39,6 @@ export type ProductProps = {
 } & RelatedProductsProps;
 
 const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
-  const dispatch = useDispatch();
   const { data: session } = useSession();
   const previouslyViewedProductsLinks = useSelector(
     (state: RootState) => state.products.previouslyViewedProductsLinks
@@ -60,11 +57,8 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
     alt: product.images[0].alt,
   });
   const dynamicRoute = useRouter().asPath;
-  const [isDropdownContentVisible, setIsDropdownContentVisible] =
-    useState(false);
   const [quantity, setQuantity] = useState<number | "">(1);
   const [maximumQuantityError, setMaximumQuantityError] = useState("");
-  const [size, setSize] = useState("Choose");
   const [isOpenSnackbar, setIsOpenSnackbar] = useState(false);
   const [productTotalPrice, setProductTotalPrice] = useState(
     (quantity as number) * parseInt(product.price)
@@ -72,12 +66,16 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const ref1 = useRef<HTMLParagraphElement>(null);
   const ref2 = useRef<HTMLParagraphElement>(null);
   const ref3 = useRef<HTMLParagraphElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const sizeRef = useRef<HTMLSpanElement>(null);
   const quantityRef = useRef<HTMLSpanElement>(null);
   const scrollHeight1: number | undefined = ref1?.current?.scrollHeight;
   const scrollHeight2: number | undefined = ref2?.current?.scrollHeight;
   const scrollHeight3: number | undefined = ref3?.current?.scrollHeight;
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState("Choose");
+  const sizeRef = useRef<HTMLSpanElement>(null);
+  const [isDropdownContentVisible, setIsDropdownContentVisible] =
+    useState(false);
 
   useEffect(() => {
     setCurrentImage({
@@ -111,75 +109,6 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
     setCurrentImage({ url, alt });
   };
 
-  const handleDropdownOption = (size: string) => {
-    setSize(size);
-    setIsDropdownContentVisible((prevValue) => !prevValue);
-    const element = sizeRef?.current as unknown as Element;
-    ReactTooltip.hide(element);
-  };
-
-  const handleAddCartItem = () => {
-    const productFromShoppingCard: any = cartItems.find(
-      (item) => item.id === product.id && item.size === size
-    );
-    if (productFromShoppingCard?.quantity) {
-      if (
-        size !== "Choose" &&
-        quantity !== "" &&
-        quantity + productFromShoppingCard?.quantity <= product.stock
-      ) {
-        dispatch(
-          addCartItem({
-            id: product.id,
-            name: product.name,
-            price: parseInt(product.price),
-            image: product.images[0].url,
-            alt: product.images[0].alt,
-            stock: product.stock,
-            size,
-            quantity,
-            productTotalPrice,
-          })
-        );
-        dispatch(setIsPopupVisible(true));
-      }
-    } else {
-      if (size !== "Choose" && quantity !== "") {
-        dispatch(
-          addCartItem({
-            id: product.id,
-            name: product.name,
-            price: parseInt(product.price),
-            image: product.images[0].url,
-            alt: product.images[0].alt,
-            stock: product.stock,
-            size,
-            quantity,
-            productTotalPrice,
-          })
-        );
-        dispatch(setIsPopupVisible(true));
-      }
-    }
-
-    if (quantity + productFromShoppingCard?.quantity > product.stock) {
-      setMaximumQuantityError(
-        `Sum quantity of this product is higher than the maximum allowed quantity which is ${product.stock}`
-      );
-    } else {
-      setMaximumQuantityError("");
-    }
-
-    if (size === "Choose") {
-      const element = sizeRef?.current as unknown as Element;
-      ReactTooltip.show(element);
-    }
-    if (quantity === "") {
-      const element = quantityRef?.current as unknown as Element;
-      ReactTooltip.show(element);
-    }
-  };
-
   const handleBackProductLinkChange = () => {
     setPreviousProductLink((prevValue) => prevValue - 1);
     setNextProductLink((prevValue) => prevValue - 1);
@@ -201,13 +130,15 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const handleAddProductToWishlist = async () => {
     try {
       await axiosInstance.post("wishlists", {
-        name: product.name,
-        image: product.images[0].url,
-        alt: product.images[0].alt,
-        price: product.price,
-        userId: session?.id,
         productId: product.id,
+        name: product.name,
+        images: product.images,
+        price: product.price,
+        stock: product.stock,
+        description: product.description,
+        details: product.details,
         productSlug: product.slug,
+        userId: session?.id,
       });
       setIsOpenSnackbar(true);
     } catch (error: any) {
@@ -356,51 +287,15 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
           <s.Name>{product.name}</s.Name>
           <s.Price>{product.price}</s.Price>
           <s.SizeText>Size</s.SizeText>
-          <div ref={dropdownRef}>
-            <span
-              data-tip
-              data-for="chooseSize"
-              ref={sizeRef}
-              data-event="fakeEvent"
-            >
-              <s.Dropdown
-                onClick={() =>
-                  setIsDropdownContentVisible((prevValue) => !prevValue)
-                }
-              >
-                <s.DropdownFlexWrapper>
-                  <s.ChooseText>{size}</s.ChooseText>
-                  {isDropdownContentVisible ? (
-                    <s.DropdownArrowDownIcon />
-                  ) : (
-                    <s.DropdownArrowUpIcon />
-                  )}
-                </s.DropdownFlexWrapper>
-              </s.Dropdown>
-            </span>
-            <ReactTooltip
-              effect="solid"
-              place="left"
-              id="chooseSize"
-              type="error"
-            >
-              <span>Please choose size</span>
-            </ReactTooltip>
+          <Dropdown
+            dropdownRef={dropdownRef}
+            size={size}
+            setSize={setSize}
+            sizeRef={sizeRef}
+            setIsDropdownContentVisible={setIsDropdownContentVisible}
+            isDropdownContentVisible={isDropdownContentVisible}
+          />
 
-            <s.DropdownContent
-              isDropdownContentVisible={isDropdownContentVisible}
-            >
-              <s.DropdownOption onClick={() => handleDropdownOption("Small")}>
-                Small
-              </s.DropdownOption>
-              <s.DropdownOption onClick={() => handleDropdownOption("Medium")}>
-                Medium
-              </s.DropdownOption>
-              <s.DropdownOption onClick={() => handleDropdownOption("Large")}>
-                Large
-              </s.DropdownOption>
-            </s.DropdownContent>
-          </div>
           <s.QuantityText>Quantity</s.QuantityText>
           <QuantityInput
             quantityRef={quantityRef}
@@ -412,9 +307,18 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
             {maximumQuantityError}
           </p>
           <s.ButtonsWrapper>
-            <s.AddToCartBtn onClick={handleAddCartItem}>
-              Add to cart
-            </s.AddToCartBtn>
+            <AddToCartBtn
+              backgroundColor="#393c3e"
+              product={product}
+              size={size}
+              quantity={quantity}
+              cartItems={cartItems}
+              setIsPopupVisible={setIsPopupVisible}
+              sizeRef={sizeRef}
+              quantityRef={quantityRef}
+              productTotalPrice={productTotalPrice}
+            />
+
             <s.AddToFavoriteBtn onClick={handleAddProductToWishlist}>
               <s.HeartIcon />
             </s.AddToFavoriteBtn>
@@ -483,7 +387,6 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
         open={isOpenSnackbar}
         autoHideDuration={6000}
         onClose={handleClose}
-        key={"bottom right"}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right",

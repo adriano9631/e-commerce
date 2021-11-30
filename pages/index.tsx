@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import { request } from "lib/datocms";
-import { useProgressiveImage } from "hooks/useProgressiveImage";
+import { request } from "lib/api/datocms";
+import { useProgressiveImage } from "lib/hooks/useProgressiveImage";
 import styled from "styled-components";
-import * as queries from "lib/queries";
+import * as queries from "lib/api//queries";
 import BestSellers from "components/home/BestSellers";
 import MainSection from "components/home/MainSection";
 import FavoriteShorts from "components/home/FavoriteShorts";

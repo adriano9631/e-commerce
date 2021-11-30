@@ -1,4 +1,4 @@
-import AccountHeader from "components/account/my-account/AccountHeader";
+import AccountHeader from "components/common/AccountHeader";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import axiosInstance from "lib/api/axios";

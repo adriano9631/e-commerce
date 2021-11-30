@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "lib/db";
+import { prisma } from "lib/api/db";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "PUT" && req.body.url) {
