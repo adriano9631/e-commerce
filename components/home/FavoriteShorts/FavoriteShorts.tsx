@@ -136,11 +136,7 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
         variants={list}
       >
         {favoriteShorts.map((product) => (
-          <Link
-            href={`/product/${encodeURIComponent(product.slug)}`}
-            key={product.slug}
-            passHref
-          >
+          <Link href={`/product/${product.slug}`} key={product.slug} passHref>
             <a>
               <s.FavoriteShortWrapper
                 onMouseOver={() => setHoveredImgSlug(product.slug)}

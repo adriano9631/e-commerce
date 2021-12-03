@@ -14,6 +14,10 @@ const AccountHeader: FC<AccountHeaderProps> = ({ updatedDisplayName }) => {
   const router = useRouter();
   const { data: session } = useSession();
   const [image, setImage] = useState("");
+  let userImage
+  // if (session) {
+  //   userImage = session.user.image
+  // }
   const [url, setUrl] = useState(session?.user.image);
   const [isLoadingIndicator, setIsLoadingIndicator] = useState(false);
 
@@ -62,7 +66,7 @@ const AccountHeader: FC<AccountHeaderProps> = ({ updatedDisplayName }) => {
         <s.AccountInfoWrapper>
           <s.AvatarWrapper>
             <s.Avatar
-              src={url}
+              src={url as string}
               alt="Profile avatar"
               height={110}
               width={110}

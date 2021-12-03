@@ -1,18 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styled, { css } from "styled-components/macro";
 import heartIcon from "public/icons/heart.svg";
-// import dropownArrowDownIcon from "public/icons/dropdown-arrow-down.svg";
-// import dropownArrowUpIcon from "public/icons/dropdown-arrow-up.svg";
 import plusIcon from "public/icons/plus.svg";
-
-// type DropdownProps = {
-//   onClick: (value: React.SetStateAction<boolean>) => void;
-//   children: ReactNode;
-// };
-
-// type DropdownContentProps = {
-//   isDropdownContentVisible: boolean;
-// };
 
 type PreviewImgWrapperProps = {
   isActive?: boolean;
@@ -119,50 +108,6 @@ export const Price = styled.p`
 
 export const SizeText = styled.label``;
 
-// export const Dropdown = styled.button<DropdownProps>`
-//   width: 355px;
-//   height: 40px;
-//   padding: 0 5px;
-//   margin-top: 5px;
-//   border: 1px solid #c8c8c8;
-//   margin-bottom: 15px;
-// `;
-
-// export const DropdownFlexWrapper = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-// `;
-
-// export const ChooseText = styled.p`
-//   font-size: 14px;
-//   padding: 5px;
-//   color: #393c3e;
-// `;
-
-// export const DropdownArrowDownIcon = styled(dropownArrowDownIcon)``;
-
-// export const DropdownArrowUpIcon = styled(dropownArrowUpIcon)``;
-
-// export const DropdownContent = styled.div<DropdownContentProps>`
-//   width: 355px;
-//   height: 129px;
-//   border: 1px solid #c8c8c8;
-//   display: ${(props) => (props.isDropdownContentVisible ? "block" : "none")};
-//   position: absolute;
-//   z-index: 999;
-//   background-color: #fff;
-//   cursor: pointer;
-// `;
-
-// export const DropdownOption = styled.p`
-//   padding: 8px 12px;
-
-//   &:hover {
-//     background-color: var(--primary-color);
-//     color: #fff;
-//   }
-// `;
-
 export const Size = styled.p``;
 
 export const QuantityText = styled.label``;
@@ -172,20 +117,6 @@ export const ButtonsWrapper = styled.div`
   margin-top: 40px;
   column-gap: 10px;
 `;
-
-// export const AddToCartBtn = styled.button`
-//   flex-basis: 85%;
-//   padding: 14px 0px;
-//   font-size: 18px;
-//   background-color: #393c3e;
-//   color: #fff;
-//   border: none;
-//   border-radius: 5px;
-
-//   &:hover {
-//     opacity: 0.8;
-//   }
-// `;
 
 export const HeartIcon = styled(heartIcon)``;
 

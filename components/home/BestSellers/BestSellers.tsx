@@ -25,7 +25,7 @@ const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
   const [ref2, inView2] = useInView({ triggerOnce: true });
   const dispatch = useDispatch();
   const previouslyViewedProductsLinks = bestSellingProducts.map((product) => {
-    return `/product/${encodeURIComponent(product.slug)}`;
+    return `/product/${product.slug}`;
   });
 
   useEffect(() => {
@@ -89,7 +89,7 @@ const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
         {bestSellingProducts.map((product) => {
           return (
             <Link
-              href={`/product/${encodeURIComponent(product.slug)}`}
+              href={`/product/${product.slug}`}
               key={product.slug}
             >
               <a>

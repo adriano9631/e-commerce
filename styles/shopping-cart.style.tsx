@@ -55,12 +55,12 @@ export const NamePriceWrapper = styled.div`
 
 export const Name = styled.p`
   font-size: 18px;
-  color: #393c3e;
+  color: var(--gray-color);
 `;
 
 export const Price = styled.p`
   font-size: 16px;
-  color: #393c3e99;
+  color: var(--gray-color);
 `;
 
 export const ProductTotalPrice = styled.p`

@@ -53,12 +53,14 @@ const Home: NextPage<HomeProps> = ({
 
 export async function getStaticProps() {
   const data1 = await request({
-    query: queries.productsListByHighestQuantityQuery
+    query: queries.productsListByHighestQuantityQuery,
   });
   const data2 = await request({ query: queries.modelsImageQuery });
   const data3 = await request({ query: queries.benefitImageQuery });
   const data4 = await request({ query: queries.carouselImagesListQuery });
-  const data5 = await request({ query: queries.shortsListByLeastQuantityQuery });
+  const data5 = await request({
+    query: queries.shortsListByLeastQuantityQuery,
+  });
   const data6 = await request({ query: queries.newArrivalDateQuery });
 
   return {
@@ -70,6 +72,7 @@ export async function getStaticProps() {
       favoriteShorts: data5.allProducts,
       newArrivalDate: data6.homePage.newArrivalDate,
     },
+    revalidate: 60,
   };
 }
 

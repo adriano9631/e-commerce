@@ -21,7 +21,7 @@
 body {
   font-family: var(--primary-font-family), sans-serif;
   position: relative;
-  color: #393c3e;
+  color: var(--gray-color);
   font-size: 14px;
   overflow-x: hidden;
 }
@@ -41,4 +41,8 @@ a {
 }
 ul {
   list-style: none;
+}
+
+li {
+  list-style-type: none;
 }

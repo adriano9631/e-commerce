@@ -1,5 +1,22 @@
 import { gql } from "graphql-request";
 
+const allProductsQuery = gql`
+  query allProductsQuery {
+    allProducts {
+      id
+      name
+      price
+      productType
+      slug
+      _createdAt
+      images {
+        alt
+        url
+      }
+    }
+  }
+`;
+
 const slugFromProductsListQuery = gql`
   query slugFromAProductsQuery {
     allProducts {
@@ -115,6 +132,21 @@ const newArrivalDateQuery = gql`
   }
 `;
 
+const femaleModelsImagesQuery = gql`
+  query femaleModelsImagesQuery {
+    womenpage {
+      firstImage {
+        url
+        alt
+      }
+      secondImage {
+        url
+        alt
+      }
+    }
+  }
+`;
+
 export {
   productsListByHighestQuantityQuery,
   productsListByTypeQuery,
@@ -125,4 +157,6 @@ export {
   shortsListByLeastQuantityQuery,
   newArrivalDateQuery,
   slugFromProductsListQuery,
+  allProductsQuery,
+  femaleModelsImagesQuery,
 };

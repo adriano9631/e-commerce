@@ -1,6 +1,4 @@
 import styled from "styled-components/macro";
-// import leftArrowIcon from "public/icons/left-arrow.svg";
-// import rightArrowIcon from "public/icons/right-arrow.svg";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -24,14 +22,6 @@ export const RelatedProductsList = styled(Carousel)`
   margin-top: 60px;
   margin-bottom: 100px;
 `;
-
-// export const ChangeProductBtn = styled.button`
-//   border: none;
-//   transform: translateY(-20px);
-// `;
-
-// export const LeftArrowIcon = styled(leftArrowIcon)``;
-// export const RightArrowIcon = styled(rightArrowIcon)``;
 
 export const RelatedProductWrapper = styled.div`
   display: inline-block;

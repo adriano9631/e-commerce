@@ -34,7 +34,7 @@ const Footer: FC<FooterProps> = ({ isHomePage }) => {
       <hr
         style={{
           width: "86vw",
-          color: "var(--secondary-color)",
+          border: "1px solid #dcdcdc",
           margin: "0 auto",
         }}
       />
