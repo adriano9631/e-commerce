@@ -27,9 +27,10 @@ export type ProductsProps = {
       alt: string;
     };
   };
+  isAllProducts?: boolean;
 };
 
-const Products: FC<ProductsProps> = ({ allProducts, modelsImages }) => {
+const Products: FC<ProductsProps> = ({ allProducts, modelsImages, isAllProducts }) => {
   const router = useRouter();
   const [hoveredImgSlug, setHoveredImgSlug] = useState("");
   const scrollHeightRef1 = useRef<HTMLDivElement>(null);
@@ -55,7 +56,6 @@ const Products: FC<ProductsProps> = ({ allProducts, modelsImages }) => {
   const uniqueProductTypes = Array.from(
     new Set(allProducts.map((product) => product.productType))
   );
-
 
   useEffect(() => {
     const minPrice = Math.min(
@@ -86,7 +86,6 @@ const Products: FC<ProductsProps> = ({ allProducts, modelsImages }) => {
   function formatPrice(price: number) {
     return `${price}, 00zł`;
   }
-
 
   useEffect(() => {
     if (router.query.sort) {
@@ -159,39 +158,41 @@ const Products: FC<ProductsProps> = ({ allProducts, modelsImages }) => {
 
   return (
     <s.WomenPageContainer>
-      <s.WomenModelsImagesWrapper>
-        <s.ColumnWrapper>
-          <s.HeadingsWrapper>
-            <s.Title>SHOP WOMEN</s.Title>
-            <s.Description>
-              {`I'm a paragraph. Click here to add your own text and edit me. I’m a
+      {!isAllProducts && (
+        <s.WomenModelsImagesWrapper>
+          <s.ColumnWrapper>
+            <s.HeadingsWrapper>
+              <s.Title>SHOP WOMEN</s.Title>
+              <s.Description>
+                {`I'm a paragraph. Click here to add your own text and edit me. I’m a
             great place for you to tell a story and let your users know a little
             more about you.`}
-            </s.Description>
-          </s.HeadingsWrapper>
-        </s.ColumnWrapper>
-        <s.FirstImageWrapper>
-          <s.FirstImage
-            src={modelsImages.firstImage.url}
-            alt={modelsImages.firstImage.alt}
-            layout="fill"
-          />
-        </s.FirstImageWrapper>
-        <s.SecondImageWrapper>
-          <s.SecondImage
-            src={modelsImages.secondImage.url}
-            alt={modelsImages.secondImage.alt}
-            layout="fill"
-          />
-          <s.WritingArea>
-            <s.WritingAreaText>WHEN BUYING 3 ITEMS OR MORE</s.WritingAreaText>
-          </s.WritingArea>
-          <s.CouponIconWrapper>
-            <s.SpecialOfferText>FREE SHIPPING</s.SpecialOfferText>
-            <s.CouponIcon />
-          </s.CouponIconWrapper>
-        </s.SecondImageWrapper>
-      </s.WomenModelsImagesWrapper>
+              </s.Description>
+            </s.HeadingsWrapper>
+          </s.ColumnWrapper>
+          <s.FirstImageWrapper>
+            <s.FirstImage
+              src={modelsImages.firstImage.url}
+              alt={modelsImages.firstImage.alt}
+              layout="fill"
+            />
+          </s.FirstImageWrapper>
+          <s.SecondImageWrapper>
+            <s.SecondImage
+              src={modelsImages.secondImage.url}
+              alt={modelsImages.secondImage.alt}
+              layout="fill"
+            />
+            <s.WritingArea>
+              <s.WritingAreaText>WHEN BUYING 3 ITEMS OR MORE</s.WritingAreaText>
+            </s.WritingArea>
+            <s.CouponIconWrapper>
+              <s.SpecialOfferText>FREE SHIPPING</s.SpecialOfferText>
+              <s.CouponIcon />
+            </s.CouponIconWrapper>
+          </s.SecondImageWrapper>
+        </s.WomenModelsImagesWrapper>
+      )}
       <s.MainSection>
         <s.LeftColumn>
           <s.FilterTitle>Filter By</s.FilterTitle>

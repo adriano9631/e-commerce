@@ -34,6 +34,23 @@ const allMenProductsQuery = gql`
   }
 `;
 
+const allProductsQuery = gql`
+  query allProductsQuery {
+    allProducts {
+      id
+      name
+      price
+      productType
+      slug
+      _createdAt
+      images {
+        alt
+        url
+      }
+    }
+  }
+`;
+
 const slugFromProductsListQuery = gql`
   query slugFromAProductsQuery {
     allProducts {
@@ -211,4 +228,5 @@ export {
   femaleModelsImagesQuery,
   menModelsImagesQuery,
   allProductsBySearchPatternQuery,
+  allProductsQuery,
 };

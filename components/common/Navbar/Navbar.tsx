@@ -59,11 +59,15 @@ const Navbar: React.FC = () => {
           </a>
         </Link>
         <s.NavItemsList>
-          <s.NavItem>Women</s.NavItem>
-          <s.NavItem>Men</s.NavItem>
-          <s.NavItem>Accessories</s.NavItem>
-          <s.NavItem>Discover</s.NavItem>
-          <s.NavItem>Clearance</s.NavItem>
+          <Link href="/women" passHref>
+            <s.NavItem>Women</s.NavItem>
+          </Link>
+          <Link href="/men" passHref>
+            <s.NavItem>Men</s.NavItem>
+          </Link>
+          <Link href="/all-products" passHref>
+            <s.NavItem>All Products</s.NavItem>
+          </Link>
         </s.NavItemsList>
       </s.FlexRow>
       <s.Discount>25% OFF WOMENS JEANS - USE CODE: BTTRDAYS</s.Discount>
