@@ -43,6 +43,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const previouslyViewedProductsLinks = useSelector(
     (state: RootState) => state.products.previouslyViewedProductsLinks
   );
+
   const cartItems = useSelector((state: RootState) => state.products.cartItems);
   const [previousProductLink, setPreviousProductLink] = useState(0);
   const [nextProductLink, setNextProductLink] = useState(1);
@@ -435,6 +436,7 @@ export async function getStaticProps({ params }: Params) {
       product: data1.product,
       relatedProductsList: data2.allProducts,
     },
+    revalidate: 60,
   };
 }
 

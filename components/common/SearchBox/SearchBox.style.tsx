@@ -11,7 +11,7 @@ export const SearchBoxContainer = styled.div`
   height: 47px;
 `;
 
-export const SearchBoxWrapper = styled.div<{ tabIndex: number }>`
+export const SearchBoxForm = styled.form<{ tabIndex: number }>`
   display: flex;
   flex: 0 1 60%;
   align-items: center;
@@ -44,7 +44,7 @@ export const SearchIcon = styled(search)`
   cursor: pointer;
 `;
 
-export const SearchIconBtn = styled.button`
+export const SearchBtn = styled.button`
   background: none;
   border: none;
   height: 100%;

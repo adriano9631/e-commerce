@@ -1,10 +1,25 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import avatar from "public/icons/avatar.svg";
 import location from "public/icons/location.svg";
+import expandArrowIcon from "public/icons/dropdown-arrow-down.svg";
+import Image from "next/image";
 
 type NavbarContainerProps = {
   isVisible: boolean;
 };
+
+const navItemsStyles = css`
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 8px;
+  border-bottom: 3px solid transparent;
+  padding-bottom: 5px;
+  &:hover {
+    border-bottom: 3px solid var(--primary-color);
+    color: #c93c3e;
+    transition: all 0.1s ease;
+  }
+`;
 
 export const NavbarContainer = styled.nav<NavbarContainerProps>`
   position: sticky;
@@ -31,36 +46,49 @@ export const Discount = styled.div`
   padding: 12px;
 `;
 
-export const LoginWrapper = styled.button`
+export const LoginBtn = styled.button`
   display: flex;
   align-items: center;
   border: none;
+  cursor: pointer;
+  font-size: 14px;
+  &:hover {
+    color: #c93c3e;
+    transition: all 0.1s ease;
+  }
 `;
 
 export const Avatar = styled(avatar)`
   transform: scale(0.6);
 `;
 
-export const Login = styled.p``;
+export const LoginText = styled.p``;
+
+export const UserImg = styled(Image)`
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
+export const UserNavItemsList = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+`;
+export const LogOutBtn = styled.button`
+  ${navItemsStyles};
+  margin-top: 6px;
+`;
+
+export const UserNavItem = styled.a`
+  &:not(:last-child) {
+    ${navItemsStyles}
+  }
+`;
+
+// export const ExpandArrowIcon = styled(expandArrowIcon)``;
 
 export const FlexWrapper = styled.div`
   display: flex;
-`;
-
-export const LocationWrapper = styled.button`
-  display: flex;
-  align-items: center;
-  margin-left: 40px;
-  border: none;
-`;
-
-export const Location = styled(location)`
-  width: 17px;
-  height: 22px;
-`;
-
-export const LocationsText = styled.p`
-  margin-left: 8px;
 `;
 
 export const BrandLogo = styled.img`
@@ -74,17 +102,11 @@ export const BrandLogo = styled.img`
   transform: translate(-50%, -50%);
 `;
 
-export const NavItemsWrapper = styled.ul`
+export const NavItemsList = styled.ul`
   display: flex;
+  column-gap: 30px;
 `;
 
 export const NavItem = styled.li`
-  font-size: 15px;
-  margin-left: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  &:hover {
-    color: #c93c3e;
-    transition: all 0.1s ease;
-  }
+  ${navItemsStyles}
 `;

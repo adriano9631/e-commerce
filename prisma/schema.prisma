@@ -41,8 +41,8 @@ model User {
   name          String
   email         String   @unique
   emailVerified DateTime?
-  image         String
   username      String
+  image         String
   wishlist      Wishlist[]
   accounts      Account[]
   sessions      Session[]

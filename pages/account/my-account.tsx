@@ -1,9 +1,10 @@
 import AccountHeader from "components/common/AccountHeader";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import React, { useState } from "react";
 import axiosInstance from "lib/api/axios";
 import * as s from "styles/account/my-account.style";
 import DiscardChangesModal from "components/account/my-account/DiscardChangesModal";
+import { GetServerSideProps } from "next";
 
 const MyAccount = () => {
   const { data: session } = useSession();
@@ -82,6 +83,23 @@ const MyAccount = () => {
       )}
     </s.MyAccountContainer>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default MyAccount;

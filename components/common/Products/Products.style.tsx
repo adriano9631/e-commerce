@@ -102,6 +102,7 @@ export const MainSection = styled.main`
   margin: 100px auto;
   display: flex;
   width: 1100px;
+  position: relative;
 `;
 
 export const LeftColumn = styled.aside``;
@@ -178,35 +179,31 @@ export const ExpandIcon = styled(expandIcon)``;
 export const CollapseIcon = styled(collapseIcon)``;
 
 export const RightColumn = styled.section`
-  width: 100%;
+  width: 900px;
 `;
 
-export const ProductsListWrapper = styled.ul``;
-
 export const SortByBtn = styled.button`
-  margin-left: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 160px;
   height: 40px;
-  border: 1px solid #c0c0c0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 5px;
   text-align: left;
   padding-left: 10px;
-  font-size: 17px;
+  font-size: 15px;
   color: var(--gray-color);
   font-weight: bold;
+  min-width: 200px;
 `;
 
 export const SortByDropdown = styled.div<{ isDropdownOpen: boolean }>`
   display: ${(props) => (props.isDropdownOpen ? "block" : "none")};
-  width: 160px;
-  margin-left: auto;
   position: absolute;
-  top: 40px;
+  top: 42px;
   right: 0;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   z-index: 999;
-  border: 1px solid #c0c0c0;
 `;
 
 export const DropdownOptionLink = styled.a<{ isActive?: boolean }>`
@@ -216,10 +213,11 @@ export const DropdownOptionLink = styled.a<{ isActive?: boolean }>`
   color: var(--gray-color);
   cursor: pointer;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  border: 1px solid transparent;
   background-color: ${(props) => (props.isActive ? "#e0e0e0" : "#fff")};
   &:hover {
     background-color: #f0f0f0;
@@ -228,10 +226,12 @@ export const DropdownOptionLink = styled.a<{ isActive?: boolean }>`
 
 export const ArrowDownIcon = styled(arrowDownIcon)`
   margin-right: 5px;
+  margin-left: 5px;
 `;
 
 export const ArrowUpIcon = styled(arrowUpIcon)`
   margin-right: 5px;
+  margin-left: 5px;
 `;
 
 export const ProductsList = styled.ul`
@@ -240,7 +240,7 @@ export const ProductsList = styled.ul`
   column-gap: 5px;
   row-gap: 5px;
   margin-left: 25px;
-  margin-top: 25px;
+  margin-top: 70px;
 `;
 
 export const ProductWrapper = styled.li`

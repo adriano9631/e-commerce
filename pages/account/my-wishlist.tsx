@@ -7,7 +7,6 @@ import axiosInstance from "lib/api/axios";
 import Link from "next/link";
 import { prisma } from "lib/api/db";
 import AddToCartModal from "components/account/my-wishlist/AddToCartModal";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 type MyWishlistProps = {
@@ -134,7 +133,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let foundWishlists = await prisma.wishlist.findMany({
     where: { userId: session?.id },
   });
-
   const fetchedWishlists = foundWishlists.map((product) => {
     return {
       id: product.id,
@@ -149,6 +147,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ],
     };
   });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {

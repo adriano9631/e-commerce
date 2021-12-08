@@ -1,8 +1,25 @@
 import { gql } from "graphql-request";
 
-const allProductsQuery = gql`
+const allWomenProductsQuery = gql`
   query allProductsQuery {
-    allProducts {
+    allProducts(filter: { productType: { matches: { pattern: "Women's" } } }) {
+      id
+      name
+      price
+      productType
+      slug
+      _createdAt
+      images {
+        alt
+        url
+      }
+    }
+  }
+`;
+
+const allMenProductsQuery = gql`
+  query allProductsQuery {
+    allProducts(filter: { productType: { matches: { pattern: "Men's" } } }) {
       id
       name
       price
@@ -147,6 +164,38 @@ const femaleModelsImagesQuery = gql`
   }
 `;
 
+const menModelsImagesQuery = gql`
+  query menModelsImagesQuery {
+    menpage {
+      firstImage {
+        url
+        alt
+      }
+      secondImage {
+        url
+        alt
+      }
+    }
+  }
+`;
+
+const allProductsBySearchPatternQuery = gql`
+  query allProductsBySearchPatternQuery($searchPattern: String!) {
+    allProducts(filter: { name: { matches: { pattern: $searchPattern } } }) {
+      id
+      name
+      price
+      productType
+      slug
+      _createdAt
+      images {
+        alt
+        url
+      }
+    }
+  }
+`;
+
 export {
   productsListByHighestQuantityQuery,
   productsListByTypeQuery,
@@ -157,6 +206,9 @@ export {
   shortsListByLeastQuantityQuery,
   newArrivalDateQuery,
   slugFromProductsListQuery,
-  allProductsQuery,
+  allWomenProductsQuery,
+  allMenProductsQuery,
   femaleModelsImagesQuery,
+  menModelsImagesQuery,
+  allProductsBySearchPatternQuery,
 };

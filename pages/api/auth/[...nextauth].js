@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "lib/api/db";
-import uniqid from "uniqid";
+// import uniqid from "uniqid";
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -10,21 +10,14 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
       profile(profile) {
         console.log(profile);
         return {
-          id: uniqid(),
+          id: profile.sub,
           name: profile.name,
           email: profile.email,
           image: profile.picture,
-          username: profile.given_name + profile.family_name + uniqid(),
+          username: profile.given_name + profile.family_name + profile.sub,
         };
       },
     }),

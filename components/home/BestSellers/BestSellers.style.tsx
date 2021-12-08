@@ -47,6 +47,8 @@ export const BestSellerWrapper = styled(motion.li)`
 
 export const BestSellerImg = styled(Image)<ImageProps>`
   transform: translateY(10px);
+  background-color: transparent;
+  filter: red;
 `;
 
 export const BestSeller = styled.div`

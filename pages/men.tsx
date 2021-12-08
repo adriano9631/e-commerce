@@ -4,9 +4,9 @@ import type { ProductsProps } from "components/common/Products";
 import { request } from "lib/api/datocms";
 import * as queries from "lib/api//queries";
 
-type WomenProps = ProductsProps;
+type MenProps = ProductsProps;
 
-const Women: FC<WomenProps> = ({ allProducts, modelsImages }) => {
+const Men: FC<MenProps> = ({ allProducts, modelsImages }) => {
   return (
     <Products
       allProducts={allProducts}
@@ -16,16 +16,16 @@ const Women: FC<WomenProps> = ({ allProducts, modelsImages }) => {
 };
 
 export async function getStaticProps() {
-  const data1 = await request({ query: queries.allWomenProductsQuery });
-  const data2 = await request({ query: queries.femaleModelsImagesQuery });
+  const data1 = await request({ query: queries.allMenProductsQuery });
+  const data2 = await request({ query: queries.menModelsImagesQuery });
 
   return {
     props: {
       allProducts: data1.allProducts,
-      modelsImages: data2.womenpage,
+      modelsImages: data2.menpage,
     },
     revalidate: 60,
   };
 }
 
-export default Women;
+export default Men;
