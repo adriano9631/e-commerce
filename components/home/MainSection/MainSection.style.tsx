@@ -30,7 +30,7 @@ const headingStyles = css`
 const descriptionStyles = css`
   margin-top: 25px;
   font-size: 18px;
-  max-width: 415px;
+  max-width: 510px;
   color: #393c3e;
 `;
 
@@ -53,17 +53,40 @@ type WrapperProps = {
 };
 
 export const MainSectionContainer = styled.main`
-  margin-top: 300px;
+  margin-top: 200px;
 `;
 
 export const FlexWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  max-width: 1440px;
+  column-gap: 150px;
+  margin: 0 auto;
+  padding: 0 50px;
+
+  &:last-child {
+    margin-top: 300px;
+    justify-content: space-evenly;
+  }
+
+  @media screen and (max-width: 950px) {
+    &:first-child {
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 1140px) {
+    &:nth-child(2) {
+      align-items: center;
+      flex-direction: column;
+    }
+  }
 `;
 
 export const Wrapper = styled(motion.div)<WrapperProps>`
-  margin-left: 15%;
-  margin-top: 150px;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Subheading = styled.h3`
@@ -81,10 +104,15 @@ export const Description = styled.p`
   ${descriptionStyles}
 `;
 
+export const ModelsImgWrapper = styled.div`
+  @media screen and (max-width: 950px) {
+    margin-top: 150px;
+  }
+`;
+
 export const ModelsImg = styled(Image)<ImgProps>``;
 
 export const BenefitWrapper = styled.div`
-  margin-left: 15%;
   transform: translateY(-100px);
 `;
 
@@ -219,6 +247,14 @@ export const CarouselWrapper = styled(motion.div)<
   position: relative;
   height: 512px;
   width: 363px;
+  @media screen and (max-width: 1140px) {
+    margin-bottom: 100px;
+  }
+
+  @media screen and (max-width: 380px) {
+    width: 340px;
+    height: 480px;
+  }
 `;
 
 export const CarouselImg = styled(Image)<ImgProps>``;

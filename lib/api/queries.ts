@@ -143,7 +143,7 @@ const shortsListByLeastQuantityQuery = gql`
     allProducts(
       first: 6
       orderBy: quantitySold_ASC
-      filter: { productType: { eq: "shorts" } }
+      filter: { productType: { matches: { pattern: "shorts" } } }
     ) {
       name
       price

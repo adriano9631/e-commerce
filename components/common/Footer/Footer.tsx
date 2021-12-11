@@ -18,15 +18,15 @@ const Footer: FC<FooterProps> = ({ isHomePage }) => {
           <s.DecorationImg1
             src={decorationImg1}
             alt="Decoration image"
-            width={46}
-            height={85}
+            width={40}
+            height={79}
           />
           <s.SocialMediaName>TIK TOK</s.SocialMediaName>
           <s.DecorationImg1
             src={decorationImg2}
             alt="Decoration image"
-            width={46}
-            height={85}
+            width={40}
+            height={79}
           />
           <s.SocialMediaName>PINTEREST</s.SocialMediaName>
         </s.FooterTopSide>

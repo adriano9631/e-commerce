@@ -3,6 +3,7 @@ import avatar from "public/icons/avatar.svg";
 import location from "public/icons/location.svg";
 import expandArrowIcon from "public/icons/dropdown-arrow-down.svg";
 import Image from "next/image";
+import { slide as Menu } from "react-burger-menu";
 
 type NavbarContainerProps = {
   isVisible: boolean;
@@ -22,7 +23,8 @@ const navItemsStyles = css`
 `;
 
 export const NavbarContainer = styled.nav<NavbarContainerProps>`
-  position: sticky;
+  position: fixed;
+  width: 100vw;
   z-index: 999;
   transition: top 0.3s;
   top: ${(props) => (props.isVisible ? "0" : "-140px")};
@@ -34,6 +36,9 @@ export const FlexRow = styled.div`
   padding: 20px 40px;
   background-color: white;
   position: relative;
+  @media screen and (max-width: 950px) {
+    padding: 30px;
+  }
 `;
 
 export const Discount = styled.div`
@@ -44,6 +49,12 @@ export const Discount = styled.div`
   color: white;
   font-family: "PT Sans Narrow", sans-serif;
   padding: 12px;
+
+  @media screen and (max-width: 840px) {
+    margin-top: 47px;
+    width: 100vw;
+    text-align: center;
+  }
 `;
 
 export const LoginBtn = styled.button`
@@ -53,8 +64,11 @@ export const LoginBtn = styled.button`
   cursor: pointer;
   font-size: 14px;
   &:hover {
-    color: #c93c3e;
+    color: #c93c3e !important;
     transition: all 0.1s ease;
+  }
+  &:nth-child(2) {
+    ${navItemsStyles}
   }
 `;
 
@@ -77,6 +91,11 @@ export const UserNavItemsList = styled.div`
 export const LogOutBtn = styled.button`
   ${navItemsStyles};
   margin-top: 6px;
+
+  &:hover {
+    color: #c93c3e !important;
+    transition: all 0.1s ease;
+  }
 `;
 
 export const UserNavItem = styled.a`
@@ -85,10 +104,13 @@ export const UserNavItem = styled.a`
   }
 `;
 
-// export const ExpandArrowIcon = styled(expandArrowIcon)``;
 
 export const FlexWrapper = styled.div`
   display: flex;
+
+  @media screen and (max-width: 950px) {
+    display: none;
+  }
 `;
 
 export const BrandLogo = styled.img`
@@ -105,6 +127,10 @@ export const BrandLogo = styled.img`
 export const NavItemsList = styled.ul`
   display: flex;
   column-gap: 30px;
+
+  @media screen and (max-width: 950px) {
+    display: none;
+  }
 `;
 
 export const NavItem = styled.li`

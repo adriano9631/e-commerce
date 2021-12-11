@@ -9,6 +9,10 @@ export const SearchBoxContainer = styled.div`
   right: 0;
   display: flex;
   height: 47px;
+
+  @media screen and (max-width: 840px) {
+    width: 100vw;
+  }
 `;
 
 export const SearchBoxForm = styled.form<{ tabIndex: number }>`
@@ -19,6 +23,10 @@ export const SearchBoxForm = styled.form<{ tabIndex: number }>`
   &:focus-within {
     border: 1px solid white;
     background: #4d5253;
+  }
+
+  @media screen and (max-width: 840px) {
+    flex-basis: 71%;
   }
 `;
 
@@ -33,6 +41,10 @@ export const SearchInput = styled.input`
   &::placeholder {
     color: white;
     opacity: 0.7;
+  }
+
+  @media screen and (max-width: 840px) {
+    padding-left: 30px;
   }
 `;
 
@@ -64,6 +76,10 @@ export const WishListBtnWrapper = styled.button`
   height: 100%;
   width: 100%;
   padding: 19px;
+
+  @media screen and (max-width: 840px) {
+    flex-basis: 15%;
+  }
 `;
 
 export const HeartIcon = styled(heart)`
@@ -85,6 +101,12 @@ export const TrolleyWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 840px) {
+    flex-basis: 15%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 export const TrolleyIcon = styled(trolley)`

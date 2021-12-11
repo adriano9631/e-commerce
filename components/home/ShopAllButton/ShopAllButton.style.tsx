@@ -12,7 +12,7 @@ type ShopAllBtnContainerProps = {
 } | {};
 
 export const ShopAllBtnContainer = styled(
-  motion.button
+  motion.a
 )<ShopAllBtnContainerProps>`
   ${btnStyles}
 `;

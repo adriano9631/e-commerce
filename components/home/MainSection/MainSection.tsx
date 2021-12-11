@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import * as s from "./MainSection.style";
 import ShopAllBtn from "components/home/ShopAllButton";
+import Link from "next/link";
 
 export type MainSectionProps = {
   modelsImage: {
@@ -150,18 +151,25 @@ const MainSection: FC<MainSectionProps> = ({
               I’m a great place for you to tell a story and let your users know
               a little more about you.
             </s.Description>
-            <ShopAllBtn />
+            <div style={{ marginTop: "50px" }}>
+              <Link href="/all-products" passHref>
+                <ShopAllBtn />
+              </Link>
+            </div>
           </motion.div>
         </s.Wrapper>
+        <s.ModelsImgWrapper>
         <s.ModelsImg
           lazyBoundary="500px"
           alt={modelsImage.alt}
           src={modelsImage.url}
-          height={950}
-          width={763}
+          height={900}
+          width={920}
         />
+        </s.ModelsImgWrapper>
+       
       </s.FlexWrapper>
-      <s.FlexWrapper style={{ marginTop: "200px", marginRight: "200px" }}>
+      <s.FlexWrapper>
         <s.BenefitWrapper ref={ref2}>
           <s.BenefitImg
             $inView={inView2}

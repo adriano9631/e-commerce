@@ -96,7 +96,6 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
   };
-
   return (
     <s.FavoriteShortsContainer
       style={{ backgroundImage: `url(${loadedBackgroundImage})` }}
@@ -136,14 +135,14 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
         variants={list}
       >
         {favoriteShorts.map((product) => (
-          <Link href={`/product/${product.slug}`} key={product.slug} passHref>
-            <a>
-              <s.FavoriteShortWrapper
-                onMouseOver={() => setHoveredImgSlug(product.slug)}
-                onMouseOut={() => setHoveredImgSlug("")}
-                key={product.id}
-                variants={item}
-              >
+          <s.FavoriteShortWrapper
+            onMouseOver={() => setHoveredImgSlug(product.slug)}
+            onMouseOut={() => setHoveredImgSlug("")}
+            key={product.id}
+            variants={item}
+          >
+            <Link href={`/product/${product.slug}`} key={product.slug} passHref>
+              <a>
                 {hoveredImgSlug === product.slug && product.images[1] ? (
                   <Image
                     src={product.images[1].url}
@@ -164,9 +163,9 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
                 {new Date(product.createdAt) > new Date(newArrivalDate) && (
                   <s.NewArrival>New Arrival</s.NewArrival>
                 )}
-              </s.FavoriteShortWrapper>
-            </a>
-          </Link>
+              </a>
+            </Link>
+          </s.FavoriteShortWrapper>
         ))}
       </s.FavoriteShortsListWrapper>
     </s.FavoriteShortsContainer>

@@ -18,31 +18,53 @@ type ImageProps = {
 type HeadingsProps = BestSellersListProps;
 
 export const BestSellersContainer = styled.section`
-  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1440px;
   margin: 0 auto;
-  padding-left: 40px;
-  margin-top: 80px;
+  margin-top: 100px;
+  padding: 0 50px;
 `;
 
 export const Heading = styled(motion.h2)<HeadingsProps>`
   color: var(--secondary-color);
   font-size: 36px;
   font-family: var(--secondary-font-family);
+  text-align: center;
 `;
 
 export const BestSellersList = styled(motion.ul)<BestSellersListProps>`
   display: flex;
   margin-top: 40px;
   column-gap: 30px;
+  justify-content: center;
+  row-gap: 30px;
+  @media screen and (max-width: 1168px) {
+    flex-wrap: wrap;
+    column-gap: 10px;
+  }
 `;
 
 export const BestSellerWrapper = styled(motion.li)`
+  /* display: inline-block; */
+  display: flex;
+  justify-content: center;
   position: relative;
   &:hover {
     transform: scale(1.1);
     cursor: pointer;
   }
   transition: transform 0.2s;
+  @media screen and (max-width: 1168px) {
+    flex-basis: calc(33% - 20px);
+  }
+  @media screen and (max-width: 650px) {
+    flex-basis: calc(50% - 10px);
+  }
+  @media screen and (max-width: 427px) {
+    flex-basis: 100%;
+  }
 `;
 
 export const BestSellerImg = styled(Image)<ImageProps>`
@@ -59,6 +81,9 @@ export const BestSeller = styled.div`
   padding: 8px;
   color: white;
   font-size: 15px;
+  /* @media screen and (max-width: 427px) {
+    left: 22px;
+  } */
 `;
 
 export const Name = styled.p`

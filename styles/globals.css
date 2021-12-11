@@ -18,6 +18,9 @@
   margin: 0;
 }
 
+html {
+  overflow-x: hidden;
+}
 body {
   font-family: var(--primary-font-family), sans-serif;
   position: relative;

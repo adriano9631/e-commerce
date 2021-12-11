@@ -17,18 +17,29 @@ type FavoriteShortsListWrapperProps = {
 
 export const FavoriteShortsContainer = styled.section`
   background-attachment: fixed;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding-bottom: 100px;
+  padding: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @media screen and (max-width: 1170px) {
+    padding: 30px;
+  }
 `;
 
 export const FlexWrapper = styled.div`
   display: flex;
-  width: 90vw;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: 100px;
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+
+  @media screen and (max-width: 830px) {
+    flex-direction: column;
+    align-items: center;
+    max-width: 530px;
+  }
 `;
 
 export const IntroductionWrapper = styled(
@@ -36,6 +47,10 @@ export const IntroductionWrapper = styled(
 )<IntroductionWrapperProps>``;
 export const Subheading = styled.h3`
   font-size: 23px;
+
+  @media screen and (max-width: 830px) {
+    text-align: center;
+  }
 `;
 
 export const Heading = styled.h2`
@@ -44,6 +59,10 @@ export const Heading = styled.h2`
   color: var(--secondary-color);
   font-family: var(--secondary-font-family), sans-serif;
   max-width: 535px;
+
+  @media screen and (max-width: 830px) {
+    text-align: center;
+  }
 `;
 
 export const Description = styled.p`
@@ -56,9 +75,15 @@ export const FavoriteShortsListWrapper = styled(
   motion.ul
 )<FavoriteShortsListWrapperProps>`
   display: flex;
-  justify-content: space-between;
   margin-top: 80px;
-  width: 90vw;
+  column-gap: 10px;
+  max-width: 1440px;
+  margin: 0 auto;
+  justify-content: center;
+  @media screen and (max-width: 1100px) {
+    flex-wrap: wrap;
+    row-gap: 30px;
+  }
 `;
 
 export const FavoriteShortWrapper = styled(motion.li)<{ variants: object }>`

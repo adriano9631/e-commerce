@@ -17,6 +17,9 @@ const FourModelsPosingImg = styled.div<{ loadedbBackgroundImage: string }>`
   background-attachment: fixed;
   height: 800px;
   filter: brightness(70%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 `;
 
 type HomeProps = BestSellersProps & MainSectionProps & FavoriteShortsProps;
