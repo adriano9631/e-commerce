@@ -14,7 +14,7 @@ const AccountHeader: FC<AccountHeaderProps> = ({ updatedDisplayName }) => {
   const router = useRouter();
   const { data: session } = useSession();
   const [image, setImage] = useState("");
-  let userImage
+  let userImage;
   // if (session) {
   //   userImage = session.user.image
   // }
@@ -94,13 +94,6 @@ const AccountHeader: FC<AccountHeaderProps> = ({ updatedDisplayName }) => {
         {isLoadingIndicator && <LoadingIndicator />}
       </s.ProfileCardWrapper>
       <s.NavLinksWrapper>
-        <Link href="/profile/username123">
-          <s.NavLink
-            isActive={router.pathname === "/profile/[username]" ? true : false}
-          >
-            Profile
-          </s.NavLink>
-        </Link>
         <Link href="/account/my-account">
           <s.NavLink
             isActive={router.pathname === "/account/my-account" ? true : false}

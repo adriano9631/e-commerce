@@ -5,9 +5,10 @@ import * as queries from "lib/api/queries";
 import { request } from "lib/api/datocms";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import searchIcon from "public/icons/search.svg";
 
 type SearchResultsProps = {
-  allProducts: {
+  fetchedAllProducts: {
     id: string;
     name: string;
     price: string;
@@ -21,32 +22,70 @@ type SearchResultsProps = {
   }[];
 };
 
-const SearchResults: FC<SearchResultsProps> = ({ allProducts }) => {
+const SearchResults: FC<SearchResultsProps> = ({ fetchedAllProducts }) => {
   const router = useRouter();
   const [hoveredImgSlug, setHoveredImgSlug] = useState("");
+  const [searchQuery, setSearchQuery] = useState(router.query.search_query);
+  const [allProducts, setAllProducts] = useState(fetchedAllProducts);
+  const handleChangeSearchQuery = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchProduct = async () => {
+    const data = await request({
+      query: queries.allProductsBySearchPatternQuery,
+      variables: { searchPattern: searchQuery },
+    });
+    setAllProducts(data.allProducts);
+  };
   return (
     <s.SearchResultsContainer>
       <s.Header>
         <s.SearchResultsText>SEARCH RESULTS</s.SearchResultsText>
       </s.Header>
       <s.MainSection>
+        <s.SearchIcon />
         <s.SearchInputWrapper>
-          <s.SearchIcon />
-          <s.SearchInput />
+          <s.SearchBtn onClick={handleSearchProduct}>
+            <s.SearchIcon
+              x="500px"
+              y="500px"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </s.SearchIcon>
+          </s.SearchBtn>
+          <s.SearchInput
+            value={searchQuery}
+            onChange={handleChangeSearchQuery}
+            placeholder="Search..."
+            onKeyPress={(event) =>
+              event.key === "Enter" && handleSearchProduct()
+            }
+          />
         </s.SearchInputWrapper>
         <s.NumberOfProductsFound>
           Products ({allProducts.length})
         </s.NumberOfProductsFound>
         <s.ProductsList>
           {allProducts.map((product) => (
-            <s.ProductWrapper
-              key={product.id}
-              onMouseOver={() => setHoveredImgSlug(product.slug)}
-              onMouseOut={() => setHoveredImgSlug("")}
-            >
+            <s.ProductWrapper key={product.id}>
               <Link href={`product/${product.slug}`}>
                 <a>
                   <s.ProductImage
+                    onMouseOver={() => setHoveredImgSlug(product.slug)}
+                    onMouseOut={() => setHoveredImgSlug("")}
                     src={
                       hoveredImgSlug === product.slug && product.images[1]
                         ? product.images[1].url
@@ -65,7 +104,7 @@ const SearchResults: FC<SearchResultsProps> = ({ allProducts }) => {
               </Link>
               <s.Price>{product.price}</s.Price>
               <Link href={`product/${product.slug}`} passHref>
-                <s.AddToCartBtn>Add to cart</s.AddToCartBtn>
+                <s.AddToCartLink>Add to cart</s.AddToCartLink>
               </Link>
             </s.ProductWrapper>
           ))}
@@ -75,32 +114,6 @@ const SearchResults: FC<SearchResultsProps> = ({ allProducts }) => {
   );
 };
 
-{
-  /* <s.BestSellerWrapper
-onMouseOver={() => setHoveredImgSlug(product.slug)}
-onMouseOut={() => setHoveredImgSlug("")}
-variants={item}
-onClick={() =>
-  dispatch(
-    addPreviouslyViewedProductsLinks(
-      previouslyViewedProductsLinks
-    )
-  )
-}
->
-<s.BestSellerImg
-  src={
-    hoveredImgSlug === product.slug && product.images[1]
-      ? product.images[1].url
-      : product.images[0].url
-  }
-  alt={
-    hoveredImgSlug === product.slug && product.images[1]
-      ? product.images[1].alt
-      : product.images[0].alt
-  } */
-}
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const data = await request({
     query: queries.allProductsBySearchPatternQuery,
@@ -109,7 +122,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      allProducts: data.allProducts,
+      fetchedAllProducts: data.allProducts,
     },
   };
 };

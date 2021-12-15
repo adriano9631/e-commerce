@@ -12,6 +12,13 @@ export const WomenPageContainer = styled.div``;
 export const WomenModelsImagesWrapper = styled.header`
   display: flex;
   column-gap: 10px;
+
+  @media screen and (max-width: 1000px) {
+    flex-wrap: wrap;
+  }
+  @media screen and (max-width: 385px) {
+    flex-direction: column;
+  }
 `;
 
 export const ColumnWrapper = styled.div`
@@ -22,27 +29,48 @@ export const ColumnWrapper = styled.div`
   width: 40vw;
   height: 550px;
   background-color: #e0effb;
+
+  @media screen and (max-width: 1000px) {
+    width: 100vw;
+  }
 `;
 
-export const HeadingsWrapper = styled.div``;
+export const HeadingsWrapper = styled.div`
+  @media screen and (max-width: 840px) {
+    margin-top: 50px;
+    padding: 0 10px;
+  }
+`;
 
 export const Title = styled.h1`
   font-family: var(--secondary-font-family);
   color: var(--secondary-color);
   font-size: 40px;
+
+  @media screen and (max-width: 350px) {
+    margin-top: 50px;
+    text-align: center;
+  }
 `;
 
 export const Description = styled.p`
   line-height: 30px;
   font-size: 18px;
   margin-top: 20px;
-  width: 324px;
+  max-width: 324px;
 `;
 
 export const FirstImageWrapper = styled.div`
   width: 40vw;
   height: 550px;
   position: relative;
+  @media screen and (max-width: 1000px) {
+    width: calc(50vw - 15px);
+  }
+
+  @media screen and (max-width: 385px) {
+    width: 100vw;
+  }
 `;
 export const FirstImage = styled(Image)``;
 
@@ -50,6 +78,14 @@ export const SecondImageWrapper = styled.div`
   width: 20vw;
   height: 550px;
   position: relative;
+
+  @media screen and (max-width: 1000px) {
+    width: calc(50vw - 15px);
+  }
+
+  @media screen and (max-width: 385px) {
+    width: 100vw;
+  }
 `;
 export const SecondImage = styled(Image)``;
 
@@ -101,11 +137,28 @@ export const CouponIcon = styled(coupon)`
 export const MainSection = styled.main`
   margin: 100px auto;
   display: flex;
-  width: 1100px;
+  max-width: 1100px;
   position: relative;
+
+  @media screen and (max-width: 1150px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  @media screen and (max-width: 610px) {
+    flex-direction: column;
+  }
 `;
 
 export const LeftColumn = styled.aside``;
+
+export const FilterWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 610px) {
+    align-items: center;
+  }
+`;
 
 export const FilterTitle = styled.h2`
   font-size: 28px;
@@ -118,6 +171,12 @@ export const CollapsibleWrapper = styled.li`
   width: 200px;
   &:last-child {
     border-top: 0;
+  }
+
+  @media screen and (max-width: 1150px) {
+    &:last-child {
+      border-top: 1px solid #dcdcdc;
+    }
   }
 `;
 
@@ -175,11 +234,33 @@ export const CollectionOptionLink = styled.a<{ isActive: boolean }>`
   }
 `;
 
+
+
+
 export const ExpandIcon = styled(expandIcon)``;
 export const CollapseIcon = styled(collapseIcon)``;
 
 export const RightColumn = styled.section`
-  width: 900px;
+  max-width: 900px;
+
+  @media screen and (max-width: 610px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const SortByWrapper = styled.div`
+  position: absolute;
+  min-width: 200px;
+  display: inline-block;
+  right: 0;
+
+  @media screen and (max-width: 610px) {
+    position: static !important;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
 `;
 
 export const SortByBtn = styled.button`
@@ -241,6 +322,10 @@ export const ProductsList = styled.ul`
   row-gap: 5px;
   margin-left: 25px;
   margin-top: 70px;
+
+  @media screen and (max-width: 1150px) {
+    justify-content: center;
+  }
 `;
 
 export const ProductWrapper = styled.li`

@@ -136,18 +136,20 @@ const ShoppingCart = () => {
                       size={item.size}
                       quantityRef={elRefs[i]}
                     />
-                    <s.ProductTotalPrice>
-                      {item.productTotalPrice}zł
-                    </s.ProductTotalPrice>
-                    <button
-                      onClick={() =>
-                        dispatch(
-                          removeItemFromCart({ id: item.id, size: item.size })
-                        )
-                      }
-                    >
-                      <s.ExitIcon />
-                    </button>
+                    <s.TotalPriceExitIconWrapper>
+                      <s.ProductTotalPrice>
+                        {item.productTotalPrice}zł
+                      </s.ProductTotalPrice>
+                      <button
+                        onClick={() =>
+                          dispatch(
+                            removeItemFromCart({ id: item.id, size: item.size })
+                          )
+                        }
+                      >
+                        <s.ExitIcon />
+                      </button>
+                    </s.TotalPriceExitIconWrapper>
                   </s.ShoppingCartWrapper>
                 ))}
               </AnimatePresence>

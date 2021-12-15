@@ -8,12 +8,18 @@ export const ProfileCardWrapper = styled.div`
   background-color: #700e0e;
   padding: 40px;
   padding-top: 50px;
+  margin-top: 150px;
 `;
 
 export const AccountInfoWrapper = styled.div`
   display: flex;
   column-gap: 20px;
   align-items: center;
+
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    row-gap: 15px;
+  }
 `;
 
 export const AvatarWrapper = styled.div`
@@ -21,7 +27,9 @@ export const AvatarWrapper = styled.div`
   overflow: hidden;
   position: relative;
 `;
-export const Avatar = styled(Image)``;
+export const Avatar = styled(Image)`
+  border-radius: 50%;
+`;
 
 export const NameEmailWrapper = styled.div`
   display: flex;
@@ -32,11 +40,21 @@ export const NameEmailWrapper = styled.div`
 export const Name = styled.p`
   font-size: 28px;
   color: #fff;
+
+  @media screen and (max-width: 480px) {
+    font-size: 24px;
+    text-align: center;
+  }
 `;
 
 export const Email = styled.p`
   font-size: 18px;
   color: #fff;
+
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
+    text-align: center;
+  }
 `;
 
 export const CameraIcon = styled(cameraIcon)`

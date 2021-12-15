@@ -55,9 +55,6 @@ export const SubpageTypeWrapper = styled.article`
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-
-  @media screen and (max-width: 700px) {
-  }
 `;
 
 export const SubpageTypeName = styled.h4`
@@ -67,7 +64,6 @@ export const SubpageTypeName = styled.h4`
   font-family: var(--secondary-font-family), sans-serif;
 
   @media screen and (max-width: 485px) {
-    font-size: 18px;
     text-align: center;
   }
 `;
@@ -77,7 +73,6 @@ export const SubpageName = styled.a`
   font-size: 14px;
 
   @media screen and (max-width: 485px) {
-    font-size: 18px;
     text-align: center;
   }
 `;

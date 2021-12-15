@@ -6,9 +6,9 @@ import errorIcon from "public/icons/error.svg";
 import lockIcon from "public/icons/lock.svg";
 
 export const ShoppingCartContainer = styled.div<{ isCartItemsEmpty: boolean }>`
-  width: 75vw;
+  max-width: 1380px;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 190px;
   margin-bottom: 200px;
   ${(props) =>
     props.isCartItemsEmpty &&
@@ -20,13 +20,23 @@ export const ShoppingCartContainer = styled.div<{ isCartItemsEmpty: boolean }>`
 
 export const Main = styled.main`
   display: flex;
-  column-gap: 50px;
+  column-gap: 80px;
   position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  @media screen and (max-width: 1100px) {
+    flex-direction: column;
+  }
 `;
 
 export const MyCartText = styled.h1`
   font-size: 23px;
   color: var(--secondary-color);
+
+  @media screen and (max-width: 500px) {
+    text-align: center;
+  }
 `;
 
 export const ShoppingCartList = styled.ul`
@@ -39,6 +49,10 @@ export const ShoppingCartList = styled.ul`
 export const ShoppingCartWrapper = styled(motion.li)`
   display: flex;
   align-items: center;
+  @media screen and (max-width: 500px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 export const ImgWrapper = styled.div`
@@ -51,6 +65,11 @@ export const NamePriceWrapper = styled.div`
   row-gap: 5px;
   flex-basis: 100%;
   margin-left: 20px;
+
+  @media screen and (max-width: 500px) {
+    margin-top: 15px;
+    align-items: center;
+  }
 `;
 
 export const Name = styled.p`
@@ -63,15 +82,43 @@ export const Price = styled.p`
   color: var(--gray-color);
 `;
 
+export const TotalPriceExitIconWrapper = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  @media screen and (max-width: 500px) {
+    margin-left: 30px;
+  }
+`;
+
 export const ProductTotalPrice = styled.p`
   font-size: 18px;
   text-align: center;
   min-width: 285px;
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+    row-gap: 10px;
+    order: 2;
+  }
+
+  @media screen and (max-width: 500px) {
+    min-width: 0px;
+  }
 `;
 
 export const ExitIcon = styled(crossIcon)`
   display: inline-block;
   overflow: visible;
+
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+    row-gap: 15px;
+    order: 1;
+  }
 `;
 
 export const CouponIcon = styled(couponIcon)`
@@ -82,8 +129,6 @@ export const EnterPromoCodeText = styled.p`
   color: #b73030;
   font-size: 16px;
   margin-left: 7px;
-  /* margin-top: 80px;
-  margin-bottom: 10px; */
 `;
 
 export const EnterPromoCodeBtn = styled.button`
@@ -157,8 +202,11 @@ export const OrderSummaryWrapper = styled.aside`
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  position: absolute;
-  right: 0;
+  margin-top: 130px;
+
+  @media screen and (max-width: 1100px) {
+    align-items: center;
+  }
 `;
 
 export const OrderSummaryText = styled.h2`
@@ -170,6 +218,10 @@ export const OrderSummaryText = styled.h2`
 export const FlexWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 1100px) {
+    column-gap: 10px;
+  }
 `;
 
 export const PartialAmountText = styled.p`
@@ -225,6 +277,10 @@ export const MakeAnOrderBtn = styled.button`
   }
   &:disabled {
     opacity: 0.5;
+  }
+
+  @media screen and (max-width: 300px) {
+    width: 200px;
   }
 `;
 

@@ -3,7 +3,7 @@ import * as s from "./Products.style";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import sortProducts from "lib/utils/sortProducts";
-
+import { useMediaQuery } from "@mui/material";
 export type ProductsProps = {
   allProducts: {
     id: string;
@@ -30,7 +30,11 @@ export type ProductsProps = {
   isAllProducts?: boolean;
 };
 
-const Products: FC<ProductsProps> = ({ allProducts, modelsImages, isAllProducts }) => {
+const Products: FC<ProductsProps> = ({
+  allProducts,
+  modelsImages,
+  isAllProducts,
+}) => {
   const router = useRouter();
   const [hoveredImgSlug, setHoveredImgSlug] = useState("");
   const scrollHeightRef1 = useRef<HTMLDivElement>(null);
@@ -175,6 +179,8 @@ const Products: FC<ProductsProps> = ({ allProducts, modelsImages, isAllProducts 
               src={modelsImages.firstImage.url}
               alt={modelsImages.firstImage.alt}
               layout="fill"
+              objectFit="cover"
+              objectPosition="50% 20px"
             />
           </s.FirstImageWrapper>
           <s.SecondImageWrapper>
@@ -182,6 +188,8 @@ const Products: FC<ProductsProps> = ({ allProducts, modelsImages, isAllProducts 
               src={modelsImages.secondImage.url}
               alt={modelsImages.secondImage.alt}
               layout="fill"
+              objectFit="cover"
+              objectPosition="50% 20px"
             />
             <s.WritingArea>
               <s.WritingAreaText>WHEN BUYING 3 ITEMS OR MORE</s.WritingAreaText>
@@ -195,8 +203,8 @@ const Products: FC<ProductsProps> = ({ allProducts, modelsImages, isAllProducts 
       )}
       <s.MainSection>
         <s.LeftColumn>
-          <s.FilterTitle>Filter By</s.FilterTitle>
-          <ul>
+          <s.FilterWrapper>
+            <s.FilterTitle>Filter By</s.FilterTitle>
             <s.CollapsibleWrapper>
               <s.CollapsibleBtn
                 onClick={() =>
@@ -295,10 +303,10 @@ const Products: FC<ProductsProps> = ({ allProducts, modelsImages, isAllProducts 
                 </s.CollapsibleContent>
               </s.CollapsibleWrapper>
             )}
-          </ul>
+          </s.FilterWrapper>
         </s.LeftColumn>
         <s.RightColumn>
-          <div
+          <s.SortByWrapper
             style={{
               position: "absolute",
               minWidth: "200px",
@@ -412,7 +420,7 @@ const Products: FC<ProductsProps> = ({ allProducts, modelsImages, isAllProducts 
                 </Link>
               </li>
             </s.SortByDropdown>
-          </div>
+          </s.SortByWrapper>
           <s.ProductsList>
             {currentProductsList.map((product) => (
               <s.ProductWrapper key={product.id}>

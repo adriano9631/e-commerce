@@ -159,15 +159,14 @@ const MainSection: FC<MainSectionProps> = ({
           </motion.div>
         </s.Wrapper>
         <s.ModelsImgWrapper>
-        <s.ModelsImg
-          lazyBoundary="500px"
-          alt={modelsImage.alt}
-          src={modelsImage.url}
-          height={900}
-          width={920}
-        />
+          <s.ModelsImg
+            lazyBoundary="500px"
+            alt={modelsImage.alt}
+            src={modelsImage.url}
+            height={900}
+            width={920}
+          />
         </s.ModelsImgWrapper>
-       
       </s.FlexWrapper>
       <s.FlexWrapper>
         <s.BenefitWrapper ref={ref2}>
@@ -193,7 +192,9 @@ const MainSection: FC<MainSectionProps> = ({
                 me. I’m a great place for you to tell a story and let your users
                 know a little more about you.
               </s.BenefitDescription>
-              <s.LearnMoreBtn> Learn More </s.LearnMoreBtn>
+              <Link href="/">
+                <s.LearnMoreLink>Learn More</s.LearnMoreLink>
+              </Link>
             </motion.div>
           </motion.div>
         </s.BenefitWrapper>
@@ -229,7 +230,9 @@ const MainSection: FC<MainSectionProps> = ({
                     GET HALF OFF IN OUR <br /> BIGGEST CLEARANCE YET
                   </s.FirstImgDiscountDescription>
                 </s.FirstImgWrapper>
-                <s.ShopNowBtn>Shop Now</s.ShopNowBtn>
+                <Link href="/all-products">
+                  <s.ShopNowLink>Shop Now</s.ShopNowLink>
+                </Link>
               </motion.div>
             )}
             {currentImageNum === 2 && (
@@ -253,7 +256,9 @@ const MainSection: FC<MainSectionProps> = ({
                     WHEN BUYING 3 ITEMS OR MORE.
                   </s.SecondImgSubheading>
                 </s.SecondImgWrapper>
-                <s.ShopNowBtn>Shop Now</s.ShopNowBtn>
+                <Link href="/all-products">
+                  <s.ShopNowLink>Shop Now</s.ShopNowLink>
+                </Link>
               </motion.div>
             )}
             {currentImageNum === 3 && (
@@ -278,7 +283,9 @@ const MainSection: FC<MainSectionProps> = ({
                     GET 25% OFF MENS DENIM JACKETS. USE CODE: BTTRJCKTS
                   </s.ThirdImgDescription>
                 </s.ThirdImgWrapper>
-                <s.ShopNowBtn>Shop Now</s.ShopNowBtn>
+                <Link href="/all-products">
+                  <s.ShopNowLink>Shop Now</s.ShopNowLink>
+                </Link>
               </motion.div>
             )}
           </AnimatePresence>

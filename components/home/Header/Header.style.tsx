@@ -21,8 +21,10 @@ export const HeaderContainer = styled.header`
   display: flex;
   position: relative;
   overflow: hidden;
+  margin-top: 80px;
   @media screen and (max-width: 1050px) {
     flex-direction: column;
+    margin-top: 70px;
   }
 `;
 

@@ -6,12 +6,13 @@ export const ShoppingCartPopupContainer = styled(motion.aside)`
   height: 100vh;
   position: sticky;
   top: 0;
-  width: 390px;
+  max-width: 390px;
   margin-left: auto;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1000;
 `;
 
 export const Header = styled.header`
@@ -45,6 +46,16 @@ export const CartItemsList = styled.ul`
   align-items: center;
   overflow: auto;
   height: 650px;
+`;
+export const NoProductsText = styled.h2`
+  font-size: 25px;
+  text-align: center;
+`;
+
+export const NoProductsLink = styled.a`
+  font-size: 20px;
+  margin-top: 20px;
+  text-decoration: underline;
 `;
 
 export const CartItem = styled.li`
@@ -100,6 +111,10 @@ export const ViewCartBtn = styled.button`
   border-radius: 6px;
   &:hover {
     opacity: 0.9;
+  }
+
+  @media screen and (max-width: 310px) {
+    width: 250px;
   }
 `;
 

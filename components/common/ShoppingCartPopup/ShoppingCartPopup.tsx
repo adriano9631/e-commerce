@@ -11,6 +11,7 @@ import { RootState } from "features/store";
 import { setQuantity } from "features/productsSlice";
 import QuantityInput from "components/common/QuantityInput";
 import { useRouter } from "next/router";
+import Link from "next/link";
 const variants = {
   hidden: {
     x: 500,
@@ -114,12 +115,23 @@ const ShoppingCartPopup: FC = () => {
               </s.Wrapper>
             </s.CartItem>
           ))}
+          {cartItems.length === 0 && (
+            <>
+              <s.NoProductsText style={{ marginTop: "300px" }}>
+                {"You haven't added any products yet"}
+              </s.NoProductsText>
+              <Link href="/" passHref>
+                <s.NoProductsLink>Start adding products</s.NoProductsLink>
+              </Link>
+            </>
+          )}
         </s.CartItemsList>
-
-        <s.SumWrapper>
-          <s.SumText>Price without shipping costs&nbsp;</s.SumText>
-          <s.Sum> {totalPrice} zł</s.Sum>
-        </s.SumWrapper>
+        {totalPrice > 0 && (
+          <s.SumWrapper>
+            <s.SumText>Price without shipping costs&nbsp;</s.SumText>
+            <s.Sum> {totalPrice} zł</s.Sum>
+          </s.SumWrapper>
+        )}
         <s.Footer>
           <s.ViewCartBtn onClick={handleViewCart}>View Cart</s.ViewCartBtn>
         </s.Footer>

@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
       display: matches ? "block" : "none",
     },
     bmBurgerBars: {
-      background: "#373a47",
+      background: "var(--primary-color)",
     },
     bmBurgerBarsHover: {
       background: "#a90000",
@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
           )}
           {session && (
             <s.UserNavItemsList>
-              <Link href="/" passHref>
+              <Link href="/account/my-account" passHref>
                 <s.UserImg
                   src={session.user.image}
                   width={30}
@@ -99,9 +99,6 @@ const Navbar: React.FC = () => {
               </Link>
               <Link href="/account/my-wishlist" passHref>
                 <s.UserNavItem>My Wishlist</s.UserNavItem>
-              </Link>
-              <Link href="/account/my-account" passHref>
-                <s.UserNavItem>My Account</s.UserNavItem>
               </Link>
               <s.LogOutBtn onClick={() => signOut({ redirect: false })}>
                 Log out
@@ -126,7 +123,9 @@ const Navbar: React.FC = () => {
           </Link>
         </s.NavItemsList>
       </s.FlexRow>
-      <s.Discount>25% OFF WOMENS JEANS - USE CODE: BTTRDAYS</s.Discount>
+      <s.Discount>
+        25% OFF WOMENS JEANS - USE CODE: BTTRDAYS
+      </s.Discount>
       <SearchBox />
       <HamburgerMenu
         isOpen={isMenuOpen}

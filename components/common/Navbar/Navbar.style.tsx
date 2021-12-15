@@ -27,7 +27,7 @@ export const NavbarContainer = styled.nav<NavbarContainerProps>`
   width: 100vw;
   z-index: 999;
   transition: top 0.3s;
-  top: ${(props) => (props.isVisible ? "0" : "-140px")};
+  top: ${(props) => (props.isVisible ? "0" : "-160px")};
 `;
 export const FlexRow = styled.div`
   display: flex;
@@ -103,7 +103,6 @@ export const UserNavItem = styled.a`
     ${navItemsStyles}
   }
 `;
-
 
 export const FlexWrapper = styled.div`
   display: flex;

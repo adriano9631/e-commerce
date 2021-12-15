@@ -65,6 +65,7 @@ const productsListByTypeQuery = gql`
       id
       quantitySold
       price
+      slug
       images {
         url
         alt

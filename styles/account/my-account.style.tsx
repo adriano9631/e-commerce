@@ -1,8 +1,14 @@
 import styled from "styled-components/macro";
 
 export const MyAccountContainer = styled.div`
-  width: 980px;
-  margin: 70px auto;
+  max-width: 980px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 100px;
+  @media screen and (max-width: 840px) {
+    margin-top: 150px;
+  }
 `;
 
 export const MyAccountWrapper = styled.div`
@@ -11,6 +17,12 @@ export const MyAccountWrapper = styled.div`
   margin-top: 30px;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 20px;
+  }
 `;
 
 export const MyAccountTextWrapper = styled.div``;
@@ -44,6 +56,10 @@ export const DiscardChangesBtn = styled.button`
     opacity: 0.5;
     cursor: auto;
   }
+
+  @media screen and (max-width: 450px) {
+    width: 80px;
+  }
 `;
 export const ConfirmChangesBtn = styled.button`
   width: 140px;
@@ -60,6 +76,10 @@ export const ConfirmChangesBtn = styled.button`
   &:disabled {
     opacity: 0.5;
     cursor: auto;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 120px;
   }
 `;
 
@@ -94,4 +114,8 @@ export const NameChangeInput = styled.input`
   display: block;
   margin-top: 7px;
   padding: 10px;
+
+  @media screen and (max-width: 450px) {
+    width: 200px;
+  }
 `;

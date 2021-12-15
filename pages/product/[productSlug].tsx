@@ -165,7 +165,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
             {product.name}
           </p>
         </div>
-        <div>
+        <div style={{ display: "flex", alignItems: "center", transform: 'translateY(-5px)' }}>
           <Link
             href={previouslyViewedProductsLinks[previousProductLink]}
             passHref
@@ -201,7 +201,13 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
               </a>
             </button>
           </Link>
-          <s.Divider>|</s.Divider>
+          <s.Divider
+            style={{
+              transform: "translateY(5px)",
+            }}
+          >
+            |
+          </s.Divider>
           <Link
             href={
               previouslyViewedProductsLinks.indexOf(
@@ -266,6 +272,9 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
                   )
               )}
             </AnimatePresence>
+            <s.AddToFavoriteBtn onClick={handleAddProductToWishlist}>
+              <s.HeartIcon />
+            </s.AddToFavoriteBtn>
           </s.ImgWrapper>
 
           <s.ImagesListWrapper>
@@ -364,18 +373,18 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
               <s.Subheading>Shipping Info</s.Subheading>
               <s.ExpandIcon>&#43;</s.ExpandIcon>
             </s.Collapsible>
+            <s.ShippingInfoDetails
+              scrollHeight3={scrollHeight3}
+              isActive3={isActive3}
+              ref={ref3}
+            >
+              I’m a shipping policy. I’m a great place to add more information
+              about your shipping methods, packaging and cost. Providing
+              straightforward information about your shipping policy is a great
+              way to build trust and reassure your customers that they can buy
+              from you with confidence.
+            </s.ShippingInfoDetails>
           </s.CollapsibleWrapper>
-          <s.ShippingInfoDetails
-            scrollHeight3={scrollHeight3}
-            isActive3={isActive3}
-            ref={ref3}
-          >
-            I’m a shipping policy. I’m a great place to add more information
-            about your shipping methods, packaging and cost. Providing
-            straightforward information about your shipping policy is a great
-            way to build trust and reassure your customers that they can buy
-            from you with confidence.
-          </s.ShippingInfoDetails>
         </s.RightSide>
       </s.FlexWrapper>
       <RelatedProducts relatedProductsList={relatedProductsList} />

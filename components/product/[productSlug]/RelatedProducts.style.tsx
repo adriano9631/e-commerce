@@ -4,15 +4,30 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export const RelatedProductsContainer = styled.section`
-  margin-top: 100px;
   border-top: 1px solid var(--secondary-color);
   padding-top: 10px;
+  font-family: var(--secondary-font-family);
+  font-size: 25px;
+  margin-top: 30px;
+
+  @media screen and (max-width: 950px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  @media screen and (max-width: 500px) {
+    text-align: center;
+  }
 `;
 
 export const RelatedProductsText = styled.h2`
   font-family: var(--secondary-font-family);
   font-size: 25px;
   margin-top: 30px;
+
+  @media screen and (max-width: 500px) {
+    text-align: center;
+  }
 `;
 
 export const RelatedProductsList = styled(Carousel)`
@@ -23,7 +38,7 @@ export const RelatedProductsList = styled(Carousel)`
   margin-bottom: 100px;
 `;
 
-export const RelatedProductWrapper = styled.div`
+export const RelatedProductWrapper = styled.li`
   display: inline-block;
   position: relative;
 `;

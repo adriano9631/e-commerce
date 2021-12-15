@@ -140,7 +140,7 @@ export const BenefitDescription = styled.p`
   ${descriptionStyles}
 `;
 
-export const LearnMoreBtn = styled.button`
+export const LearnMoreLink = styled.button`
   ${btnStyles}
 `;
 
@@ -195,10 +195,9 @@ export const SecondImgHeading = styled.h3`
   font-family: var(--secondary-font-family), sans-serif;
   font-size: 40px;
 `;
-export const ShopNowBtn = styled.button`
+export const ShopNowLink = styled.a`
   width: 130px;
   height: 55px;
-  border: none;
   font-size: 22px;
   background-color: white;
   cursor: pointer;
@@ -210,6 +209,9 @@ export const ShopNowBtn = styled.button`
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
     background-color: var(--primary-color);
     color: white;

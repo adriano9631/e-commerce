@@ -19,6 +19,10 @@ export const Dropdown = styled.button<DropdownProps>`
   margin-top: 5px;
   border: 1px solid #c8c8c8;
   margin-bottom: 15px;
+
+  @media screen and (max-width: 500px) {
+    width: 50vw;
+  }
 `;
 
 export const DropdownFlexWrapper = styled.div`
@@ -45,6 +49,10 @@ export const DropdownContent = styled.div<DropdownContentProps>`
   z-index: 999;
   background-color: #fff;
   cursor: pointer;
+
+  @media screen and (max-width: 500px) {
+    width: 50vw;
+  }
 `;
 
 export const DropdownOption = styled.p`

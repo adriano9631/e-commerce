@@ -3,7 +3,7 @@ import Image from "next/image";
 import removeIcon from "public/icons/cross.svg";
 
 export const MyWishlistContainer = styled.div`
-  width: 980px;
+  max-width: 980px;
   margin: 70px auto;
 `;
 
@@ -24,7 +24,7 @@ export const Description = styled.p`
 `;
 
 export const NoProductsWrapper = styled.section`
-  width: 920px;
+  max-width: 920px;
   height: 300px;
   margin: 0 auto;
   margin-top: 50px;
@@ -36,6 +36,7 @@ export const NoProductsWrapper = styled.section`
 
 export const NoProductsText = styled.h2`
   font-size: 25px;
+  text-align: center;
 `;
 
 export const NoProductsLink = styled.a`
@@ -46,12 +47,15 @@ export const NoProductsLink = styled.a`
 
 export const WishlistWrapper = styled.ul`
   display: flex;
+  justify-content: center;
   column-gap: 10px;
   row-gap: 10px;
   border-top: 1px solid #dcdcdc;
   padding-top: 40px;
   margin-left: 20px;
   margin-top: 30px;
+  flex-wrap: wrap;
+  row-gap: 20px;
 `;
 
 export const RemoveProductFromWishlistBtn = styled.button`

@@ -26,19 +26,30 @@ type ShippingInfoDetailsProps = {
   scrollHeight3: number | undefined;
 };
 
-type CollapsibleProps = {
-  onClick: (value: React.SetStateAction<boolean>) => void;
-};
-
 export const ProductContainer = styled.div`
-  width: 890px;
+  max-width: 890px;
   margin: 0 auto;
   margin-top: 100px;
+
+  @media screen and (max-width: 950px) {
+    margin-top: 150px;
+  }
 `;
 
 export const LinksWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  transform: translateY(50px);
+
+  @media screen and (max-width: 950px) {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 950px) {
+    flex-direction: column;
+  }
 `;
 
 export const Divider = styled.span`
@@ -57,18 +68,39 @@ export const Arrow = styled.span`
 export const FlexWrapper = styled.main`
   display: flex;
   column-gap: 30px;
-  margin-top: 50px;
+  margin-top: 60px;
+
+  @media screen and (max-width: 950px) {
+    flex-direction: column;
+  }
 `;
 
-export const LeftSide = styled.section``;
+export const LeftSide = styled.section`
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 950px) {
+    align-items: center;
+  }
+`;
 
-export const RightSide = styled.section``;
+export const RightSide = styled.section`
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 950px) {
+    align-items: center;
+  }
+`;
 
 export const ImgWrapper = styled.div`
   position: relative;
   width: 500px;
   height: 667px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  @media screen and (max-width: 550px) {
+    width: 250px;
+    height: 333px;
+  }
 `;
 
 export const ImagesListWrapper = styled.div`
@@ -91,6 +123,11 @@ export const PreviewImgWrapper = styled.button<PreviewImgWrapperProps>`
 export const Description = styled.p`
   margin-top: 20px;
   font-size: 18px;
+
+  @media screen and (max-width: 950px) {
+    max-width: 500px;
+    padding: 0 20px;
+  }
 `;
 
 export const Name = styled.h1`
@@ -98,6 +135,10 @@ export const Name = styled.h1`
   color: var(--secondary-color);
   font-family: var(--secondary-font-family);
   font-weight: 300;
+
+  @media screen and (max-width: 950px) {
+    margin-top: 50px;
+  }
 `;
 export const Price = styled.p`
   font-size: 36px;
@@ -124,6 +165,26 @@ export const AddToFavoriteBtn = styled.button`
   flex-basis: 15%;
   border: 1px solid var(--primary-color);
   border-radius: 7px;
+
+  &:nth-of-type(1) {
+    display: none;
+  }
+  @media screen and (max-width: 950px) {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+    width: 40px;
+    height: 40px;
+
+    &:nth-of-type(1) {
+      display: block;
+    }
+
+    &:nth-of-type(2) {
+      display: none;
+    }
+  }
 `;
 
 export const BuyProductBtn = styled.button`
@@ -139,6 +200,10 @@ export const BuyProductBtn = styled.button`
   &:hover {
     opacity: 0.8;
   }
+
+  @media screen and (max-width: 950px) {
+    width: 50vw;
+  }
 `;
 
 export const CollapsibleWrapper = styled.article`
@@ -146,9 +211,14 @@ export const CollapsibleWrapper = styled.article`
   flex-direction: column;
   row-gap: 10px;
   margin-top: 30px;
+
+  @media screen and (max-width: 950px) {
+    align-items: center;
+    padding: 0 20px;
+  }
 `;
 
-export const Collapsible = styled.button<CollapsibleProps>`
+export const Collapsible = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -166,6 +236,9 @@ export const Collapsible = styled.button<CollapsibleProps>`
     cursor: pointer;
     opacity: 0.8;
   }
+  @media screen and (max-width: 950px) {
+    width: 50%;
+  }
 `;
 
 export const ExpandIcon = styled(plusIcon)``;
@@ -173,6 +246,10 @@ export const ExpandIcon = styled(plusIcon)``;
 export const Subheading = styled.h2`
   font-weight: normal;
   font-size: 18px;
+  line-height: 20px;
+  @media screen and (max-width: 950px) {
+    font-size: 15px;
+  }
 `;
 
 export const ProductInfoDetails = styled.p<ProductInfoDetailsProps>`
