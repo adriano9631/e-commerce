@@ -26,6 +26,14 @@ export const Modal = styled.div`
   flex-direction: column;
   row-gap: 20px;
   position: relative;
+
+  @media screen and (max-width: 660px) {
+    max-width: 530px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 export const ErrorMsg1 = styled.p`
@@ -38,6 +46,7 @@ export const ErrorMsg1 = styled.p`
 `;
 export const ErrorMsg2 = styled.p`
   font-size: 16px;
+  text-align: center;
 `;
 
 export const ConfirmBtn = styled.button`

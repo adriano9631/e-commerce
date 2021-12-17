@@ -131,7 +131,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
   const handleAddProductToWishlist = async () => {
     try {
       await axiosInstance.post("wishlists", {
-        productId: product.id,
+        // productId: product.id,
         name: product.name,
         images: product.images,
         price: product.price,
@@ -165,7 +165,13 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
             {product.name}
           </p>
         </div>
-        <div style={{ display: "flex", alignItems: "center", transform: 'translateY(-5px)' }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            transform: "translateY(-5px)",
+          }}
+        >
           <Link
             href={previouslyViewedProductsLinks[previousProductLink]}
             passHref
@@ -319,6 +325,7 @@ const Product: NextPage<ProductProps> = ({ product, relatedProductsList }) => {
           <s.ButtonsWrapper>
             <AddToCartBtn
               backgroundColor="#393c3e"
+              isProductPage
               product={product}
               size={size}
               quantity={quantity}

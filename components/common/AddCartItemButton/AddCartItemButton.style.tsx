@@ -1,7 +1,9 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
 export const AddToCartBtnContainer = styled.button<{
   backgroundColor: string;
+  isProductPage: boolean | undefined;
+  isAddToCartModal: boolean | undefined;
 }>`
   flex-basis: 85%;
   padding: 14px 0px;
@@ -16,7 +18,19 @@ export const AddToCartBtnContainer = styled.button<{
   }
 
   @media screen and (max-width: 950px) {
-    flex-basis: 100%;
-    width: 50vw;
+    ${(props) =>
+      props.isProductPage &&
+      css`
+        flex-basis: 100%;
+        width: 50vw;
+      `}
+  }
+
+  @media screen and (max-width: 400px) {
+    ${(props) =>
+      props.isAddToCartModal &&
+      css`
+        width: 200px;
+      `}
   }
 `;

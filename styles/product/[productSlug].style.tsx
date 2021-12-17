@@ -173,7 +173,7 @@ export const AddToFavoriteBtn = styled.button`
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 999;
+    z-index: 1;
     width: 40px;
     height: 40px;
 

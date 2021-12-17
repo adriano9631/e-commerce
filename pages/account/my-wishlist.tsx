@@ -55,6 +55,7 @@ const MyWishlist: FC<MyWishlistProps> = ({ fetchedWishlists }) => {
       throw new Error(error);
     }
   };
+
   return (
     <s.MyWishlistContainer>
       <AccountHeader />
@@ -141,10 +142,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       details: product.details,
       slug: product.productSlug,
       price: product.price,
-      images: [
-        { url: product.first_image, alt: product.first_image_alt },
-        { url: product.second_image, alt: product.second_image_alt },
-      ],
+      images: product.second_image
+        ? [
+            { url: product.first_image, alt: product.first_image_alt },
+            { url: product.second_image, alt: product.second_image_alt },
+          ]
+        : [{ url: product.first_image, alt: product.first_image_alt }],
     };
   });
 

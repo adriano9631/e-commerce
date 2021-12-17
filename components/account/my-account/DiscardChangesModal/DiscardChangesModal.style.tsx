@@ -26,6 +26,14 @@ export const Modal = styled.div`
   flex-direction: column;
   row-gap: 20px;
   position: relative;
+
+  @media screen and (max-width: 660px) {
+    max-width: 530px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 export const CloseIcon = styled(crossIcon)`
@@ -42,6 +50,7 @@ export const Title = styled.p`
 `;
 export const Description = styled.p`
   font-size: 16px;
+  text-align: center;
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -54,6 +63,10 @@ export const CancelChangesBtn = styled.button`
   height: 40px;
   border: 1px solid black;
   color: black;
+
+  @media screen and (max-width: 660px) {
+    width: 120px;
+  }
 `;
 
 export const DiscardChangesBtn = styled.button`
@@ -61,4 +74,8 @@ export const DiscardChangesBtn = styled.button`
   height: 40px;
   background-color: black;
   color: white;
+
+  @media screen and (max-width: 660px) {
+    width: 120px;
+  }
 `;

@@ -1,11 +1,11 @@
 import AddCartItemButton from "components/common/AddCartItemButton";
-import { motion } from "framer-motion";
 import Dropdown from "components/common/Dropdown";
 import QuantityInput from "components/common/QuantityInput";
 import { setIsPopupVisible } from "features/commonSlice";
 import { RootState } from "features/store";
 import React, { FC, SetStateAction, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import * as s from "./AddToCartModal.style";
 
 type AddToCartModalProps = {
@@ -30,7 +30,7 @@ const AddToCartModal: FC<AddToCartModalProps> = ({
   product,
 }) => {
   const cartItems = useSelector((state: RootState) => state.products.cartItems);
-
+  const matches = useMediaQuery("(max-width:1050px)");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState("Choose");
   const sizeRef = useRef<HTMLSpanElement>(null);
@@ -74,7 +74,6 @@ const AddToCartModal: FC<AddToCartModalProps> = ({
     show: { opacity: 1, transition: { duration: 0.1 } },
     exit: { opacity: 0 },
   };
-
   return (
     <s.AddToCartModalContainer onClick={() => setIsModalOpen(false)}>
       <s.Modal onClick={(e) => e.stopPropagation()}>
@@ -83,7 +82,7 @@ const AddToCartModal: FC<AddToCartModalProps> = ({
             {product.images.map(
               (image) =>
                 image.url === url && (
-                  <motion.div
+                  <s.ProductImageWrapper
                     variants={variants}
                     initial="hidden"
                     animate="show"
@@ -93,11 +92,11 @@ const AddToCartModal: FC<AddToCartModalProps> = ({
                   >
                     <s.ProductImage
                       src={image.url}
-                      width={363}
-                      height={512}
+                      width={matches ? 313 : 363}
+                      height={matches ? 458 : 512}
                       alt={image.alt}
                     />
-                  </motion.div>
+                  </s.ProductImageWrapper>
                 )
             )}
             <s.ImageChangeButtonsWrapper>
@@ -133,6 +132,7 @@ const AddToCartModal: FC<AddToCartModalProps> = ({
             <div style={{ marginTop: "50px" }}>
               <AddCartItemButton
                 backgroundColor="var(--primary-color)"
+                isAddToCartModal
                 product={product}
                 size={size}
                 quantity={quantity}

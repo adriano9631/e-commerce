@@ -17,7 +17,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       await prisma.wishlist.create({
         data: {
-          id: productId,
+          // id: productId,
           first_image: images[0].url,
           first_image_alt: images[0].alt,
           second_image: images[1]?.url,

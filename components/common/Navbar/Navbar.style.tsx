@@ -90,8 +90,8 @@ export const UserNavItemsList = styled.div`
 `;
 export const LogOutBtn = styled.button`
   ${navItemsStyles};
+  color: var(--gray-color);
   margin-top: 6px;
-
   &:hover {
     color: #c93c3e !important;
     transition: all 0.1s ease;

@@ -31,6 +31,8 @@ type AddCartItemButtonsProps = {
   productTotalPrice: number;
   backgroundColor: string;
   product: Product;
+  isProductPage?: boolean | undefined;
+  isAddToCartModal?: boolean | undefined;
 };
 
 const AddCartItemButton: FC<AddCartItemButtonsProps> = ({
@@ -42,6 +44,8 @@ const AddCartItemButton: FC<AddCartItemButtonsProps> = ({
   quantityRef,
   productTotalPrice,
   backgroundColor,
+  isProductPage,
+  isAddToCartModal,
 }) => {
   const dispatch = useDispatch();
   const handleAddCartItem = () => {
@@ -73,6 +77,8 @@ const AddCartItemButton: FC<AddCartItemButtonsProps> = ({
   };
   return (
     <s.AddToCartBtnContainer
+      isProductPage={isProductPage}
+      isAddToCartModal={isAddToCartModal}
       backgroundColor={backgroundColor}
       onClick={handleAddCartItem}
     >

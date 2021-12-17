@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import { motion } from "framer-motion";
 import crossIcon from "public/icons/cross.svg";
 import Image from "next/image";
 
@@ -26,12 +27,26 @@ export const Modal = styled.div`
   flex-direction: column;
   row-gap: 20px;
   position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  @media screen and (max-width: 1050px) {
+    max-width: 800px;
+    height: 800px;
+  }
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
   column-gap: 40px;
+
+  @media screen and (max-width: 1050px) {
+    flex-direction: column;
+    row-gap: 50px;
+  }
 `;
+
+export const ProductImageWrapper = styled(motion.div)``;
 
 export const CarouselWrapper = styled.div`
   position: relative;
@@ -41,6 +56,12 @@ export const CarouselWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 1050px) {
+    width: 313px;
+    height: 458px;
+    margin-top: -100px;
+  }
 `;
 
 export const ProductImage = styled(Image)``;
@@ -70,7 +91,13 @@ export const CloseIcon = styled(crossIcon)`
   margin-right: 15px;
 `;
 
-export const RightSideColumn = styled.div``;
+export const RightSideColumn = styled.div`
+  @media screen and (max-width: 400px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 
 export const Name = styled.h1``;
 

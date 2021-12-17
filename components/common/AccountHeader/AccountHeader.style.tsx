@@ -99,7 +99,7 @@ export const NavLinksWrapper = styled.div`
 
 export const NavLink = styled.a<{ isActive: boolean }>`
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   padding-top: 15px;
   color: ${(props) => props.isActive && "var(--primary-color)"};
