@@ -94,7 +94,7 @@ const productBySlugQuery = gql`
 `;
 
 const productsListByHighestQuantityQuery = gql`
-  {
+    query productsListByHighestQuantityQuery {
     allProducts(first: 6, orderBy: quantitySold_DESC) {
       name
       price

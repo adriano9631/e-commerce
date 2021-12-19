@@ -13,7 +13,7 @@ import {
   persistReducer,
 } from "redux-persist";
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   products: productsReducer,
   common: commonReducer,
 });

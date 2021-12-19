@@ -30,6 +30,6 @@
     "pages/api/auth/providers.js",
     "pages/api/[...nextauth].js",
     "pages/api/[...nextauth].js"
-  ],
+, "test-utils.jsx"  ],
   "exclude": ["node_modules"]
 }

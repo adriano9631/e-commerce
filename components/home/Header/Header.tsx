@@ -8,12 +8,16 @@ import Link from "next/link";
 const Header: React.FC = () => {
   const [ref, inview] = useInView({ triggerOnce: true });
 
+  const env = process.env.NODE_ENV;
   return (
     <s.HeaderContainer>
       <s.HeroLeft>
         <s.ImageLeft
           priority
           placeholder="blur"
+          blurDataURL={
+            env === "development" || env === "production" ? undefined : "test"
+          }
           src={heroLeft}
           layout="fill"
           objectFit="cover"
@@ -27,6 +31,9 @@ const Header: React.FC = () => {
         <s.ImageRight
           src={heroRight}
           placeholder="blur"
+          blurDataURL={
+            env === "development" || env === "production" ? undefined : "test"
+          }
           priority
           layout="fill"
           objectFit="cover"

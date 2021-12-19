@@ -36,20 +36,21 @@ const Home: NextPage<HomeProps> = ({
     "/images/four-models-posing.jpg"
   );
 
+  
   return (
     <>
       <Header />
-      <BestSellers bestSellingProducts={bestSellingProducts} />
-      <MainSection
+      {/* <BestSellers bestSellingProducts={bestSellingProducts} /> */}
+      {/* <MainSection
         modelsImage={modelsImage}
         benefitImage={benefitImage}
         carouselImages={carouselImages}
-      />
-      <FavoriteShorts
+      /> */}
+      {/* <FavoriteShorts
         favoriteShorts={favoriteShorts}
         newArrivalDate={newArrivalDate}
-      />
-      <FourModelsPosingImg loadedbBackgroundImage={loadedbBackgroundImage} />
+      /> */}
+      {/* <FourModelsPosingImg loadedbBackgroundImage={loadedbBackgroundImage} /> */}
     </>
   );
 };
