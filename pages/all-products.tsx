@@ -12,6 +12,7 @@ const AllProducts: FC<AllProductsProps> = ({ allProducts, modelsImages }) => {
       allProducts={allProducts}
       modelsImages={modelsImages}
       isAllProducts
+      collection={null}
     />
   );
 };

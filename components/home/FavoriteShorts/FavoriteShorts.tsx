@@ -115,9 +115,7 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
               OUR FAVOURITE SHORTS MADE FOR THE BEST COMFORT AND STYLE
             </s.Heading>
             <s.Description>
-              {`I'm`} a paragraph. Click here to add your own text and edit me.
-              I’m a great place for you to tell a story and let your users know
-              a little more about you.
+              {`I'm a paragraph. Click here to if you want add your own text and edit me. I'm a great place for you to tell a story and let your users know a little more about yourself.`}
             </s.Description>
           </motion.div>
         </s.IntroductionWrapper>
@@ -142,7 +140,7 @@ const FavoriteShorts: FC<FavoriteShortsProps> = ({
             variants={item}
           >
             <Link href={`/product/${product.slug}`} key={product.slug} passHref>
-              <a>
+              <a data-testid={`${product.slug}`}>
                 {hoveredImgSlug === product.slug && product.images[1] ? (
                   <Image
                     src={product.images[1].url}

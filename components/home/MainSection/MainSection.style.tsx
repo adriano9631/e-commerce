@@ -150,7 +150,13 @@ export const FirstImgWrapper = styled.div`
   z-index: 999;
 `;
 
-export const FirstImgDiscountPartOne = styled(discountPartOne)`
+// export const FirstImgDiscountPartOne = styled(discountPartOne)`
+//   width: 100px;
+//   height: 100px;
+//   transform: translateX(50px);
+// `;
+
+export const FirstImgDiscountPartOne = styled.img`
   width: 100px;
   height: 100px;
   transform: translateX(50px);
@@ -158,13 +164,18 @@ export const FirstImgDiscountPartOne = styled(discountPartOne)`
 
 export const FirstImgDiscountPercentage = styled.p`
   color: white;
-  transform: translate3d(85px, -93px, 0px);
+  transform: translate3d(80px, -83px, 0px);
   font-family: var(--secondary-font-family), sans-serif;
   font-size: 25px;
   display: inline-block;
 `;
 
-export const FirstImgDiscountPartTwo = styled(discountPartTwo)`
+// export const FirstImgDiscountPartTwo = styled(discountPartTwo)`
+//   width: 222px;
+//   height: 88px;
+// `;
+
+export const FirstImgDiscountPartTwo = styled.img`
   width: 222px;
   height: 88px;
 `;
@@ -173,7 +184,7 @@ export const FirstImgDiscountDescription = styled.p`
   color: white;
   font-family: var(--secondary-font-family), sans-serif;
   font-size: 16px;
-  transform: translate3d(115px, -103px, 0px);
+  transform: translate3d(110px, -90px, 0px);
   display: inline-block;
 `;
 
@@ -226,18 +237,22 @@ export const ThirdImgWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
 `;
-export const ThirdImgWritingArea = styled(writingArea)``;
+export const ThirdImgWritingArea = styled.img`
+  width: 300px;
+  height: 150px;
+`;
 export const ThirdImgHeading = styled.h3`
-  transform: translate3d(35px, -140px, 0px);
+  transform: translate3d(45px, -190px, 0px);
   font-size: 45px;
   color: var(--secondary-color);
   font-family: var(--secondary-font-family), sans-serif;
   letter-spacing: 1px;
 `;
 export const ThirdImgDescription = styled.p`
-  transform: translate3d(0px, -144px, 0px);
-  font-size: 16px;
+  transform: translate3d(20px, -184px, 0px);
+  font-size: 17px;
   color: white;
+  max-width: 250px;
   text-align: center;
   font-family: var(--secondary-font-family), sans-serif;
   letter-spacing: 0.5px;

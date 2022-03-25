@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import * as s from "./MainSection.style";
 import ShopAllBtn from "components/home/ShopAllButton";
 import Link from "next/link";
+import Image from "next/image";
 
 export type MainSectionProps = {
   modelsImage: {
@@ -188,9 +189,9 @@ const MainSection: FC<MainSectionProps> = ({
             </motion.div>
             <motion.div variants={inner}>
               <s.BenefitDescription>
-                {`I'm`} a paragraph. Click here to add your own text and edit
-                me. I’m a great place for you to tell a story and let your users
-                know a little more about you.
+                {`I'm a paragraph. Click here to if you want add your own text
+                and edit me. I'm a great place for you to tell a story and let
+                your users know a little more about you.`}
               </s.BenefitDescription>
               <Link href="/">
                 <s.LearnMoreLink>Learn More</s.LearnMoreLink>
@@ -219,10 +220,11 @@ const MainSection: FC<MainSectionProps> = ({
                   height={512}
                   width={363}
                   src={carouselImages[0].url}
+                  alt={carouselImages[0].alt}
                 />
                 <s.FirstImgWrapper>
-                  <s.FirstImgDiscountPartOne />
-                  <s.FirstImgDiscountPartTwo />
+                  <s.FirstImgDiscountPartOne src="/icons/discount-part-1.svg" />
+                  <s.FirstImgDiscountPartTwo src="/icons/discount-part-2.svg" />
                   <s.FirstImgDiscountPercentage>
                     50% <br /> OFF
                   </s.FirstImgDiscountPercentage>
@@ -249,6 +251,7 @@ const MainSection: FC<MainSectionProps> = ({
                   height={512}
                   width={363}
                   src={carouselImages[1].url}
+                  alt={carouselImages[1].alt}
                 />
                 <s.SecondImgWrapper>
                   <s.SecondImgHeading>FREE SHIPPING</s.SecondImgHeading>
@@ -275,9 +278,10 @@ const MainSection: FC<MainSectionProps> = ({
                   height={512}
                   width={363}
                   src={carouselImages[2].url}
+                  alt={carouselImages[2].alt}
                 />
                 <s.ThirdImgWrapper>
-                  <s.ThirdImgWritingArea />
+                  <s.ThirdImgWritingArea src="/icons/writing-area.svg" />
                   <s.ThirdImgHeading>DISCOUNT!</s.ThirdImgHeading>
                   <s.ThirdImgDescription>
                     GET 25% OFF MENS DENIM JACKETS. USE CODE: BTTRJCKTS
@@ -292,16 +296,19 @@ const MainSection: FC<MainSectionProps> = ({
           <s.PicutreChangeWrapper>
             <s.PictureChangeBtn
               isActiveBtn={activeButton.btn1}
+              data-testid="firstPictureChangeBtn"
               disabled={disabledButtons}
               onClick={() => changePicture(1)}
             />
             <s.PictureChangeBtn
               isActiveBtn={activeButton.btn2}
+              data-testid="secondPictureChangeBtn"
               disabled={disabledButtons}
               onClick={() => changePicture(2)}
             />
             <s.PictureChangeBtn
               isActiveBtn={activeButton.btn3}
+              data-testid="thirdPictureChangeBtn"
               disabled={disabledButtons}
               onClick={() => changePicture(3)}
             />

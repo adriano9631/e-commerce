@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  webpack(config) {
+
+  webpack(config, options) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
@@ -9,6 +10,7 @@ module.exports = {
 
     return config;
   },
+
   images: {
     domains: [
       "www.datocms-assets.com",

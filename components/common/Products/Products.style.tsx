@@ -1,10 +1,12 @@
 import styled from "styled-components/macro";
-import coupon from "public/icons/discount-part-2.svg";
 import Image from "next/image";
+
+import coupon from "public/icons/discount-part-2.svg";
 import expandIcon from "public/icons/plus.svg";
 import collapseIcon from "public/icons/minus.svg";
 import arrowDownIcon from "public/icons/dropdown-arrow-down.svg";
 import arrowUpIcon from "public/icons/dropdown-arrow-up.svg";
+
 import Slider from "@mui/material/Slider";
 
 export const WomenPageContainer = styled.div``;
@@ -127,7 +129,7 @@ export const SpecialOfferText = styled.p`
   bottom: 15px;
 `;
 
-export const CouponIcon = styled(coupon)`
+export const CouponIcon = styled.img`
   position: absolute;
   bottom: 0;
   width: 140px;
@@ -139,6 +141,10 @@ export const MainSection = styled.main`
   display: flex;
   max-width: 1100px;
   position: relative;
+
+  @media screen and (max-width: 1850px) {
+    margin-top: 180px;
+  }
 
   @media screen and (max-width: 1150px) {
     margin-left: 20px;
@@ -204,13 +210,11 @@ export const PriceSlider = styled(Slider)`
 
 export const CollectionText = styled.p`
   font-size: 18px;
-  font-weight: bold;
   color: var(--gray-color);
 `;
 
 export const PriceText = styled.p`
   font-size: 18px;
-  font-weight: bold;
   color: var(--gray-color);
 `;
 
@@ -221,7 +225,7 @@ export const OptionsWrapper = styled.ul`
 `;
 
 export const CollectionOptionLink = styled.a<{ isActive: boolean }>`
-  font-weight: bold;
+  // font-weight: bold;
   cursor: pointer;
   transition: all 0.1s;
   color: ${(props) =>
@@ -234,11 +238,8 @@ export const CollectionOptionLink = styled.a<{ isActive: boolean }>`
   }
 `;
 
-
-
-
-export const ExpandIcon = styled(expandIcon)``;
-export const CollapseIcon = styled(collapseIcon)``;
+export const ExpandIcon = styled.img``;
+export const CollapseIcon = styled.img``;
 
 export const RightColumn = styled.section`
   max-width: 900px;
@@ -273,7 +274,6 @@ export const SortByBtn = styled.button`
   padding-left: 10px;
   font-size: 15px;
   color: var(--gray-color);
-  font-weight: bold;
   min-width: 200px;
 `;
 
@@ -287,7 +287,7 @@ export const SortByDropdown = styled.div<{ isDropdownOpen: boolean }>`
   z-index: 999;
 `;
 
-export const DropdownOptionLink = styled.a<{ isActive?: boolean }>`
+export const DropdownOptionLink = styled.a<{ isActive: boolean }>`
   display: block;
   padding: 10px;
   padding-left: 10px;
@@ -305,12 +305,12 @@ export const DropdownOptionLink = styled.a<{ isActive?: boolean }>`
   }
 `;
 
-export const ArrowDownIcon = styled(arrowDownIcon)`
+export const ArrowDownIcon = styled.img`
   margin-right: 5px;
   margin-left: 5px;
 `;
 
-export const ArrowUpIcon = styled(arrowUpIcon)`
+export const ArrowUpIcon = styled.img`
   margin-right: 5px;
   margin-left: 5px;
 `;
@@ -343,6 +343,5 @@ export const Price = styled.p`
   font-size: 20px;
   color: var(--secondary-color);
   font-family: var(--secondary-font-family);
-  font-weight: bold;
   padding-bottom: 10px;
 `;

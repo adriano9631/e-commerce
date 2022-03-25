@@ -1,7 +1,7 @@
 export const bestSellingProducts = [
   {
     name: "Distressed Jean",
-    price: "99,00 zł",
+    price: "95,00 zł",
     slug: "distressed-jean",
     images: [
       {
@@ -21,52 +21,120 @@ export const bestSellingProducts = [
       },
     ],
   },
+];
+
+export const modelsImage = {
+  url: "https://www.datocms-assets.com/58003/1636297673-models.webp",
+  alt: "Two models posing",
+};
+
+export const benefitImage = {
+  url: "https://www.datocms-assets.com/58003/1636302219-model-posing-in-the-sand.webp",
+  alt: "Model wearing jeans posing in the sand",
+};
+
+export const carouselImages = [
   {
+    url: "https://www.datocms-assets.com/58003/1636305396-carousel-img-1.webp",
+    alt: "50% discount",
+  },
+  {
+    url: "https://www.datocms-assets.com/58003/1636305400-carousel-img-2.webp",
+    alt: "Free Shipping",
+  },
+  {
+    url: "https://www.datocms-assets.com/58003/1636305402-carousel-img-3.webp",
+    alt: "25% discount off men denim jackets",
+  },
+];
+export const favoriteShorts = [
+  {
+    name: "Mom Shorts",
+    price: "55,00 zł",
+    slug: "mom-shorts2528184627",
+    id: "80448559",
+    images: [
+      {
+        url: "https://www.datocms-assets.com/58003/1636689548-mom-shorts-1.webp",
+        alt: "Mom Shorts",
+      },
+      {
+        url: "https://www.datocms-assets.com/58003/1636689551-mom-shorts-2.webp",
+        alt: "Mom Shorts",
+      },
+    ],
+    createdAt: "2021-11-30T19:55:26Z",
+  },
+  {
+    name: "Short Shorties",
+    price: "45,00 zł",
+    slug: "short-shorties2412363645",
+    id: "80448376",
+    images: [
+      {
+        url: "https://www.datocms-assets.com/58003/1636689591-short-shorties.webp",
+        alt: "Short Shorties",
+      },
+    ],
+    createdAt: "2021-11-30T19:52:16Z",
+  },
+];
+
+
+export const newArrivalDate = "2021-11-07T18:32:00+00:00";
+
+export const womenProducts = [
+  {
+    id: "80448376",
+    name: "Short Shorties",
+    price: "45,00 zł",
+    productType: "Women's Shorts",
+    slug: "short-shorties2412363645",
+    _createdAt: "2021-11-30T19:52:16Z",
+    images: [
+      {
+        alt: "Short Shorties",
+        url: "https://www.datocms-assets.com/58003/1636689591-short-shorties.webp",
+      },
+    ],
+  },
+  {
+    id: "80448721",
     name: "Pastel Jacket",
     price: "65,00 zł",
+    productType: "Women's Jackets",
     slug: "pastel-jacket3248192372",
+    _createdAt: "2021-11-30T20:00:13Z",
     images: [
       {
-        url: "https://www.datocms-assets.com/58003/1638302391-c837a6c509cdce2c40467bbefc4d8438d17d3cmv2.webp",
         alt: "Pastel Jacket",
+        url: "https://www.datocms-assets.com/58003/1638302391-c837a6c509cdce2c40467bbefc4d8438d17d3cmv2.webp",
       },
     ],
   },
   {
-    name: "Deni Vest",
-    price: "45,00 zł",
-    slug: "deni-vest2352741287",
+    id: "80448024",
+    name: "Distressed Jean",
+    price: "99,00 zł",
+    productType: "Women's Jeans",
+    slug: "distressed-jean",
+    _createdAt: "2021-11-30T19:35:26Z",
     images: [
       {
-        url: "https://www.datocms-assets.com/58003/1638302489-c837a6e6ecd7a4d6504ec8b509578cb45a5a99mv2.webp",
-        alt: "Deni Vest",
-      },
-      {
-        url: "https://www.datocms-assets.com/58003/1636689468-dani-vest-2.webp",
-        alt: "Deni Vest",
-      },
-    ],
-  },
-  {
-    name: "Distressed Middies",
-    price: "45,00 zł",
-    slug: "distressed-middies32576641235",
-    images: [
-      {
-        url: "https://www.datocms-assets.com/58003/1636689865-distressed-middies.webp",
-        alt: "Distressed Middies",
-      },
-    ],
-  },
-  {
-    name: "Fitted Jacket",
-    price: "85,00 zł",
-    slug: "fitted-jacket236434853",
-    images: [
-      {
-        url: "https://www.datocms-assets.com/58003/1638698115-c837a66972dccb9fc94713bee1eef7c90e6489mv2.webp",
-        alt: "Fitted Jacket",
+        alt: "Distressed Jean",
+        url: "https://www.datocms-assets.com/58003/1638300567-c837a657385f76b0cd494a8fa093fb2103b751mv2.webp",
       },
     ],
   },
 ];
+
+export const womenModelsImages = {
+  firstImage: {
+    url: "https://www.datocms-assets.com/58003/1639253747-img1.webp",
+    alt: "First Women model",
+  },
+  secondImage: {
+    url: "https://www.datocms-assets.com/58003/1639253814-img2.webp",
+    alt: "Second Women model",
+  },
+};

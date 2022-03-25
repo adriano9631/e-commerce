@@ -11,7 +11,6 @@ export default NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       profile(profile) {
-        console.log(profile);
         return {
           id: profile.sub,
           name: profile.name,

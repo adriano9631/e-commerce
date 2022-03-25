@@ -72,7 +72,7 @@ export const LoginBtn = styled.button`
   }
 `;
 
-export const Avatar = styled(avatar)`
+export const Avatar = styled(Image)`
   transform: scale(0.6);
 `;
 
@@ -82,6 +82,8 @@ export const UserImg = styled(Image)`
   border-radius: 50%;
   cursor: pointer;
 `;
+
+export const AccountLink = styled.a``;
 
 export const UserNavItemsList = styled.div`
   display: flex;

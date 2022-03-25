@@ -19,7 +19,11 @@ const allWomenProductsQuery = gql`
 
 const allMenProductsQuery = gql`
   query allProductsQuery {
-    allProducts(filter: { productType: { matches: { pattern: "Men's" } } }) {
+    allProducts(
+      filter: {
+        productType: { matches: { pattern: "Men's", caseSensitive: true } }
+      }
+    ) {
       id
       name
       price
@@ -94,7 +98,7 @@ const productBySlugQuery = gql`
 `;
 
 const productsListByHighestQuantityQuery = gql`
-    query productsListByHighestQuantityQuery {
+  query productsListByHighestQuantityQuery {
     allProducts(first: 6, orderBy: quantitySold_DESC) {
       name
       price

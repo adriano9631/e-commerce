@@ -21,14 +21,16 @@ export const Header = styled.header`
   background-color: var(--primary-color);
 `;
 
-export const RightArrowIcon = styled(rightArrowIcon)`
-  font-size: 35px;
-  margin-left: 40px;
-  stroke: white;
+export const ClosePopupBtn = styled.button`
+  background-color: inherit;
+  top: 35%;
   position: relative;
-  top: 45%;
-  transform: translateY(-45%);
   cursor: pointer;
+  margin-left: 40px;
+`;
+
+export const ClosePopupIcon = styled.img`
+  filter: invert(1);
 `;
 
 export const CartText = styled.h2`

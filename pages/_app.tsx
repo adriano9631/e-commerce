@@ -11,9 +11,6 @@ import Footer from "components/common/Footer";
 import ConnectedWithProvider from "components/common/ConnectedWithProvider";
 
 
-// import { server } from "../__mocks__/server";
-
-// server.listen();
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();

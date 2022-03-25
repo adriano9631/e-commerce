@@ -3,7 +3,7 @@ import * as s from "./Products.style";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import sortProducts from "lib/utils/sortProducts";
-import { useMediaQuery } from "@mui/material";
+
 export type ProductsProps = {
   allProducts: {
     id: string;
@@ -27,6 +27,7 @@ export type ProductsProps = {
       alt: string;
     };
   };
+  collection: "MEN" | "WOMEN" | null;
   isAllProducts?: boolean;
 };
 
@@ -34,6 +35,7 @@ const Products: FC<ProductsProps> = ({
   allProducts,
   modelsImages,
   isAllProducts,
+  collection,
 }) => {
   const router = useRouter();
   const [hoveredImgSlug, setHoveredImgSlug] = useState("");
@@ -56,6 +58,7 @@ const Products: FC<ProductsProps> = ({
       _createdAt: string;
     }[]
   >(allProducts);
+
 
   const uniqueProductTypes = Array.from(
     new Set(allProducts.map((product) => product.productType))
@@ -92,14 +95,13 @@ const Products: FC<ProductsProps> = ({
   }
 
   useEffect(() => {
-    if (router.query.sort) {
+    if (router.query?.sort) {
       let newCurrentProductsList = [...currentProductsList];
       sortProducts(router.query.sort, newCurrentProductsList);
-
       setCurrentProductsList(newCurrentProductsList);
       setProductsBeforePriceChange(newCurrentProductsList);
     }
-  }, [router.query.sort]);
+  }, [router.query?.sort]);
 
   useEffect(() => {
     const minPrice = price[0];
@@ -116,16 +118,15 @@ const Products: FC<ProductsProps> = ({
   }, [price]);
 
   useEffect(() => {
-    if (router.query.Collection) {
+    if (router.query?.collection) {
       let newProducts;
-      if (router.query.Collection === "all") {
+      if (router.query.collection === "all") {
         newProducts = [...allProducts];
       } else {
         newProducts = allProducts.filter(
-          (product) => product.productType === router.query.Collection
+          (product) => product.productType === router.query.collection
         );
       }
-
       if (router.query.sort) {
         sortProducts(router.query.sort, newProducts);
       }
@@ -141,7 +142,7 @@ const Products: FC<ProductsProps> = ({
       setCurrentProductsList(newProducts);
       setProductsBeforePriceChange(newProducts);
     }
-  }, [router.query.Collection]);
+  }, [router.query?.collection]);
 
   const handleCollapsible = (
     height: number | undefined,
@@ -166,7 +167,7 @@ const Products: FC<ProductsProps> = ({
         <s.WomenModelsImagesWrapper>
           <s.ColumnWrapper>
             <s.HeadingsWrapper>
-              <s.Title>SHOP WOMEN</s.Title>
+              <s.Title>SHOP {collection}</s.Title>
               <s.Description>
                 {`I'm a paragraph. Click here to add your own text and edit me. I’m a
             great place for you to tell a story and let your users know a little
@@ -180,7 +181,7 @@ const Products: FC<ProductsProps> = ({
               alt={modelsImages.firstImage.alt}
               layout="fill"
               objectFit="cover"
-              objectPosition="50% 20px"
+              objectPosition="50% 40px"
             />
           </s.FirstImageWrapper>
           <s.SecondImageWrapper>
@@ -189,14 +190,16 @@ const Products: FC<ProductsProps> = ({
               alt={modelsImages.secondImage.alt}
               layout="fill"
               objectFit="cover"
-              objectPosition="50% 20px"
+              objectPosition={
+                collection === "WOMEN" ? "50% 40px" : "50% 100px"
+              }
             />
             <s.WritingArea>
               <s.WritingAreaText>WHEN BUYING 3 ITEMS OR MORE</s.WritingAreaText>
             </s.WritingArea>
             <s.CouponIconWrapper>
               <s.SpecialOfferText>FREE SHIPPING</s.SpecialOfferText>
-              <s.CouponIcon />
+              <s.CouponIcon src="/icons/discount-part-2.svg" />
             </s.CouponIconWrapper>
           </s.SecondImageWrapper>
         </s.WomenModelsImagesWrapper>
@@ -216,7 +219,11 @@ const Products: FC<ProductsProps> = ({
                 }
               >
                 <s.CollectionText>Collection</s.CollectionText>
-                {height1 ? <s.CollapseIcon /> : <s.ExpandIcon />}
+                {height1 ? (
+                  <s.CollapseIcon src="/icons/minus.svg" />
+                ) : (
+                  <s.ExpandIcon src="/icons/plus.svg" />
+                )}
               </s.CollapsibleBtn>
 
               <s.CollapsibleContent height={height1} ref={scrollHeightRef1}>
@@ -225,7 +232,7 @@ const Products: FC<ProductsProps> = ({
                     <Link
                       href={{
                         pathname: router.pathname,
-                        query: { ...router.query, Collection: "all" },
+                        query: { ...router.query, collection: "all" },
                       }}
                       scroll={false}
                       passHref
@@ -248,7 +255,7 @@ const Products: FC<ProductsProps> = ({
                       <Link
                         href={{
                           pathname: router.pathname,
-                          query: { ...router.query, Collection: productType },
+                          query: { ...router.query, collection: productType },
                         }}
                         scroll={false}
                         passHref
@@ -278,7 +285,11 @@ const Products: FC<ProductsProps> = ({
                   }
                 >
                   <s.PriceText>Price</s.PriceText>
-                  {height2 ? <s.CollapseIcon /> : <s.ExpandIcon />}
+                  {height2 ? (
+                    <s.CollapseIcon src="/icons/minus.svg" />
+                  ) : (
+                    <s.ExpandIcon src="/icons/plus.svg" />
+                  )}
                 </s.CollapsibleBtn>
                 <s.CollapsibleContent height={height2} ref={scrollHeightRef2}>
                   <s.PriceSlider
@@ -317,7 +328,11 @@ const Products: FC<ProductsProps> = ({
           >
             <s.SortByBtn onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
               <span>{filterName}</span>
-              {isDropdownOpen ? <s.ArrowUpIcon /> : <s.ArrowDownIcon />}
+              {isDropdownOpen ? (
+                <s.ArrowUpIcon src="/icons/dropdown-arrow-up.svg" />
+              ) : (
+                <s.ArrowDownIcon src="/icons/dropdown-arrow-down.svg" />
+              )}
             </s.SortByBtn>
             <s.SortByDropdown isDropdownOpen={isDropdownOpen}>
               <li onClick={() => handleSortFilterChange("Newest")}>
@@ -424,20 +439,24 @@ const Products: FC<ProductsProps> = ({
           <s.ProductsList>
             {currentProductsList.map((product) => (
               <s.ProductWrapper key={product.id}>
-                <s.ProductImage
-                  onMouseOver={() => setHoveredImgSlug(product.slug)}
-                  onMouseOut={() => setHoveredImgSlug("")}
-                  src={
-                    hoveredImgSlug === product.slug && product.images[1]
-                      ? product.images[1].url
-                      : product.images[0].url
-                  }
-                  width={168}
-                  height={215}
-                  alt={product.images[0].alt}
-                />
-                <s.Name>{product.name}</s.Name>
-                <s.Price>{product.price}</s.Price>
+                <Link href={`/product/${product.slug}`}>
+                  <a data-testid={`${product.slug}`}>
+                    <s.ProductImage
+                      onMouseOver={() => setHoveredImgSlug(product.slug)}
+                      onMouseOut={() => setHoveredImgSlug("")}
+                      src={
+                        hoveredImgSlug === product.slug && product.images[1]
+                          ? product.images[1].url
+                          : product.images[0].url
+                      }
+                      width={168}
+                      height={215}
+                      alt={product.images[0].alt}
+                    />
+                    <s.Name data-testid="name">{product.name}</s.Name>
+                    <s.Price>{product.price}</s.Price>
+                  </a>
+                </Link>
               </s.ProductWrapper>
             ))}
             {currentProductsList.length === 0 && (

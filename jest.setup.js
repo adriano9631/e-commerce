@@ -1,19 +1,50 @@
 import "@testing-library/jest-dom/extend-expect";
 
-// src/setupTests.js
-
 import { server } from "./__mocks__/server";
 
-// Establish API mocking before all tests.
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
-beforeAll(() => server.listen());
+beforeEach(() => {
+  useRouter.mockImplementation(() => ({
+    query: {},
+    pathname: "/",
+    asPath: "/",
+    events: {
+      emit: jest.fn(),
+      on: jest.fn(),
+      off: jest.fn(),
+    },
+    push: jest.fn(() => Promise.resolve(true)),
+    prefetch: jest.fn(() => Promise.resolve(true)),
+    replace: jest.fn(() => Promise.resolve(true)),
+  }));
+});
 
-// Reset any request handlers that we may add during the tests,
+// jest.mock('next/router', () => require('next-router-mock'));
+beforeAll(() => {
+  server.listen();
+  // jest.mock('next/link', () => ({ children }) => children);
+  // jest.mock('next/router', () => require('next-router-mock'));
+  // jest.mock('next/dist/client/router', () => ({
+  //   __esModule: true,
+  //   useRouter: () => ({
+  //     query: {},
+  //     pathname: '/',
+  //     asPath: '/',
+  //     events: {
+  //       emit: jest.fn(),
+  //       on: jest.fn(),
+  //       off: jest.fn(),
+  //     },
+  //     push: jest.fn(() => Promise.resolve(true)),
+  //     prefetch: jest.fn(() => Promise.resolve(true)),
+  //     replace: jest.fn(() => Promise.resolve(true)),
+  //   }),
+  // }))
+});
 
-// so they don't affect other tests.
-
-afterEach(() => server.resetHandlers());
-
-// Clean up after the tests are finished.
+afterEach(() => {
+  server.resetHandlers();
+});
 
 afterAll(() => server.close());

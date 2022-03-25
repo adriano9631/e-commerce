@@ -78,7 +78,6 @@ const ShoppingCartPopup: FC = () => {
     }
   };
 
-  const d = "3213k213k21321";
   return ReactDom.createPortal(
     <div style={OVERLAY_STYLES}>
       <s.ShoppingCartPopupContainer
@@ -89,9 +88,11 @@ const ShoppingCartPopup: FC = () => {
         ref={ref}
       >
         <s.Header>
-          <s.RightArrowIcon
+          <s.ClosePopupBtn
             onClick={() => dispatch(setIsPopupVisible(false))}
-          />
+          >
+            <s.ClosePopupIcon src="/icons/right-arrow.svg" />
+          </s.ClosePopupBtn>
           <s.CartText>CART</s.CartText>
         </s.Header>
         <s.CartItemsList>

@@ -83,19 +83,21 @@ const Navbar: React.FC = () => {
         <s.FlexWrapper>
           {!session && (
             <s.LoginBtn onClick={() => signIn("google")}>
-              <s.Avatar />
+              <s.Avatar src="/icons/avatar.svg" width={60} height={60} />
               <s.LoginText>Log In</s.LoginText>
             </s.LoginBtn>
           )}
           {session && (
             <s.UserNavItemsList>
               <Link href="/account/my-account" passHref>
-                <s.UserImg
-                  src={session.user.image}
-                  width={30}
-                  height={30}
-                  alt="User profile image"
-                />
+                <s.AccountLink>
+                  <s.UserImg
+                    src={session.user.image}
+                    width={30}
+                    height={30}
+                    alt="User profile image"
+                  />
+                </s.AccountLink>
               </Link>
               <Link href="/account/my-wishlist" passHref>
                 <s.UserNavItem>My Wishlist</s.UserNavItem>
@@ -123,9 +125,7 @@ const Navbar: React.FC = () => {
           </Link>
         </s.NavItemsList>
       </s.FlexRow>
-      <s.Discount>
-        25% OFF WOMENS JEANS - USE CODE: BTTRDAYS
-      </s.Discount>
+      <s.Discount>25% OFF WOMENS JEANS - USE CODE: BTTRDAYS</s.Discount>
       <SearchBox />
       <HamburgerMenu
         isOpen={isMenuOpen}

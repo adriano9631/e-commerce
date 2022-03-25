@@ -88,20 +88,24 @@ const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
       >
         {bestSellingProducts.map((product) => {
           return (
-            <Link href={`/product/${product.slug}`} key={product.slug} passHref>
-              <s.BestSellerWrapper
-                onMouseOver={() => setHoveredImgSlug(product.slug)}
-                onMouseOut={() => setHoveredImgSlug("")}
-                variants={item}
-                onClick={() =>
-                  dispatch(
-                    addPreviouslyViewedProductsLinks(
-                      previouslyViewedProductsLinks
-                    )
+            <s.BestSellerWrapper
+              onMouseOver={() => setHoveredImgSlug(product.slug)}
+              onMouseOut={() => setHoveredImgSlug("")}
+              variants={item}
+              key={product.slug}
+              onClick={() =>
+                dispatch(
+                  addPreviouslyViewedProductsLinks(
+                    previouslyViewedProductsLinks
                   )
-                }
-              >
-                <a style={{ position: "relative" }}>
+                )
+              }
+            >
+              <Link href={`/product/${product.slug}`} passHref>
+                <a
+                  data-testid={`${product.slug}`}
+                  style={{ position: "relative" }}
+                >
                   <s.BestSellerImg
                     src={
                       hoveredImgSlug === product.slug && product.images[1]
@@ -121,8 +125,8 @@ const BestSellers: FC<BestSellersProps> = ({ bestSellingProducts }) => {
                   <s.Name>{product.name}</s.Name>
                   <s.Price>{product.price}</s.Price>
                 </a>
-              </s.BestSellerWrapper>
-            </Link>
+              </Link>
+            </s.BestSellerWrapper>
           );
         })}
       </s.BestSellersList>

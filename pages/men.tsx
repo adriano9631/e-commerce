@@ -11,6 +11,7 @@ const Men: FC<MenProps> = ({ allProducts, modelsImages }) => {
     <Products
       allProducts={allProducts}
       modelsImages={modelsImages}
+      collection="MEN"
     />
   );
 };

@@ -7,6 +7,11 @@ import rootReducer from "./features/store";
 import commonSlice from "./features/commonSlice";
 import productsSlice from "./features/productsSlice";
 
+// import Router from "next/router";
+import { useRouter } from "next/router";
+import { RouterContext } from "next/dist/shared/lib/router-context";
+import Router from "next/dist/shared/lib/router/router";
+
 function render(
   ui,
   {
@@ -19,7 +24,11 @@ function render(
   } = {}
 ) {
   function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      // <RouterContext.Provider value={Router}>
+        <Provider store={store}>{children}</Provider>
+      // </RouterContext.Provider>
+    );
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }

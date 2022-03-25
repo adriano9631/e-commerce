@@ -12,7 +12,7 @@ export type Ref = HTMLButtonElement;
 const ShopAllButton = React.forwardRef<Ref, ShopAllbutonProps>(
   ({ ...rest }, ref) => {
     return (
-      <s.ShopAllBtnContainer {...rest} ref={ref}>
+      <s.ShopAllBtnContainer {...rest}/*  ref={ref} */>
         Shop All Denim
       </s.ShopAllBtnContainer>
     );

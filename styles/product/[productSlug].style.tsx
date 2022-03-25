@@ -29,7 +29,7 @@ type ShippingInfoDetailsProps = {
 export const ProductContainer = styled.div`
   max-width: 890px;
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 150px;
 
   @media screen and (max-width: 950px) {
     margin-top: 150px;

@@ -7,6 +7,10 @@ import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import search from "public/icons/search.svg";
+import trolley from "public/icons/trolley.svg";
+import heart from "public/icons/heart.svg";
+
 const SearchBox: React.FC = () => {
   const router = useRouter();
   const totalQuantity = useSelector(
@@ -27,19 +31,19 @@ const SearchBox: React.FC = () => {
           placeholder="Search..."
         />
         <s.SearchBtn>
-          <s.SearchIcon />
+          <s.SearchIcon src="/icons/search.svg" />
         </s.SearchBtn>
       </s.SearchBoxForm>
       <Link href="/account/my-wishlist">
         <a>
           <s.WishListBtnWrapper>
-            <s.HeartIcon />
+            <s.HeartIcon src="/icons/heart.svg" width={24} height={24} />
             <s.Wishlist>Wishlist</s.Wishlist>
           </s.WishListBtnWrapper>
         </a>
       </Link>
       <s.TrolleyWrapper onClick={() => dispatch(setIsPopupVisible(true))}>
-        <s.TrolleyIcon />
+        <s.TrolleyIcon src="/icons/trolley.svg"  width={20} height={20} />
         <s.TrolleyCurrentItems>{totalQuantity}</s.TrolleyCurrentItems>
       </s.TrolleyWrapper>
     </s.SearchBoxContainer>

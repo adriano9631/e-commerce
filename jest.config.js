@@ -1,5 +1,6 @@
 // jest.config.js
 module.exports = {
+  timers: "fake",
   moduleDirectories: ["node_modules", "<rootDir>"],
   collectCoverageFrom: [
     "**/*.{js,jsx,ts,tsx}",

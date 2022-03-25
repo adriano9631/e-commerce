@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import search from "public/icons/search.svg";
 import trolley from "public/icons/trolley.svg";
 import heart from "public/icons/heart.svg";
@@ -48,12 +49,12 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchIcon = styled(search)`
+export const SearchIcon = styled.img`
   transform: scale(0.6);
   margin-left: auto;
   margin-right: 15px;
-  stroke: white;
   cursor: pointer;
+  filter: invert(1);
 `;
 
 export const SearchBtn = styled.button`
@@ -82,7 +83,7 @@ export const WishListBtnWrapper = styled.button`
   }
 `;
 
-export const HeartIcon = styled(heart)`
+export const HeartIcon = styled.img`
   stroke: var(--primary-color);
   transform: scale(0.5);
   margin-top: -1px;
@@ -109,11 +110,10 @@ export const TrolleyWrapper = styled.button`
   }
 `;
 
-export const TrolleyIcon = styled(trolley)`
+export const TrolleyIcon = styled.img`
   width: 20px;
   height: 20px;
-  stroke: white;
-  fill: white;
+  filter: invert(1);
 `;
 
 export const TrolleyCurrentItems = styled.p`
