@@ -1,5 +1,4 @@
 # Fashion e-commerce store
-> Outline a brief description of your project.
 > Live demo [_here_](e-commerce-seven-red.vercel.app). <!-- If you have the project hosted somewhere, include the link here. -->
 
 
@@ -25,9 +24,9 @@ to search engine crawlers, which result in better search engine optimization.
 ## Technologies Used
 - React
 - Next.js
+- Typescript
 - Jest
 - React Testing Library
-- Typescript
 - Framer Motion
 - Material UI
 - Redux Toolkit
