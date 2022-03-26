@@ -1,4 +1,4 @@
-# Fashion e-commerce store
+# Fashion e-commerce shop
 > Live demo [_here_](https://e-commerce-seven-red.vercel.app/). <!-- If you have the project hosted somewhere, include the link here. -->
 
 
@@ -18,13 +18,14 @@ E-commerce shop built with Next.js - The React Framework.
 By making this project, I aimed to learn Next.js, which is used for 
 building a modern server-side applications, that are friendly
 to search engine crawlers, which result in better search engine optimization.
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+
 
 
 ## Technologies Used
 - React
 - Next.js
 - Typescript
+- Styled Components
 - Jest
 - React Testing Library
 - Framer Motion
