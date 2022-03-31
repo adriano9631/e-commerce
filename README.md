@@ -14,8 +14,7 @@
 
 ## General Information
 
-E-commerce shop built with Next.js - The React Framework.
-By making this project, I aimed to learn Next.js, which is used for 
+Blog built with React By making this project, I aimed to learn Next.js, which is used for 
 building a modern server-side applications, that are friendly
 to search engine crawlers, which result in better search engine optimization.
 
@@ -70,6 +69,7 @@ yarn dev
 
 ## To do:
 - Add cypress and more test coverage
+- Fix photo positions in women and men section.
 
 
 ## Acknowledgements
