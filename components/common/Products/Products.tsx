@@ -181,7 +181,7 @@ const Products: FC<ProductsProps> = ({
               alt={modelsImages.firstImage.alt}
               layout="fill"
               objectFit="cover"
-              objectPosition="50% 40px"
+              // objectPosition="50% 40px"
             />
           </s.FirstImageWrapper>
           <s.SecondImageWrapper>

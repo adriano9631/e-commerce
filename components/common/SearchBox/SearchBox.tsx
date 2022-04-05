@@ -6,6 +6,7 @@ import { setIsPopupVisible } from "features/commonSlice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 import search from "public/icons/search.svg";
 import trolley from "public/icons/trolley.svg";
@@ -16,7 +17,9 @@ const SearchBox: React.FC = () => {
   const totalQuantity = useSelector(
     (state: RootState) => state.products.totalQuantity
   );
+
   const [searchTerm, setSearchTerm] = useState("");
+  const { data: session } = useSession();
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     router.push(`/search-results?search_query=${searchTerm}`);
@@ -34,16 +37,28 @@ const SearchBox: React.FC = () => {
           <s.SearchIcon src="/icons/search.svg" />
         </s.SearchBtn>
       </s.SearchBoxForm>
-      <Link href="/account/my-wishlist">
-        <a>
-          <s.WishListBtnWrapper>
-            <s.HeartIcon src="/icons/heart.svg" width={24} height={24} />
-            <s.Wishlist>Wishlist</s.Wishlist>
-          </s.WishListBtnWrapper>
-        </a>
-      </Link>
+      {session ? (
+        <Link href="/account/my-wishlist">
+          <a>
+            <s.WishListBtnWrapper>
+              <s.HeartIcon src="/icons/heart.svg" width={24} height={24} />
+              <s.Wishlist>Wishlist</s.Wishlist>
+            </s.WishListBtnWrapper>
+          </a>
+        </Link>
+      ) : (
+        // <Link href="/account/my-wishlist">
+          <a onClick={() => signIn("google")}>
+            <s.WishListBtnWrapper>
+              <s.HeartIcon src="/icons/heart.svg" width={24} height={24} />
+              <s.Wishlist>Wishlist</s.Wishlist>
+            </s.WishListBtnWrapper>
+          </a>
+        // </Link>
+      )}
+
       <s.TrolleyWrapper onClick={() => dispatch(setIsPopupVisible(true))}>
-        <s.TrolleyIcon src="/icons/trolley.svg"  width={20} height={20} />
+        <s.TrolleyIcon src="/icons/trolley.svg" width={20} height={20} />
         <s.TrolleyCurrentItems>{totalQuantity}</s.TrolleyCurrentItems>
       </s.TrolleyWrapper>
     </s.SearchBoxContainer>
