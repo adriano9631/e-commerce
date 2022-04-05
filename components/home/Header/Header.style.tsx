@@ -75,7 +75,7 @@ export const CollectionSelectionWrapper = styled.div`
   z-index: 10;
   left: 50%;
   transform: translate(-50%, 0);
-  bottom: 280px;
+  bottom: 460px;
   width: 80%;
   padding: 30px 50px;
   display: flex;
