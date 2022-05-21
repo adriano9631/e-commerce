@@ -14,7 +14,7 @@
 
 ## General Information
 
-Blog built with React By making this project, I aimed to learn Next.js, which is used for 
+E-commerce shop built with React By making this project, I aimed to learn Next.js, which is used for 
 building a modern server-side applications, that are friendly
 to search engine crawlers, which result in better search engine optimization.
 
